@@ -1,6 +1,7 @@
 #py -m pip install UnityPy
 import UnityPy
 import random
+from PyQt5.QtWidgets import *
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
@@ -12,12 +13,28 @@ lengendaries = [144,145,146,150,151,243,244,245,249,250,251,377,378,379,380,381,
 
 # make sure the file gamesettings is in this folder
 # gamesettings is in Dpr/scriptableassets
-src = "gamesettings"
+def RandomizeEncounters(text):
+    src = "gamesettings"
+    
+    env = UnityPy.load(src)  
+    text.append("Gamesettings Loaded.")
+    Encount(1, env, text)
 
-env = UnityPy.load(src)
-
+    # saving an edited file
+    # apply modifications to the objects
+    # don't forget to use data.save()
+        # ...
+        # 
+        # 
+    #This output is uncompressed, make sure to compress using LZ4 in UABEA
+    with open("gamesettings", "wb") as f:
+        f.write(env.file.save(packer = (64,2)))
+    text.append("Encounters Saved.")
+ 
+#Have to move this outside of the function because im calling it from another file -- Sangawku
 # Legends = 1 will keep legendariy encounters legendary, i.e. Palkia will become Mewtwo or something, not wurmple
-def Encount(legend):
+def Encount(legend, env, text):
+    text.append("Randomizing Pokemon.")
     for obj in env.objects:
         
         if obj.path_id in pathList:
@@ -38,14 +55,4 @@ def Encount(legend):
                                         mon['monsNo'] = random.randint(1,493)
             #Saves the object tree
             obj.save_typetree(tree)
-
-Encount(1)
-# saving an edited file
-# apply modifications to the objects
-# don't forget to use data.save()
-    # ...
-    # 
-    # 
-#This output is uncompressed, make sure to compress using LZ4 in UABEA
-with open("randomEncounters", "wb") as f:
-    f.write(env.file.save(packer = (64,2)))
+            text.append("Randomzing Done.")
