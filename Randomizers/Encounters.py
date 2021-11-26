@@ -9,10 +9,28 @@ diamondEncount = 361824127573837173
 pearlEncount = -9035030829162387677
 
 pathList = [diamondEncount, pearlEncount]
-lengendaries = [144,145,146,150,151,243,244,245,249,250,251,377,378,379,380,381,382,383,384,385,386,480,481,482,483,484,485,486,487,488,491]
+encPool = []
+encLegPool = []
 
 # make sure the file gamesettings is in this folder
 # gamesettings is in Dpr/scriptableassets
+
+# Takes a list i.e [1,2] and generates a pool of pokemon for those gens to be used in Encount()
+def pool(gens):
+    for i in gens:
+        if i == 1:
+            encPool.extend(range(1,151))
+            encLegPool.extend([144,145,146,150,151])
+        if i == 2:
+            encPool.extend(range(151,252))
+            encLegPool.extend([243,244,245,249,250,251])
+        if i == 3:
+            encPool.extend(range(252,387))
+            encLegPool.extend([377,378,379,380,381,382,383,384,385,386])
+        if i == 4:
+            encPool.extend(range(387,494))
+            encLegPool.extend([480,481,482,483,484,485,486,487,488,491])
+        
 def RandomizeEncounters(text):
     src = "gamesettings"
     
@@ -50,9 +68,9 @@ def Encount(legend, env, text):
                                     if legend == 1:
                                         for legsNo in lengendaries:
                                             if mon['monsNo'] == legsNo:
-                                                mon['monsNo'] = random.choice(lengendaries)
+                                                mon['monsNo'] = random.choice(encLegPool)
                                     else:
-                                        mon['monsNo'] = random.randint(1,493)
+                                        mon['monsNo'] = random.choice(encPool)
             #Saves the object tree
             obj.save_typetree(tree)
             text.append("Randomzing Done.")
