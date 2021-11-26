@@ -29,14 +29,13 @@ class AppWindow(QMainWindow):
                 generations.append(3)
             if self.ui.cbGen4.isChecked():
                 generations.append(4)
-
-            Encounters.RandomizeEncounters(self.ui.tbLog,self.ui.cbLegends.isChecked(), generations)
+            #Fixed added safari -- sangawku
+            Encounters.RandomizeEncounters(self.ui.tbLog,self.ui.cbLegends.isChecked(), generations, self.ui.cbSafari.isChecked())
         if self.ui.cbTrainers.isChecked():
             self.ui.tbLog.append('Randomizing Trainers!')
             Trainers.RandomizeTrainers(self.ui.tbLog)
-        #just realized this should be included in the rest of the encounters -- sangawku
-        #if self.ui.cbSafari.isChecked():
-        #    self.ui.tbLog.append('Randomizing Safari Pokemon!')
+        
+        
         
         if self.ui.cbUnderground.isChecked():
             self.ui.tbLog.append('Randomizing Underground Pokemon!')
