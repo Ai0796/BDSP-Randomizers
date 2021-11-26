@@ -6,6 +6,7 @@ import Encounters
 import Evolutions
 import Trainers
 import UndergroundEncounters
+import Levels
 from dialog import Ui_MainWindow
 import sys
 
@@ -47,6 +48,10 @@ class AppWindow(QMainWindow):
             
         if self.ui.cbLevels.isChecked():
             self.ui.tbLog.append('Randomizing Levels!')
+            if self.ui.rbFlat.isChecked():
+                Levels.RandomizeLevels(self.ui.tbLog,1, self.ui.sbMin.value(), self.ui.sbMax.value())
+            else:
+                Levels.RandomizeLevels(self.ui.tbLog,0, self.ui.sbMin.value(), self.ui.sbMax.value())
 
 app = QApplication(sys.argv)
 
