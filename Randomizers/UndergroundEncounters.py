@@ -1,5 +1,6 @@
 import UnityPy
 import random
+from PyQt5.QtWidgets import *
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
@@ -19,33 +20,37 @@ pathList = [UgEncount_02, UgEncount_03, UgEncount_04, UgEncount_05, UgEncount_06
 
 # make sure the file UgData is in this folder
 # UgData s is inside UnderGround/Data
-filename = "UgData"
+def RandomizeUG(text):
 
-# legendaryList = [144, 145, 146, 150, 151, 243, 244, 245, 249, 250, 251, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493]
+    filename = "UgData"
+    text.append("UGData Loaded.")
 
-env = UnityPy.load(filename)
-for obj in env.objects:
-    
-    if obj.path_id in pathList:
-            # save decoded data
-        tree = obj.read_typetree()
+    # legendaryList = [144, 145, 146, 150, 151, 243, 244, 245, 249, 250, 251, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493]
+
+    env = UnityPy.load(filename)
+    for obj in env.objects:
         
-        # print(str(i) + ": " + str(data))
-        if tree["m_Name"][:10] == "UgEncount_":
-            for mon in tree["table"]:
-                mon["monsno"] = random.randint(1, 493)
-        else:
-            print("Error use different path_id")
-                
-        obj.save_typetree(tree)
-                
-                
-# saving an edited file
-# apply modifications to the objects
-# don't forget to use data.save()
-    # ...
-    # 
-    # 
-#This output is compressed, thanks to Copycat#8110
-with open("randomUndergroundEncounters", "wb") as f:
-    f.write(env.file.save(packer = (64,2)))
+        if obj.path_id in pathList:
+                # save decoded data
+            tree = obj.read_typetree()
+            
+            # print(str(i) + ": " + str(data))
+            if tree["m_Name"][:10] == "UgEncount_":
+                for mon in tree["table"]:
+                    mon["monsno"] = random.randint(1, 493)
+            else:
+                print("Error use different path_id")
+                    
+            obj.save_typetree(tree)
+                    
+    text.append("UGData Randomized.")                
+    # saving an edited file
+    # apply modifications to the objects
+    # don't forget to use data.save()
+        # ...
+        # 
+        # 
+    #This output is compressed, thanks to Copycat#8110
+    with open("UgData", "wb") as f:
+        f.write(env.file.save(packer = (64,2)))
+    text.append("UGData Randomized.")                

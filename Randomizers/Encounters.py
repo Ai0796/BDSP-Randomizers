@@ -9,6 +9,7 @@ diamondEncount = 361824127573837173
 pearlEncount = -9035030829162387677
 
 pathList = [diamondEncount, pearlEncount]
+lengendaries = [144,145,146,150,151,243,244,245,249,250,251,377,378,379,380,381,382,383,384,385,386,480,481,482,483,484,485,486,487,488,491]
 encPool = []
 encLegPool = []
 
@@ -31,12 +32,12 @@ def pool(gens):
             encPool.extend(range(387,494))
             encLegPool.extend([480,481,482,483,484,485,486,487,488,491])
         
-def RandomizeEncounters(text):
+def RandomizeEncounters(text,legends, pools):
     src = "gamesettings"
-    
+    pool(pools)
     env = UnityPy.load(src)  
     text.append("Gamesettings Loaded.")
-    Encount(1, env, text)
+    Encount(legends, env, text)
 
     # saving an edited file
     # apply modifications to the objects
@@ -69,6 +70,8 @@ def Encount(legend, env, text):
                                         for legsNo in lengendaries:
                                             if mon['monsNo'] == legsNo:
                                                 mon['monsNo'] = random.choice(encLegPool)
+                                            else:
+                                                mon['monsNo'] = random.choice(encPool)
                                     else:
                                         mon['monsNo'] = random.choice(encPool)
             #Saves the object tree
