@@ -15,7 +15,7 @@ env = UnityPy.load(src)
 
 ##One to one
 
-def Evolve():
+def Evolve(everyLevel):
     pathList = [evolveTable]
     
     r = random.sample(range(1,561), 560)
@@ -25,15 +25,32 @@ def Evolve():
         
         if obj.path_id in pathList:
             tree = obj.read_typetree()
-            
-            if tree['m_Name'] == "EvolveTable":
-                for monID in tree['Evolve']:
-                    monID["ar"] = [4, 0, r[i], 0, 1] 
-                    i += 1
-                #Saves the object tree
-                obj.save_typetree(tree)
-            else:
-                print("Error use different path_id")
+
+            # Evolve every level
+            if everyLevel == 1:
+                if tree['m_Name'] == "EvolveTable":
+                    for monID in tree['Evolve']:
+                        monID["ar"] = [4, 0, r[i], 0, 1] 
+                        i += 1
+                    #Saves the object tree
+                    obj.save_typetree(tree)
+                else:
+                    print("Error use different path_id")
+
+            #Evolve normal level
+            if everyLevel == 0:
+                if tree['m_Name'] == "EvolveTable":
+                    for monID in tree['Evolve']:
+                        monEvo = monID["ar"]
+                        try:
+                            monEvo[2] = r[i]
+                        except:
+                            pass
+                        i += 1
+                    #Saves the object tree
+                    obj.save_typetree(tree)
+                else:
+                    print("Error use different path_id")
 
 def Typing():
     pathList = [personalTable]
@@ -53,7 +70,7 @@ def Typing():
                 print("Error use different path_id")
 
 
-Evolve()
+Evolve(0)
 Typing()
 # saving an edited file
 # apply modifications to the objects
