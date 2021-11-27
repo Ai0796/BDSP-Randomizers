@@ -8,10 +8,9 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-
+from PyQt5.QtWidgets import QAction, QWidget, QTextEdit, QCheckBox, QGroupBox, QMenu, QPushButton, QRadioButton, QLabel, QSpinBox, QMenuBar,QStatusBar
+from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject
+from PyQt5.QtGui import QPixmap
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):

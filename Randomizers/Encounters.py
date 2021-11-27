@@ -1,7 +1,7 @@
 #py -m pip install UnityPy
 import UnityPy
 import random
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QTextEdit
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
