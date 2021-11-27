@@ -32,7 +32,7 @@ def pool(gens):
             encPool.extend(range(387,494))
             encLegPool.extend([480,481,482,483,484,485,486,487,488,491])
         
-def RandomizeEncounters(text,legends, pools, safari):
+def RandomizeEncounters(text, legends, pools, safari):
     src = "gamesettings"
     pool(pools)
     env = UnityPy.load(src)  
