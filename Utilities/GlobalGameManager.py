@@ -9,11 +9,17 @@ import struct
 timeManager = 8
 qualityManager = 12
 
-
+modPath = "romfs/Data"
 
 pathList = [timeManager, qualityManager]
 
 def ApplyUtilities(VSync, timeStep, text):
+    
+    cwd = os.getcwd()
+    if os.path.exists(modPath) == True:
+        if os.path.isfile(modPath + '/globalgamemanagers') == True:
+            os.chdir(modPath)
+            
     src = "globalgamemanagers"
     env = UnityPy.load(src)  
     text.append("GlobalGameManagers Loaded.")
@@ -25,9 +31,15 @@ def ApplyUtilities(VSync, timeStep, text):
         # 
         # 
     #This output is uncompressed, make sure to compress using LZ4 in UABEA
+    if cwd == os.getcwd():
+        Path(modPath).mkdir(parents=True, exist_ok=True)
+        os.chdir(modPath)
+        
     with open("globalgamemanagers", "wb") as f:
         f.write(env.file.save())
     text.append("GlobalGameManagers Saved.")
+
+    os.chdir(cwd)
  
 #Have to move this outside of the function because im calling it from another file -- Sangawku
 # Legends = 1 will keep legendariy encounters legendary, i.e. Palkia will become Mewtwo or something, not wurmple
