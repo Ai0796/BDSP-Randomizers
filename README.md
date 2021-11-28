@@ -1,6 +1,6 @@
 # Pokemon Brilliant Diamond Shining Pearl Randomizer by Aldo796, Copycat, SanGawku, and XLuma
 
-#Usage
+# Usage
 
 Extract the archive into a directory with the romfs folder from Brilliant Diamond or Shining Pearl
 Run main.exe and select your randomization settings
