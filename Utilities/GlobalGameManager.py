@@ -12,6 +12,7 @@ timeManager = 8
 qualityManager = 12
 
 modPath = "romfs/Data"
+yuzuModPath = "romfs"
 
 pathList = [timeManager, qualityManager]
 
@@ -27,6 +28,9 @@ def ApplyUtilities(VSync, timeStep, text):
     
     elif os.path.exists(modPath) and os.path.isfile(os.path.join(modPath, src)):
         os.chdir(modPath)
+        
+    elif os.path.exists(yuzuModPath) and os.path.isfile(os.path.join(yuzuModPath, src)):
+        os.chdir(yuzuModPath)
         
     else:
         text.append("ERROR: globalGameManager not found")
