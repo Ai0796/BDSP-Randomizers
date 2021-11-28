@@ -11,7 +11,7 @@ modPath = "romfs/StreamingAssets/AssetAssistant/Dpr"
 pathList = [Trainer_Table]
 
 #Level Increase
-LevelIncrease = 1.5
+LevelIncrease = 1
 
 def getAbilityList():
     
