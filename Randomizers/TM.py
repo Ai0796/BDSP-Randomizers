@@ -17,7 +17,7 @@ def getMoveList():
     with open(filepath, "r") as f:
         return f.readlines()
     
-def RandomizeShops(text):
+def RandomizeTMs(text):
 
     cwd = os.getcwd()
     if os.path.exists(modPath) == True:
