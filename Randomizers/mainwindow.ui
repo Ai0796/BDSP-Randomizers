@@ -92,6 +92,27 @@
      </property>
     </widget>
     <widget class="QCheckBox" name="cbLevels">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>220</y>
+       <width>121</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <strikeout>true</strikeout>
+      </font>
+     </property>
+     <property name="text">
+      <string>Randomize Levels</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="cbShops">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -101,7 +122,78 @@
       </rect>
      </property>
      <property name="text">
-      <string>Randomize Levels</string>
+      <string>Randomize Shops</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="cbTM">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>140</y>
+       <width>121</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Randomize TMs</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="cbFieldItems">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>200</y>
+       <width>121</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <strikeout>true</strikeout>
+      </font>
+     </property>
+     <property name="text">
+      <string>Randomize Field Items</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="cbFieldItems_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>180</y>
+       <width>121</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <strikeout>true</strikeout>
+      </font>
+     </property>
+     <property name="text">
+      <string>Randomize Abilities</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>160</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Coming Soon</string>
      </property>
     </widget>
    </widget>
@@ -378,26 +470,13 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>60</y>
-       <width>121</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Timestep Multipler</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbVsync">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
        <y>40</y>
        <width>121</width>
        <height>17</height>
       </rect>
      </property>
      <property name="text">
-      <string>Disable VSync</string>
+      <string>Timestep Multipler</string>
      </property>
     </widget>
    </widget>

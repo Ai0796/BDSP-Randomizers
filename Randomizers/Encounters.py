@@ -102,4 +102,4 @@ def Encount(safari, legend, env, text):
                                         mon['MonsNo'] = random.choice(encPool)
             #Saves the object tree
             obj.save_typetree(tree)
-            text.append("Randomzing Done.")
+    text.append("Randomzing Done.")

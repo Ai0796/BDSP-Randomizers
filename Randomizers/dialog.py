@@ -10,7 +10,7 @@
 
 from PyQt5.QtWidgets import QAction, QWidget, QTextEdit, QCheckBox, QGroupBox, QMenu, QPushButton, QRadioButton, QLabel, QSpinBox, QMenuBar,QStatusBar, QDoubleSpinBox
 from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QPixmap, QFont
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -43,7 +43,31 @@ class Ui_MainWindow(object):
         self.cbEvolutions.setGeometry(QRect(10, 80, 141, 17))
         self.cbLevels = QCheckBox(self.groupBox)
         self.cbLevels.setObjectName(u"cbLevels")
-        self.cbLevels.setGeometry(QRect(10, 120, 121, 17))
+        self.cbLevels.setEnabled(False)
+        self.cbLevels.setGeometry(QRect(10, 220, 121, 17))
+        font = QFont()
+        font.setStrikeOut(True)
+        self.cbLevels.setFont(font)
+        self.cbShops = QCheckBox(self.groupBox)
+        self.cbShops.setObjectName(u"cbShops")
+        self.cbShops.setGeometry(QRect(10, 120, 121, 17))
+        self.cbTM = QCheckBox(self.groupBox)
+        self.cbTM.setObjectName(u"cbTM")
+        self.cbTM.setGeometry(QRect(10, 140, 121, 17))
+        self.cbFieldItems = QCheckBox(self.groupBox)
+        self.cbFieldItems.setObjectName(u"cbFieldItems")
+        self.cbFieldItems.setEnabled(False)
+        self.cbFieldItems.setGeometry(QRect(10, 200, 121, 17))
+        self.cbFieldItems.setFont(font)
+        self.cbFieldItems_2 = QCheckBox(self.groupBox)
+        self.cbFieldItems_2.setObjectName(u"cbFieldItems_2")
+        self.cbFieldItems_2.setEnabled(False)
+        self.cbFieldItems_2.setGeometry(QRect(10, 180, 121, 17))
+        self.cbFieldItems_2.setFont(font)
+        self.label_5 = QLabel(self.groupBox)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setEnabled(False)
+        self.label_5.setGeometry(QRect(10, 160, 71, 16))
         self.tbLog = QTextEdit(self.centralwidget)
         self.tbLog.setObjectName(u"tbLog")
         self.tbLog.setGeometry(QRect(10, 270, 671, 291))
@@ -114,10 +138,7 @@ class Ui_MainWindow(object):
         self.cb60FPS.setGeometry(QRect(10, 20, 121, 17))
         self.cbTimeSkip = QCheckBox(self.groupBox_4)
         self.cbTimeSkip.setObjectName(u"cbTimeSkip")
-        self.cbTimeSkip.setGeometry(QRect(10, 60, 121, 17))
-        self.cbVsync = QCheckBox(self.groupBox_4)
-        self.cbVsync.setObjectName(u"cbVsync")
-        self.cbVsync.setGeometry(QRect(10, 40, 121, 17))
+        self.cbTimeSkip.setGeometry(QRect(10, 40, 121, 17))
         self.groupBox_5 = QGroupBox(self.centralwidget)
         self.groupBox_5.setObjectName(u"groupBox_5")
         self.groupBox_5.setEnabled(True)
@@ -163,6 +184,11 @@ class Ui_MainWindow(object):
         self.cbUnderground.setText(QCoreApplication.translate("MainWindow", u"Randomize Underground", None))
         self.cbEvolutions.setText(QCoreApplication.translate("MainWindow", u"Randomize Evolutions", None))
         self.cbLevels.setText(QCoreApplication.translate("MainWindow", u"Randomize Levels", None))
+        self.cbShops.setText(QCoreApplication.translate("MainWindow", u"Randomize Shops", None))
+        self.cbTM.setText(QCoreApplication.translate("MainWindow", u"Randomize TMs", None))
+        self.cbFieldItems.setText(QCoreApplication.translate("MainWindow", u"Randomize Field Items", None))
+        self.cbFieldItems_2.setText(QCoreApplication.translate("MainWindow", u"Randomize Abilities", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Coming Soon", None))
         self.tbLog.setPlaceholderText("")
         self.label.setText("")
         self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"Pokemon Options", None))
@@ -180,9 +206,9 @@ class Ui_MainWindow(object):
         self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"Utilities", None))
         self.cb60FPS.setText(QCoreApplication.translate("MainWindow", u"60FPS Mod", None))
         self.cbTimeSkip.setText(QCoreApplication.translate("MainWindow", u"Timestep Multipler", None))
-        self.cbVsync.setText(QCoreApplication.translate("MainWindow", u"Disable VSync", None))
         self.groupBox_5.setTitle(QCoreApplication.translate("MainWindow", u"Timestep", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Timestep", None))
         self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
         self.menuAbout.setTitle(QCoreApplication.translate("MainWindow", u"Help", None))
     # retranslateUi
+

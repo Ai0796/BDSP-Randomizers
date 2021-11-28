@@ -47,19 +47,6 @@ def RandomizeLevels(text,flat, min, max):
                                             mon['minlv'] *= (random.choice(range(min, max))/100 * 100)
                                         else:
                                             mon['minlv'] *= (random.choice(range(min, max))/100 * -100)
-            #Saves the object tree
-            obj.save_typetree(tree)
-            text.append("Randomzing minLevels Done.")
-    for obj in env.objects:
-        if obj.path_id in pathList:
-            tree = obj.read_typetree()
-            
-            ##Two encounter tables are named FieldEncountTable_d (diamond) and FieldEncountTable_p (pearl)
-            for area in tree['table']:
-                for key in area.keys():
-                    if type(area[key]) != int:
-                        if type(area[key][0]) == dict:
-                            for mon in area[key]:
                                 if mon['maxlv'] != 0:
                                     if flat:
                                         mon['maxlv'] = random.choice(range(min, max))
@@ -70,7 +57,9 @@ def RandomizeLevels(text,flat, min, max):
                                             mon['maxlv'] *= (random.choice(range(min, max))/100 * -100)
             #Saves the object tree
             obj.save_typetree(tree)
-            text.append("Randomzing MaxLevels Done.")
+    text.append("Randomzing Levels Done.")
+
+
     # saving an edited file
     # apply modifications to the objects
     # don't forget to use data.save()
