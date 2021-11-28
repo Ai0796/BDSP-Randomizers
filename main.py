@@ -3,6 +3,7 @@ from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject
 from PyQt5.QtGui import QPixmap, QKeySequence, QPalette, QColor
 from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters, Levels
 from Randomizers.dialog import Ui_MainWindow
+from Utilities import GlobalGameManager
 import sys
 
 class AppWindow(QMainWindow):
@@ -29,7 +30,8 @@ class AppWindow(QMainWindow):
         if self.ui.cbTrainers.isChecked():
             self.ui.tbLog.append('Randomizing Trainers!')
             Trainers.RandomizeTrainers(self.ui.tbLog)
-        
+        if self.ui.cbTimeSkip.isChecked() or self.ui.cbVsync.isChecked():
+            GlobalGameManager.ApplyUtilities(self.ui.cbVsync.isChecked(), self.ui.sbTimeStep.value(), self.ui.tbLog)
         
         
         if self.ui.cbUnderground.isChecked():
