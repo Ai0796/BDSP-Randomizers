@@ -1,2 +1,7 @@
 exe.win-amd64-3.9
 Randomizers/__pycache__
+Utilities/__pycache__
+gamesettings
+masterdata
+personal_masterdatas
+romfs*
