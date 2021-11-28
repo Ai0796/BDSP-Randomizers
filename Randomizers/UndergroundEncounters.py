@@ -18,7 +18,7 @@ UgEncount_11 = -117713607888148647
 UgEncount_12 = -4148679105701947902
 #UgEncount_20 just seems like the digletts and dugtrios that can be found in the underground
 pathList = [UgEncount_02, UgEncount_03, UgEncount_04, UgEncount_05, UgEncount_06, UgEncount_07, UgEncount_08, UgEncount_09, UgEncount_10, UgEncount_11, UgEncount_12]
-modPath = "romfs/StreamingAssets/AssetAssistant/UnderGround/data"
+modPath = "romfs/Data/StreamingAssets/AssetAssistant/UnderGround/data"
 # make sure the file UgData is in this folder
 # UgData s is inside UnderGround/Data
 def RandomizeUG(text):

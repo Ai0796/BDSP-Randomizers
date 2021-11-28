@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QTextEdit
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
-modPath = "romfs/StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
+modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
 
 diamondEncount = 361824127573837173
 pearlEncount = -9035030829162387677

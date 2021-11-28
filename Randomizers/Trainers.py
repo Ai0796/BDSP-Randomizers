@@ -7,7 +7,7 @@ from pathlib import Path
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 Trainer_Table = 676024375065692598
-modPath = "romfs/StreamingAssets/AssetAssistant/Dpr"
+modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr"
 pathList = [Trainer_Table]
 
 #Level Increase

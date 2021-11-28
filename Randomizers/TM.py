@@ -8,7 +8,7 @@ from pathlib import Path
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 ItemTable = 252928009371549925
-modPath = "romfs/StreamingAssets/AssetAssistant/Pml"
+modPath = "romfs/Data/StreamingAssets/AssetAssistant/Pml"
 pathList = [ItemTable]
 
 def getMoveList():

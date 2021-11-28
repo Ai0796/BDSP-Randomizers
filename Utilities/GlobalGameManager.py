@@ -11,7 +11,7 @@ from pathlib import Path
 timeManager = 8
 qualityManager = 12
 
-modPath = "romfs"
+modPath = "romfs/Data"
 
 pathList = [timeManager, qualityManager]
 

@@ -9,7 +9,7 @@ from pathlib import Path
 evolveTable = 5139195221601552760
 pathList = [evolveTable]
 
-modPath = "romfs/StreamingAssets/AssetAssistant/Pml"
+modPath = "romfs/Data/StreamingAssets/AssetAssistant/Pml"
 
 # make sure the file personal_masterdatas is in this folder
 # personal_masterdatas is inside Pml

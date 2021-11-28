@@ -9,7 +9,7 @@ from pathlib import Path
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 diamondEncount = 361824127573837173
 pearlEncount = -9035030829162387677
-modPath = "romfs/StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
+modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
 
 pathList = [diamondEncount, pearlEncount]
 # make sure the file gamesettings is in this folder

@@ -8,7 +8,7 @@ from pathlib import Path
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 shopTable = 5586546078177307292
-modPath = "romfs/StreamingAssets/AssetAssistant/Dpr"
+modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr"
 pathList = [shopTable]
 
 def uselessItemRemover(itemNo):
