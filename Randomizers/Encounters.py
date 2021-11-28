@@ -8,7 +8,6 @@ from PyQt5.QtWidgets import QTextEdit
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 modPath = "romfs/StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
-cwd = os.getcwd()
 
 diamondEncount = 361824127573837173
 pearlEncount = -9035030829162387677
@@ -40,8 +39,10 @@ def pool(gens):
 def RandomizeEncounters(text, legends, pools, safari):
 
     # Checks if romfs path already exist
+    cwd = os.getcwd()
     if os.path.exists(modPath) == True:
-        os.chdir(modPath)
+        if os.path.isfile(modPath + '/gamesettings') == True:
+            os.chdir(modPath)
         
     src = "gamesettings"
     pool(pools)

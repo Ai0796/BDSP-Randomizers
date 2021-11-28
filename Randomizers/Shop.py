@@ -2,11 +2,13 @@
 import UnityPy
 import random
 from PyQt5.QtWidgets import QTextEdit
+import os
+from pathlib import Path
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 shopTable = 5586546078177307292
-
+modPath = "romfs/StreamingAssets/AssetAssistant/Dpr"
 pathList = [shopTable]
 
 def uselessItemRemover(itemNo):
@@ -39,7 +41,15 @@ def generateRandom():
     return itemNo
     
 def RandomizeShops(text):
+
+
+    # Checks if romfs path already exist
+    cwd = os.getcwd()
     
+    if os.path.exists(modPath) == True:
+        if os.path.isfile(modPath + '/masterdatas') == True:
+            os.chdir(modPath)
+        
     src = "masterdatas"
     
     shopList = ["FS", "FixedShop"]
@@ -69,6 +79,12 @@ def RandomizeShops(text):
         # 
         # 
     #This output is compressed, thanks to Copycat#8110
+    if cwd == os.getcwd():
+        Path(modPath).mkdir(parents=True, exist_ok=True)
+        os.chdir(modPath)
+        
     with open("masterdatas", "wb") as f:
         f.write(env.file.save(packer = (64,2)))
     text.append("Trainers Saved.")
+    
+    os.chdir(cwd)

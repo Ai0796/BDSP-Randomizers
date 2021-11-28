@@ -1,15 +1,26 @@
 import UnityPy
 import random
 from PyQt5.QtWidgets import QTextEdit
+import os
+from pathlib import Path
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 Trainer_Table = 676024375065692598
-
+modPath = "romfs/StreamingAssets/AssetAssistant/Dpr"
 pathList = [Trainer_Table]
+
+#Level Increase
+LevelIncrease = 1.5
 
 def RandomizeTrainers(text):
     # make sure masterdatas is in same folder
+    cwd = os.getcwd()
+    
+    if os.path.exists(modPath) == True:
+        if os.path.isfile(modPath + '/masterdatas') == True:
+            os.chdir(modPath)
+
     src = "masterdatas"
 
     env = UnityPy.load(src)
@@ -28,9 +39,9 @@ def RandomizeTrainers(text):
                         level = dic["P"f"{pokeNum}Level"]
                         if level > 0:
                             #Increases level by 50% with a cap at level 100
-                            dic["P"f"{pokeNum}Level"] = int(dic["P"f"{pokeNum}Level"] * 1.5)
-                            # if dic["P"f"{pokeNum}Level"] > 100:
-                            #     dic["P"f"{pokeNum}Level"] = 100
+                            dic["P"f"{pokeNum}Level"] = int(dic["P"f"{pokeNum}Level"] * LevelIncrease)
+                            if dic["P"f"{pokeNum}Level"] > 100:
+                                dic["P"f"{pokeNum}Level"] = 100
                             newPokemon = random.randint(1,493)
                             dic["P"f"{pokeNum}MonsNo"] = newPokemon
                             ##Moves 1 through 4
@@ -59,6 +70,12 @@ def RandomizeTrainers(text):
         # 
         # 
     #This output is compressed, thanks to Copycat#8110
+    if cwd == os.getcwd():
+        Path(modPath).mkdir(parents=True, exist_ok=True)
+        os.chdir(modPath)
+        
     with open("masterdatas", "wb") as f:
         f.write(env.file.save(packer = (64,2)))
     text.append("Trainers Saved.")
+    
+    os.chdir(cwd)
