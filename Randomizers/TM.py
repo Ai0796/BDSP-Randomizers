@@ -64,7 +64,7 @@ def RandomizeTMs(text):
         Path(modPath).mkdir(parents=True, exist_ok=True)
         os.chdir(modPath)
 
-    with open("masterdatas", "wb") as f:
+    with open("personal_masterdatas", "wb") as f:
         f.write(env.file.save(packer = (64,2)))
     text.append("TMs Saved.")
 
