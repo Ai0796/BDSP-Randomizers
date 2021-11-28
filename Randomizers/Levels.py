@@ -20,9 +20,12 @@ def RandomizeLevels(text, flat, min, max):
 
     # Checks if romfs path already exist
     cwd = os.getcwd()
-    if os.path.exists(modPath) == True:
-        if os.path.isfile(modPath + '/gamesettings') == True:
-            os.chdir(modPath)
+    if os.path.exists(modPath) and os.path.isfile(modPath + '/gamesettings'):
+        os.chdir(modPath)
+            
+    else:
+        text.append("ERROR: gamesettings not found")
+        return
 
     src = "gamesettings"
     env = UnityPy.load(src)  

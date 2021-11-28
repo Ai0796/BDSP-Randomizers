@@ -32,9 +32,12 @@ def RandomizeTrainers(text):
     abilityList = getAbilityList()
     moveList = getMoveList()
     
-    if os.path.exists(modPath) == True:
-        if os.path.isfile(modPath + '/masterdatas') == True:
-            os.chdir(modPath)
+    if os.path.exists(modPath) and os.path.isfile(modPath + '/masterdatas') :
+        os.chdir(modPath)
+    
+    else:
+        text.append("ERROR: masterdatas not found ")
+        return
 
 
     src = "masterdatas"

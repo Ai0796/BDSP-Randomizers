@@ -17,9 +17,12 @@ def RandomizeEvolutions(text):
 
     # Checks if romfs path already exist
     cwd = os.getcwd()
-    if os.path.exists(modPath) == True:
-        if os.path.isfile(modPath + '/personal_masterdatas') == True:
-            os.chdir(modPath)
+    if os.path.exists(modPath) == True and os.path.isfile(modPath + '/personal_masterdatas'):
+        os.chdir(modPath)
+    
+    else:
+        text.append("ERROR: personal_masterdatas not found")
+        return
 
     src = "personal_masterdatas"
 

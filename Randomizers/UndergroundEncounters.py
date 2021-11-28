@@ -24,17 +24,21 @@ modPath = "romfs/StreamingAssets/AssetAssistant/UnderGround/data"
 def RandomizeUG(text):
 
     filename = "UgData"
-    text.append("UGData Loaded.")
-
+    
     # legendaryList = [144, 145, 146, 150, 151, 243, 244, 245, 249, 250, 251, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493]
 
     cwd = os.getcwd()
-    if os.path.exists(modPath) == True:
-        if os.path.isfile(modPath + '/UgData') == True:
-            os.chdir(modPath)
+    if os.path.exists(modPath) and os.path.isfile(modPath + '/UgData'):
+        os.chdir(modPath)
+        
+    else:
+        text.append("ERROR: UgData not found")
+        return
 
     env = UnityPy.load(filename)
     
+    text.append("UGData Loaded.")
+
     for obj in env.objects:
         
         if obj.path_id in pathList:

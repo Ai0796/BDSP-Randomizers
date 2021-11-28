@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import QAction, QWidget, QTextEdit, QCheckBox, QGroupBox, QMenu, QPushButton, QRadioButton, QLabel, QSpinBox, QMenuBar,QStatusBar, QMainWindow, QApplication
-from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject
-from PyQt5.QtGui import QPixmap, QKeySequence, QPalette, QColor
+from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPalette, QColor
 from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters, Levels, Shop, TM 
 from Randomizers.dialog import Ui_MainWindow
 from Utilities import GlobalGameManager
