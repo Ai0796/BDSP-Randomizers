@@ -63,31 +63,36 @@ def RandomizeTrainers(text):
                             dic["P"f"{pokeNum}MonsNo"] = newPokemon
                             
                             ##Ability Selection
-                            dic["P"f"{pokeNum}Level"] = random.choice(abilityList[newPokemon-1][1:])
+                            dic["P"f"{pokeNum}Level"] = int(random.choice(abilityList[newPokemon-1][1:]))
                             
                             possibleMoves = []
-                            monMoveList = moveList[newPokemon-1].split(",")
-                            for i in range(int(len(monMoveList)/2)):
-                                if monMoveList[i*2] < dic["P"f"{pokeNum}Level"]:
-                                    possibleMoves.append(monMoveList[i*2 + 1])
+                            monMoveList = moveList[newPokemon-1].split(",")[:-1]
+                            for i in range(int(len(monMoveList[:-1])/2)):
+                                if int(monMoveList[i*2]) < dic["P"f"{pokeNum}Level"]:
+                                    possibleMoves.append(int(monMoveList[i*2 + 1]))
                                     
+                            # print(possibleMoves)
                             ##Moves 1 through 4
                             amountOfMoves = min(4, len(possibleMoves))
                             for moveNum in range(1, amountOfMoves + 1):
                                 dic["P"f"{pokeNum}Waza"f"{moveNum}"] = possibleMoves[-moveNum]
+                                
                             
                             #Set all IVs to 31 for maximum difficulty :P
-                            dic["P"f"{pokeNum}TalentHp"] = 31
-                            dic["P"f"{pokeNum}TalentAtk"] = 31
-                            dic["P"f"{pokeNum}TalentDef"] = 31
-                            dic["P"f"{pokeNum}TalentSpAtk"] = 31
-                            dic["P"f"{pokeNum}TalentSpDef"] = 31
-                            dic["P"f"{pokeNum}TalentAgi"] = 31
-
+                            # dic["P"f"{pokeNum}TalentHp"] = 31
+                            # dic["P"f"{pokeNum}TalentAtk"] = 31
+                            # dic["P"f"{pokeNum}TalentDef"] = 31
+                            # dic["P"f"{pokeNum}TalentSpAtk"] = 31
+                            # dic["P"f"{pokeNum}TalentSpDef"] = 31
+                            # dic["P"f"{pokeNum}TalentAgi"] = 31
+                               
                 obj.save_typetree(tree)
                 
             else:
                 print("Error use different path_id")
+                
+           
+            
                     
     text.append("Trainers Randomized.")                
     # saving an edited file

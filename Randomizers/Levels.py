@@ -16,7 +16,7 @@ pathList = [diamondEncount, pearlEncount]
 # gamesettings is in Dpr/scriptableassets
 
         
-def RandomizeLevels(text,flat, min, max):
+def RandomizeLevels(text, flat, min, max):
 
     # Checks if romfs path already exist
     cwd = os.getcwd()
