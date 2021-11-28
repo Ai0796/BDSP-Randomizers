@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import QTextEdit
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
+yuzuModPath = "romfs/StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
 
 diamondEncount = 361824127573837173
 pearlEncount = -9035030829162387677
@@ -50,6 +51,9 @@ def RandomizeEncounters(text, legends, pools, safari):
     
     elif os.path.exists(modPath) and os.path.isfile(os.path.join(modPath, src)):
         os.chdir(modPath)
+        
+    elif os.path.exists(yuzuModPath) and os.path.isfile(os.path.join(yuzuModPath, src)):
+        os.chdir(yuzuModPath)
             
     else:
         text.append("ERROR: gamesettings not found ")

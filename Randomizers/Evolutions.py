@@ -10,6 +10,7 @@ evolveTable = 5139195221601552760
 pathList = [evolveTable]
 
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Pml"
+yuzuModPath = "romfs/StreamingAssets/AssetAssistant/Pml"
 
 # make sure the file personal_masterdatas is in this folder
 # personal_masterdatas is inside Pml
@@ -27,6 +28,9 @@ def RandomizeEvolutions(text):
     
     elif os.path.exists(modPath) and os.path.isfile(os.path.join(modPath, src)):
         os.chdir(modPath)
+        
+    elif os.path.exists(yuzuModPath) and os.path.isfile(os.path.join(yuzuModPath, src)):
+        os.chdir(yuzuModPath)
     
     else:
         text.append("ERROR: personal_masterdatas not found")
@@ -48,7 +52,7 @@ def RandomizeEvolutions(text):
             
             if tree['m_Name'] == "EvolveTable":
                 for monID in tree['Evolve']:
-                    monID["ar"] = [4, 0, r[i], 0, 1] 
+                    monID["ar"] = [4, 0, r[i], 0, 1]
                     i += 1
                 #Saves the object tree
                 obj.save_typetree(tree)

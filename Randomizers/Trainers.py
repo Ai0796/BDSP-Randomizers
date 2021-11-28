@@ -8,6 +8,7 @@ from pathlib import Path
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 Trainer_Table = 676024375065692598
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr"
+yuzuModPath = "romfs/StreamingAssets/AssetAssistant/Dpr"
 pathList = [Trainer_Table]
 
 #Level Increase
@@ -41,6 +42,9 @@ def RandomizeTrainers(text):
     
     elif os.path.exists(modPath) and os.path.isfile(os.path.join(modPath, src)) :
         os.chdir(modPath)
+        
+    elif os.path.exists(yuzuModPath) and os.path.isfile(os.path.join(yuzuModPath, src)):
+        os.chdir(yuzuModPath)
     
     else:
         text.append("ERROR: masterdatas not found ")

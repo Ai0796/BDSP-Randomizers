@@ -19,6 +19,7 @@ UgEncount_12 = -4148679105701947902
 #UgEncount_20 just seems like the digletts and dugtrios that can be found in the underground
 pathList = [UgEncount_02, UgEncount_03, UgEncount_04, UgEncount_05, UgEncount_06, UgEncount_07, UgEncount_08, UgEncount_09, UgEncount_10, UgEncount_11, UgEncount_12]
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/UnderGround/data"
+yuzuModPath = "romfs/StreamingAssets/AssetAssistant/UnderGround/data"
 # make sure the file UgData is in this folder
 # UgData s is inside UnderGround/Data
 def RandomizeUG(text):
@@ -36,6 +37,9 @@ def RandomizeUG(text):
         
     elif os.path.exists(modPath) and os.path.isfile(os.path.join(modPath, src)):
         os.chdir(modPath)
+        
+    elif os.path.exists(yuzuModPath) and os.path.isfile(os.path.join(yuzuModPath, src)):
+        os.chdir(yuzuModPath)
         
     else:
         text.append("ERROR: UgData not found")
@@ -60,7 +64,7 @@ def RandomizeUG(text):
                     
             obj.save_typetree(tree)
                     
-    text.append("UGData Randomized.")                
+    # text.append("UGData Randomized.")                
     # saving an edited file
     # apply modifications to the objects
     # don't forget to use data.save()
@@ -79,6 +83,6 @@ def RandomizeUG(text):
 
     with open("UgData", "wb") as f:
         f.write(env.file.save(packer = (64,2)))
-    text.append("UGData Randomized.")
+    text.append("UGData Randomized. in " + os.path.join("mods", modPath))
 
     os.chdir(cwd)

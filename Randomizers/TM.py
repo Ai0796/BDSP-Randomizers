@@ -9,6 +9,7 @@ from pathlib import Path
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 ItemTable = 252928009371549925
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Pml"
+yuzuModPath = "romfs/StreamingAssets/AssetAssistant/Pml"
 pathList = [ItemTable]
 
 def getMoveList():
@@ -32,6 +33,9 @@ def RandomizeTMs(text):
         
     elif os.path.exists(modPath) and os.path.isfile(os.path.join(modPath, src)):
         os.chdir(modPath)
+        
+    elif os.path.exists(yuzuModPath) and os.path.isfile(os.path.join(yuzuModPath, src)):
+        os.chdir(yuzuModPath)
         
     else:
         text.append("ERROR: personal_masterdatas not found ")

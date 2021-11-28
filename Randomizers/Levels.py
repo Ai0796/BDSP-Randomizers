@@ -10,6 +10,7 @@ from pathlib import Path
 diamondEncount = 361824127573837173
 pearlEncount = -9035030829162387677
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
+yuzuModPath = "romfs/StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
 
 pathList = [diamondEncount, pearlEncount]
 # make sure the file gamesettings is in this folder
@@ -30,6 +31,9 @@ def RandomizeLevels(text, flat, min, max):
     
     elif os.path.exists(modPath) and os.path.isfile(os.path.join(modPath, src)):
         os.chdir(modPath)
+        
+    elif os.path.exists(yuzuModPath) and os.path.isfile(os.path.join(yuzuModPath, src)):
+        os.chdir(yuzuModPath)
             
     else:
         text.append("ERROR: gamesettings not found")
