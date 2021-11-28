@@ -17,21 +17,25 @@ def getAbilityList():
     
     filepath = "Resources//ability.txt"
     with open(filepath, "r") as f:
-        return f.readlines()
+        return f.read().splitlines()
     
 def getMoveList():
     
     filepath = "Resources//moves.txt"
     with open(filepath, "r") as f:
-        return f.readlines()
+        return f.read().splitlines()
 
 def RandomizeTrainers(text):
     # make sure masterdatas is in same folder
     cwd = os.getcwd()
     
+    abilityList = getAbilityList()
+    moveList = getMoveList()
+    
     if os.path.exists(modPath) == True:
         if os.path.isfile(modPath + '/masterdatas') == True:
             os.chdir(modPath)
+
 
     src = "masterdatas"
 
@@ -39,9 +43,7 @@ def RandomizeTrainers(text):
     extract_dir = "Walker"
     text.append("Trainers Loaded.")
     
-    abilityList = getAbilityList()
-    moveList = getMoveList()
-
+    
     for obj in env.objects:
         if obj.path_id in pathList:
             tree = obj.read_typetree()
@@ -64,15 +66,15 @@ def RandomizeTrainers(text):
                             dic["P"f"{pokeNum}Level"] = random.choice(abilityList[newPokemon-1][1:])
                             
                             possibleMoves = []
-                            monMoveList = moveList[newPokemon-1][1:]
-                            for i in range(len(monMoveList)/2):
+                            monMoveList = moveList[newPokemon-1].split(",")
+                            for i in range(int(len(monMoveList)/2)):
                                 if monMoveList[i*2] < dic["P"f"{pokeNum}Level"]:
                                     possibleMoves.append(monMoveList[i*2 + 1])
                                     
                             ##Moves 1 through 4
                             amountOfMoves = min(4, len(possibleMoves))
                             for moveNum in range(1, amountOfMoves + 1):
-                                dic["P"f"{pokeNum}Waza"f"{moveNum}"] = amountOfMoves[-moveNum]
+                                dic["P"f"{pokeNum}Waza"f"{moveNum}"] = possibleMoves[-moveNum]
                             
                             #Set all IVs to 31 for maximum difficulty :P
                             dic["P"f"{pokeNum}TalentHp"] = 31

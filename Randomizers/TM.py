@@ -15,9 +15,12 @@ def getMoveList():
     
     filepath = "Resources//moveIndex.txt"
     with open(filepath, "r") as f:
-        return f.readlines()
+        return f.read().splitlines()
     
 def RandomizeTMs(text):
+    
+    
+    TMList = getMoveList()
 
     cwd = os.getcwd()
     if os.path.exists(modPath) == True:
@@ -35,7 +38,7 @@ def RandomizeTMs(text):
             tree = obj.read_typetree()
             if tree['m_Name'] == "ItemTable":
                 ##Selects 100 unique moves
-                r = random.sample(getMoveList(), 100)
+                r = random.sample(TMList, 100)
                 i = 0
                 for TM in tree["WazaMachine"]:
                     if TM["machineNo"] <= 100 and TM["machineNo"] > 0:
