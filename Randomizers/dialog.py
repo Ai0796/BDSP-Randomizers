@@ -8,7 +8,7 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PyQt5.QtWidgets import QAction, QWidget, QTextEdit, QCheckBox, QGroupBox, QMenu, QPushButton, QRadioButton, QLabel, QSpinBox, QMenuBar,QStatusBar
+from PyQt5.QtWidgets import QAction, QWidget, QTextEdit, QCheckBox, QGroupBox, QMenu, QPushButton, QRadioButton, QLabel, QSpinBox, QMenuBar,QStatusBar, QDoubleSpinBox
 from PyQt5.QtCore import Qt, QRect, QCoreApplication, QMetaObject
 from PyQt5.QtGui import QPixmap
 
@@ -25,7 +25,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.groupBox = QGroupBox(self.centralwidget)
         self.groupBox.setObjectName(u"groupBox")
-        self.groupBox.setGeometry(QRect(830, 0, 171, 561))
+        self.groupBox.setGeometry(QRect(830, 0, 171, 251))
         self.cbPokemon = QCheckBox(self.groupBox)
         self.cbPokemon.setObjectName(u"cbPokemon")
         self.cbPokemon.setGeometry(QRect(10, 20, 121, 17))
@@ -41,9 +41,6 @@ class Ui_MainWindow(object):
         self.cbEvolutions = QCheckBox(self.groupBox)
         self.cbEvolutions.setObjectName(u"cbEvolutions")
         self.cbEvolutions.setGeometry(QRect(10, 80, 141, 17))
-        self.btnRandomize = QPushButton(self.groupBox)
-        self.btnRandomize.setObjectName(u"btnRandomize")
-        self.btnRandomize.setGeometry(QRect(10, 490, 151, 61))
         self.cbLevels = QCheckBox(self.groupBox)
         self.cbLevels.setObjectName(u"cbLevels")
         self.cbLevels.setGeometry(QRect(10, 120, 121, 17))
@@ -83,7 +80,7 @@ class Ui_MainWindow(object):
         self.groupBox_3 = QGroupBox(self.centralwidget)
         self.groupBox_3.setObjectName(u"groupBox_3")
         self.groupBox_3.setEnabled(True)
-        self.groupBox_3.setGeometry(QRect(690, 110, 131, 151))
+        self.groupBox_3.setGeometry(QRect(690, 110, 131, 141))
         self.rbFlat = QRadioButton(self.groupBox_3)
         self.rbFlat.setObjectName(u"rbFlat")
         self.rbFlat.setGeometry(QRect(10, 20, 111, 17))
@@ -106,6 +103,33 @@ class Ui_MainWindow(object):
         self.label_3 = QLabel(self.groupBox_3)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setGeometry(QRect(10, 110, 47, 13))
+        self.btnRandomize = QPushButton(self.centralwidget)
+        self.btnRandomize.setObjectName(u"btnRandomize")
+        self.btnRandomize.setGeometry(QRect(690, 460, 301, 101))
+        self.groupBox_4 = QGroupBox(self.centralwidget)
+        self.groupBox_4.setObjectName(u"groupBox_4")
+        self.groupBox_4.setGeometry(QRect(830, 250, 171, 191))
+        self.cb60FPS = QCheckBox(self.groupBox_4)
+        self.cb60FPS.setObjectName(u"cb60FPS")
+        self.cb60FPS.setGeometry(QRect(10, 20, 121, 17))
+        self.cbTimeSkip = QCheckBox(self.groupBox_4)
+        self.cbTimeSkip.setObjectName(u"cbTimeSkip")
+        self.cbTimeSkip.setGeometry(QRect(10, 60, 121, 17))
+        self.cbVsync = QCheckBox(self.groupBox_4)
+        self.cbVsync.setObjectName(u"cbVsync")
+        self.cbVsync.setGeometry(QRect(10, 40, 121, 17))
+        self.groupBox_5 = QGroupBox(self.centralwidget)
+        self.groupBox_5.setObjectName(u"groupBox_5")
+        self.groupBox_5.setEnabled(True)
+        self.groupBox_5.setGeometry(QRect(690, 250, 131, 51))
+        self.label_4 = QLabel(self.groupBox_5)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setGeometry(QRect(10, 20, 47, 13))
+        self.sbTimeStep = QDoubleSpinBox(self.groupBox_5)
+        self.sbTimeStep.setObjectName(u"sbTimeStep")
+        self.sbTimeStep.setGeometry(QRect(60, 21, 62, 21))
+        self.sbTimeStep.setSingleStep(0.100000000000000)
+        self.sbTimeStep.setValue(1.000000000000000)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -129,7 +153,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"BDSP Randomizer", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.actionExit.setText(QCoreApplication.translate("MainWindow", u"Exit", None))
         self.actionAbout.setText(QCoreApplication.translate("MainWindow", u"About", None))
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Randomizers", None))
@@ -138,7 +162,6 @@ class Ui_MainWindow(object):
         self.cbSafari.setText(QCoreApplication.translate("MainWindow", u"Randomize Safari", None))
         self.cbUnderground.setText(QCoreApplication.translate("MainWindow", u"Randomize Underground", None))
         self.cbEvolutions.setText(QCoreApplication.translate("MainWindow", u"Randomize Evolutions", None))
-        self.btnRandomize.setText(QCoreApplication.translate("MainWindow", u"RANDOMIZE", None))
         self.cbLevels.setText(QCoreApplication.translate("MainWindow", u"Randomize Levels", None))
         self.tbLog.setPlaceholderText("")
         self.label.setText("")
@@ -153,7 +176,13 @@ class Ui_MainWindow(object):
         self.rbPercent.setText(QCoreApplication.translate("MainWindow", u"% Random", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Min Lvl", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Max Lvl", None))
+        self.btnRandomize.setText(QCoreApplication.translate("MainWindow", u"Lets go!!!", None))
+        self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"Utilities", None))
+        self.cb60FPS.setText(QCoreApplication.translate("MainWindow", u"60FPS Mod", None))
+        self.cbTimeSkip.setText(QCoreApplication.translate("MainWindow", u"Timestep Multipler", None))
+        self.cbVsync.setText(QCoreApplication.translate("MainWindow", u"Disable VSync", None))
+        self.groupBox_5.setTitle(QCoreApplication.translate("MainWindow", u"Timestep", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Timestep", None))
         self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
         self.menuAbout.setTitle(QCoreApplication.translate("MainWindow", u"Help", None))
     # retranslateUi
-

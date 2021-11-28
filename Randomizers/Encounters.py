@@ -37,9 +37,7 @@ def RandomizeEncounters(text, legends, pools, safari):
     pool(pools)
     env = UnityPy.load(src)  
     text.append("Gamesettings Loaded.")
-    Encount(legends, env, text)
-    if safari:
-        EncountSafari(env, text)
+    Encount(safari, legends, env, text)
     # saving an edited file
     # apply modifications to the objects
     # don't forget to use data.save()
@@ -53,7 +51,7 @@ def RandomizeEncounters(text, legends, pools, safari):
  
 #Have to move this outside of the function because im calling it from another file -- Sangawku
 # Legends = 1 will keep legendariy encounters legendary, i.e. Palkia will become Mewtwo or something, not wurmple
-def Encount(legend, env, text):
+def Encount(safari, legend, env, text):
     text.append("Randomizing Pokemon.")
     for obj in env.objects:
         
@@ -75,27 +73,14 @@ def Encount(legend, env, text):
                                                 mon['monsNo'] = random.choice(encPool)
                                     else:
                                         mon['monsNo'] = random.choice(encPool)
+            if safari:
+                for area in tree['safari']:
+                    for key in area.keys():
+                        if type(area[key]) != int:
+                            if type(area[key][0]) == dict:
+                                for mon in area[key]:
+                                    if mon['MonsNo'] != 0:
+                                        mon['MonsNo'] = random.choice(encPool)
             #Saves the object tree
             obj.save_typetree(tree)
             text.append("Randomzing Done.")
-
-#Have to move this outside of the function because im calling it from another file -- Sangawku
-# Legends = 1 will keep legendariy encounters legendary, i.e. Palkia will become Mewtwo or something, not wurmple
-def EncountSafari(env, text):
-    text.append("Randomizing Safari Pokemon.")
-    for obj in env.objects:
-        
-        if obj.path_id in pathList:
-            tree = obj.read_typetree()
-            
-            ##Two encounter tables are named FieldEncountTable_d (diamond) and FieldEncountTable_p (pearl)
-            for area in tree['safari']:
-                for key in area.keys():
-                    if type(area[key]) != int:
-                        if type(area[key][0]) == dict:
-                            for mon in area[key]:
-                                if mon['MonsNo'] != 0:
-                                    mon['MonsNo'] = random.choice(encPool)
-            #Saves the object tree
-            obj.save_typetree(tree)
-            text.append("Randomzing Safari Done.")
