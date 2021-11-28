@@ -3,6 +3,8 @@ import UnityPy
 import random
 from PyQt5.QtWidgets import QTextEdit
 import struct
+import os
+from pathlib import Path
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
