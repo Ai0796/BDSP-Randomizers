@@ -63,7 +63,7 @@ def RandomizeTrainers(text):
                             dic["P"f"{pokeNum}MonsNo"] = newPokemon
                             
                             ##Ability Selection
-                            dic["P"f"{pokeNum}Level"] = int(random.choice(abilityList[newPokemon-1].split(",")[1:]))
+                            dic["P"f"{pokeNum}Tokusei"] = int(random.choice(abilityList[newPokemon-1].split(",")[1:]))
                             
                             possibleMoves = []
                             monMoveList = moveList[newPokemon-1].split(",")
