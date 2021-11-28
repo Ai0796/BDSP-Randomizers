@@ -26,7 +26,7 @@ def ApplyUtilities(VSync, timeStep, text):
         # 
     #This output is uncompressed, make sure to compress using LZ4 in UABEA
     with open("globalgamemanagers", "wb") as f:
-        f.write(env.file.save(packer = (64,2)))
+        f.write(env.file.save())
     text.append("GlobalGameManagers Saved.")
  
 #Have to move this outside of the function because im calling it from another file -- Sangawku
@@ -59,4 +59,7 @@ def ChangeSettings(VSync, timeStep, env, text):
                 finaltree = bytes(tree2)
                 #Saves the object tree
                 obj.set_raw_data(finaltree)
+        else:
+            obj.set_raw_data(obj.get_raw_data())
+
     text.append("Utilities Applied.")        
