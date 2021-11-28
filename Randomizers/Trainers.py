@@ -18,6 +18,12 @@ def getAbilityList():
     filepath = "Resources//abilities.txt"
     with open(filepath, "r") as f:
         return f.readlines()
+    
+def getMoveList():
+    
+    filepath = "Resources//moves.txt"
+    with open(filepath, "r") as f:
+        return f.readlines()
 
 def RandomizeTrainers(text):
     # make sure masterdatas is in same folder
@@ -34,6 +40,7 @@ def RandomizeTrainers(text):
     text.append("Trainers Loaded.")
     
     abilityList = getAbilityList()
+    moveList = getMoveList()
 
     for obj in env.objects:
         if obj.path_id in pathList:
@@ -56,11 +63,16 @@ def RandomizeTrainers(text):
                             ##Ability Selection
                             dic["P"f"{pokeNum}Level"] = random.choice(abilityList[newPokemon-1][1:])
                             
+                            possibleMoves = []
+                            monMoveList = moveList[newPokemon][1:]
+                            for i in range(len(monMoveList)/2):
+                                if monMoveList[i*2] < dic["P"f"{pokeNum}Level"]:
+                                    possibleMoves.append(monMoveList[i*2] + 1)
+                                    
                             ##Moves 1 through 4
-                            dic["P"f"{pokeNum}Waza1"] = 52
-                            dic["P"f"{pokeNum}Waza2"] = 52
-                            dic["P"f"{pokeNum}Waza3"] = 52
-                            dic["P"f"{pokeNum}Waza4"] = 52
+                            amountOfMoves = min(4, len(possibleMoves))
+                            for moveNum in range(1, amountOfMoves + 1):
+                                dic["P"f"{pokeNum}Waza"f"{moveNum}"] = amountOfMoves[-moveNum]
                             
                             #Set all IVs to 31 for maximum difficulty :P
                             dic["P"f"{pokeNum}TalentHp"] = 31
