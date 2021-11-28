@@ -13,6 +13,12 @@ pathList = [Trainer_Table]
 #Level Increase
 LevelIncrease = 1.5
 
+def getAbilityList():
+    
+    filepath = "Resources//abilities.txt"
+    with open(filepath, "r") as f:
+        return f.readlines()
+
 def RandomizeTrainers(text):
     # make sure masterdatas is in same folder
     cwd = os.getcwd()
@@ -26,6 +32,8 @@ def RandomizeTrainers(text):
     env = UnityPy.load(src)
     extract_dir = "Walker"
     text.append("Trainers Loaded.")
+    
+    abilityList = getAbilityList()
 
     for obj in env.objects:
         if obj.path_id in pathList:
@@ -44,11 +52,16 @@ def RandomizeTrainers(text):
                                 dic["P"f"{pokeNum}Level"] = 100
                             newPokemon = random.randint(1,493)
                             dic["P"f"{pokeNum}MonsNo"] = newPokemon
+                            
+                            ##Ability Selection
+                            dic["P"f"{pokeNum}Level"] = random.choice(abilityList[newPokemon-1][1:])
+                            
                             ##Moves 1 through 4
                             dic["P"f"{pokeNum}Waza1"] = 52
                             dic["P"f"{pokeNum}Waza2"] = 52
                             dic["P"f"{pokeNum}Waza3"] = 52
                             dic["P"f"{pokeNum}Waza4"] = 52
+                            
                             #Set all IVs to 31 for maximum difficulty :P
                             dic["P"f"{pokeNum}TalentHp"] = 31
                             dic["P"f"{pokeNum}TalentAtk"] = 31
