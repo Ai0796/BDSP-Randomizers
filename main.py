@@ -47,11 +47,11 @@ class AppWindow(QMainWindow):
         
         if self.ui.cbTM.isChecked():
             self.ui.tbLog.append('Randomizing TMs!')
-            Evolutions.RandomizeTMs(self.ui.tbLog)
+            TM.RandomizeTMs(self.ui.tbLog)
         
         if self.ui.cbShops.isChecked():
             self.ui.tbLog.append('Randomizing Shops!')
-            Evolutions.RandomizeShops(self.ui.tbLog)
+            Shop.RandomizeShops(self.ui.tbLog)
         
         #if self.ui.cbLevels.isChecked():
         #    self.ui.tbLog.append('Randomizing Levels!')
