@@ -42,7 +42,7 @@ def RandomizeTMs(text):
                 i = 0
                 for TM in tree["WazaMachine"]:
                     if TM["machineNo"] <= 100 and TM["machineNo"] > 0:
-                        TM["wazaNo"] = r[i]
+                        TM["wazaNo"] = int(r[i])
                         i += 1
                     ##There's 200 defined TMs for some reason so break once past 100
                     else:

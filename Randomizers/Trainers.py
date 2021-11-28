@@ -78,13 +78,13 @@ def RandomizeTrainers(text):
                                 dic["P"f"{pokeNum}Waza"f"{moveNum}"] = possibleMoves[-moveNum]
                                 
                             
-                            #Set all IVs to 31 for maximum difficulty :P
-                            # dic["P"f"{pokeNum}TalentHp"] = 31
-                            # dic["P"f"{pokeNum}TalentAtk"] = 31
-                            # dic["P"f"{pokeNum}TalentDef"] = 31
-                            # dic["P"f"{pokeNum}TalentSpAtk"] = 31
-                            # dic["P"f"{pokeNum}TalentSpDef"] = 31
-                            # dic["P"f"{pokeNum}TalentAgi"] = 31
+                            # Set all IVs to 31 for maximum difficulty :P
+                            dic["P"f"{pokeNum}TalentHp"] = 31
+                            dic["P"f"{pokeNum}TalentAtk"] = 31
+                            dic["P"f"{pokeNum}TalentDef"] = 31
+                            dic["P"f"{pokeNum}TalentSpAtk"] = 31
+                            dic["P"f"{pokeNum}TalentSpDef"] = 31
+                            dic["P"f"{pokeNum}TalentAgi"] = 31
                                
                 obj.save_typetree(tree)
                 
