@@ -46,9 +46,6 @@ def RandomizeTrainers(text):
         text.append("ERROR: masterdatas not found ")
         return
 
-
-    
-
     env = UnityPy.load(src)
     extract_dir = "Walker"
     text.append("Trainers Loaded.")
@@ -86,6 +83,10 @@ def RandomizeTrainers(text):
                             amountOfMoves = min(4, len(possibleMoves))
                             for moveNum in range(1, amountOfMoves + 1):
                                 dic["P"f"{pokeNum}Waza"f"{moveNum}"] = possibleMoves[-moveNum]
+                                
+                            #Sets the rest of the pokemons moves to 0
+                            for moveNum in range(amountOfMoves + 1, 5):
+                                dic["P"f"{pokeNum}Waza"f"{moveNum}"] = 0
                                 
                             
                             # Set all IVs to 31 for maximum difficulty :P
