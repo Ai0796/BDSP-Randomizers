@@ -32,9 +32,9 @@ class AppWindow(QMainWindow):
             self.ui.tbLog.append('Randomizing Trainers!')
             Trainers.RandomizeTrainers(self.ui.tbLog)
             
-        if self.ui.cbTimeSkip.isChecked() or self.ui.cbVsync.isChecked():
+        if self.ui.cbTimeSkip.isChecked() or self.ui.cb60FPS.isChecked():
             self.ui.tbLog.append('Applying Utilities!')
-            GlobalGameManager.ApplyUtilities(self.ui.cbVsync.isChecked(), self.ui.sbTimeStep.value(), self.ui.tbLog)
+            GlobalGameManager.ApplyUtilities(self.ui.cb60FPS.isChecked(), self.ui.sbTimeStep.value(), self.ui.tbLog)
         
         
         if self.ui.cbUnderground.isChecked():
