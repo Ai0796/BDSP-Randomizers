@@ -1,15 +1,26 @@
 import UnityPy
 import random
 from PyQt5.QtWidgets import QTextEdit
+import os
+from pathlib import Path
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 evolveTable = 5139195221601552760
-
 pathList = [evolveTable]
+
+modPath = "romfs/StreamingAssets/AssetAssistant/Pml"
+
 # make sure the file personal_masterdatas is in this folder
 # personal_masterdatas is inside Pml
 def RandomizeEvolutions(text):
+
+    # Checks if romfs path already exist
+    cwd = os.getcwd()
+    if os.path.exists(modPath) == True:
+        if os.path.isfile(modPath + '/personal_masterdatas') == True:
+            os.chdir(modPath)
+
     src = "personal_masterdatas"
 
     env = UnityPy.load(src)
@@ -42,6 +53,14 @@ def RandomizeEvolutions(text):
         # 
         # 
     #This output is compressed, thanks to Copycat#8110
+
+    # If you arent in romfs path, make path and enter it
+    if cwd == os.getcwd():
+        Path(modPath).mkdir(parents=True, exist_ok=True)
+        os.chdir(modPath)
+    
     with open("personal_masterdatas", "wb") as f:
         f.write(env.file.save(packer = (64,2)))
     text.append("Evolutions Saved.")
+    
+    os.chdir(cwd)

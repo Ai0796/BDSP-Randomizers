@@ -2,11 +2,14 @@
 import UnityPy
 import random
 from PyQt5.QtWidgets import QTextEdit
+import os
+from pathlib import Path
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 diamondEncount = 361824127573837173
 pearlEncount = -9035030829162387677
+modPath = "romfs/StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
 
 pathList = [diamondEncount, pearlEncount]
 # make sure the file gamesettings is in this folder
@@ -14,6 +17,13 @@ pathList = [diamondEncount, pearlEncount]
 
         
 def RandomizeLevels(text,flat, min, max):
+
+    # Checks if romfs path already exist
+    cwd = os.getcwd()
+    if os.path.exists(modPath) == True:
+        if os.path.isfile(modPath + '/gamesettings') == True:
+            os.chdir(modPath)
+
     src = "gamesettings"
     env = UnityPy.load(src)  
     text.append("Gamesettings Loaded.")
@@ -68,8 +78,13 @@ def RandomizeLevels(text,flat, min, max):
         # 
         # 
     #This output is uncompressed, make sure to compress using LZ4 in UABEA
+    if cwd == os.getcwd():
+        Path(modPath).mkdir(parents=True, exist_ok=True)
+        os.chdir(modPath)
+        
     with open("gamesettings", "wb") as f:
         f.write(env.file.save(packer = (64,2)))
     text.append("Levels Saved.")
- 
+
+    os.chdir(cwd)
    

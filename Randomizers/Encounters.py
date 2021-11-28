@@ -1,10 +1,14 @@
 #py -m pip install UnityPy
 import UnityPy
 import random
+import os
+from pathlib import Path
 from PyQt5.QtWidgets import QTextEdit
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
+modPath = "romfs/StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
+
 diamondEncount = 361824127573837173
 pearlEncount = -9035030829162387677
 
@@ -33,6 +37,13 @@ def pool(gens):
             encLegPool.extend([480,481,482,483,484,485,486,487,488,491])
         
 def RandomizeEncounters(text, legends, pools, safari):
+
+    # Checks if romfs path already exist
+    cwd = os.getcwd()
+    if os.path.exists(modPath) == True:
+        if os.path.isfile(modPath + '/gamesettings') == True:
+            os.chdir(modPath)
+        
     src = "gamesettings"
     pool(pools)
     env = UnityPy.load(src)  
@@ -45,10 +56,18 @@ def RandomizeEncounters(text, legends, pools, safari):
         # 
         # 
     #This output is uncompressed, make sure to compress using LZ4 in UABEA
+
+    # If you arent in romfs path, make path and enter it
+    if cwd == os.getcwd():
+        Path(modPath).mkdir(parents=True, exist_ok=True)
+        os.chdir(modPath)
+
     with open("gamesettings", "wb") as f:
         f.write(env.file.save(packer = (64,2)))
     text.append("Encounters Saved.")
- 
+    # Returns to regular directory
+    os.chdir(cwd)
+     
 #Have to move this outside of the function because im calling it from another file -- Sangawku
 # Legends = 1 will keep legendariy encounters legendary, i.e. Palkia will become Mewtwo or something, not wurmple
 def Encount(safari, legend, env, text):
