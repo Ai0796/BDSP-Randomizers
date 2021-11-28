@@ -17,15 +17,22 @@ def RandomizeEvolutions(text):
 
     # Checks if romfs path already exist
     cwd = os.getcwd()
-    if os.path.exists(modPath) == True and os.path.isfile(modPath + '/personal_masterdatas'):
+    
+    src = "personal_masterdatas"
+
+    outputPath = os.path.join(cwd, "mods", modPath)
+    
+    if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
+        os.chdir(outputPath)
+    
+    elif os.path.exists(modPath) and os.path.isfile(os.path.join(modPath, src)):
         os.chdir(modPath)
     
     else:
         text.append("ERROR: personal_masterdatas not found")
         return
 
-    src = "personal_masterdatas"
-
+    
     env = UnityPy.load(src)
     text.append("Evolutions Loaded.")
 
@@ -61,6 +68,11 @@ def RandomizeEvolutions(text):
     if cwd == os.getcwd():
         Path(modPath).mkdir(parents=True, exist_ok=True)
         os.chdir(modPath)
+        
+    if not os.path.exists(outputPath):
+        os.makedirs(outputPath, 0o666)
+        
+    os.chdir(outputPath)
     
     with open("personal_masterdatas", "wb") as f:
         f.write(env.file.save(packer = (64,2)))

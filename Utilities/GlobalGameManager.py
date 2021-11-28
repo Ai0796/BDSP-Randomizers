@@ -11,18 +11,28 @@ from pathlib import Path
 timeManager = 8
 qualityManager = 12
 
-modPath = "romfs/Data"
+modPath = "romfs"
 
 pathList = [timeManager, qualityManager]
 
 def ApplyUtilities(VSync, timeStep, text):
     
     cwd = os.getcwd()
-    if os.path.exists(modPath) == True:
-        if os.path.isfile(modPath + '/globalgamemanagers') == True:
-            os.chdir(modPath)
-            
     src = "globalgamemanagers"
+    
+    outputPath = os.path.join(cwd, "mods", modPath)
+    
+    if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
+        os.chdir(outputPath)
+    
+    elif os.path.exists(modPath) and os.path.isfile(os.path.join(modPath, src)):
+        os.chdir(modPath)
+        
+    else:
+        text.append("ERROR: globalGameManager not found")
+        return
+            
+    
     env = UnityPy.load(src)  
     text.append("GlobalGameManagers Loaded.")
     ChangeSettings(VSync, timeStep, env, text)
@@ -36,6 +46,11 @@ def ApplyUtilities(VSync, timeStep, text):
     if cwd == os.getcwd():
         Path(modPath).mkdir(parents=True, exist_ok=True)
         os.chdir(modPath)
+        
+    if not os.path.exists(outputPath):
+        os.makedirs(outputPath, 0o666)
+        
+    os.chdir(outputPath)
         
     with open("globalgamemanagers", "wb") as f:
         f.write(env.file.save())

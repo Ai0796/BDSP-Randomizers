@@ -23,19 +23,25 @@ modPath = "romfs/StreamingAssets/AssetAssistant/UnderGround/data"
 # UgData s is inside UnderGround/Data
 def RandomizeUG(text):
 
-    filename = "UgData"
+    src = "UgData"
     
     # legendaryList = [144, 145, 146, 150, 151, 243, 244, 245, 249, 250, 251, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493]
 
     cwd = os.getcwd()
-    if os.path.exists(modPath) and os.path.isfile(modPath + '/UgData'):
+    
+    outputPath = os.path.join(cwd, "mods", modPath)
+    
+    if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
+        os.chdir(outputPath)
+        
+    elif os.path.exists(modPath) and os.path.isfile(os.path.join(modPath, src)):
         os.chdir(modPath)
         
     else:
         text.append("ERROR: UgData not found")
         return
 
-    env = UnityPy.load(filename)
+    env = UnityPy.load(src)
     
     text.append("UGData Loaded.")
 
@@ -65,6 +71,11 @@ def RandomizeUG(text):
     if cwd == os.getcwd():
         Path(modPath).mkdir(parents=True, exist_ok=True)
         os.chdir(modPath)
+        
+    if not os.path.exists(outputPath):
+        os.makedirs(outputPath, 0o666)
+        
+    os.chdir(outputPath)
 
     with open("UgData", "wb") as f:
         f.write(env.file.save(packer = (64,2)))
