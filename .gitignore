@@ -2,6 +2,8 @@ exe.win-amd64-3.9
 Randomizers/__pycache__
 Utilities/__pycache__
 gamesettings
-masterdata
+masterdatas
 personal_masterdatas
 romfs*
+globalgamemanagers
+ugdata
