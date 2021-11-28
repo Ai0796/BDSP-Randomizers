@@ -33,22 +33,21 @@ def RandomizeTMs(text):
     for obj in env.objects:
         if obj.path_id in pathList:
             tree = obj.read_typetree()
-            print(tree)
             if tree['m_Name'] == "ItemTable":
                 ##Selects 100 unique moves
-                r = random.sample(range(getMoveList()), 100)
+                r = random.sample(getMoveList(), 100)
                 i = 0
                 for TM in tree["WazaMachine"]:
-                    if TM["MachineNo"] <= 100 and TM["MachineNo"] > 0:
-                        TM["WazaNo"] = r[i]
+                    if TM["machineNo"] <= 100 and TM["machineNo"] > 0:
+                        TM["wazaNo"] = r[i]
                         i += 1
                     ##There's 200 defined TMs for some reason so break once past 100
                     else:
                         break
-                    
+            else:
+                print("Error use different path_id")        
             obj.save_typetree(tree)
-        else:
-            print("Error use different path_id")
+            
             
     text.append("TMs Randomized.")                
     # saving an edited file

@@ -15,7 +15,7 @@ LevelIncrease = 1.5
 
 def getAbilityList():
     
-    filepath = "Resources//abilities.txt"
+    filepath = "Resources//ability.txt"
     with open(filepath, "r") as f:
         return f.readlines()
     
@@ -67,7 +67,7 @@ def RandomizeTrainers(text):
                             monMoveList = moveList[newPokemon-1][1:]
                             for i in range(len(monMoveList)/2):
                                 if monMoveList[i*2] < dic["P"f"{pokeNum}Level"]:
-                                    possibleMoves.append(monMoveList[i*2] + 1)
+                                    possibleMoves.append(monMoveList[i*2 + 1])
                                     
                             ##Moves 1 through 4
                             amountOfMoves = min(4, len(possibleMoves))
