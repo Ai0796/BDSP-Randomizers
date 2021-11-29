@@ -113,4 +113,4 @@ def RandomizeStarters(text):
     
     text.append("Starters Randomized.")
 
-    os.chdir()
+    os.chdir(cwd)
