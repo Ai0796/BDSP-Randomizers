@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QTextEdit
 from keystone import *
 
 #DO NOT CHANGE UNLESS GAME IS UPDATED
-modPath = "exefs/Data/"
+modPath = "mods/exefs/Data/"
 
 #file name has to be the build id for IPS patches. 
 #for pchtxt patches it can be named whatever so we will use starter.pchtxt
@@ -24,7 +24,10 @@ pearlStarter1Off =  '{:08X}'.format(0x0248DDC8)
 pearlStarter2Off =  '{:08X}'.format(0x0248DE54)
 pearlStarter3Off =  '{:08X}'.format(0x0248DE58)
 
+
 def RandomizeStarters(text):
+    cwd = os.getcwd()
+
     text.append("Randomizing Starters!")
 
     #initialize Keystone-Engine 
@@ -56,6 +59,11 @@ def RandomizeStarters(text):
     "{} {}".format(diamondStarter3Off, hex3),
     ""]
     #write out diamond patch
+    if not os.path.exists(modPath):
+        os.makedirs(modPath, 0o666)
+
+    os.chdir(modPath)
+    
     diamond = open("starterDiamond.pchtxt", "w")
     for element in pchDiamondPatch:
         diamond.write(element + "\n")
@@ -69,6 +77,7 @@ def RandomizeStarters(text):
     ""]
     
     #write out pearl patch
+    
     pearl = open("starterPearl.pchtxt", "w")
     for element in pchPearlPatch:
         pearl.write(element + "\n")
