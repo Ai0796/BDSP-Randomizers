@@ -15,13 +15,13 @@ diamondBuildID = 'D9E96FB92878E3458AAE7E8D31AB32A9'
 pearlBuildID = '3C70CAE153DF0B4F8A7B24C60FD8D0E7'
 
 
-diamondStarter1Off = 0x020EAA28
-diamondStarter2Off = 0x020EAAB8 
-diamondStarter3Off = 0x020EAAB4
+diamondStarter1Off = '{:08X}'.format(0x020EAA28)
+diamondStarter2Off = '{:08X}'.format(0x020EAAB8)
+diamondStarter3Off = '{:08X}'.format(0x020EAAB4)
 
-pearlStarter1Off =  0x0248DDC8
-pearlStarter2Off =  0x0248DE54
-pearlStarter3Off =  0x0248DE58
+pearlStarter1Off =  '{:08X}'.format(0x0248DDC8)
+pearlStarter2Off =  '{:08X}'.format(0x0248DE54)
+pearlStarter3Off =  '{:08X}'.format(0x0248DE58)
 
 def RandomizeStarters(text):
     text.append("Randomizing Starters!")
