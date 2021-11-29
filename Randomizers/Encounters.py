@@ -72,8 +72,8 @@ def RandomizeEncounters(text, legends, pools, safari):
     #    Path(modPath).mkdir(parents=True, exist_ok=True)
     #    os.chdir(modPath)
         
-    #if not os.path.exists(outputPath):
-    #    os.makedirs(outputPath, 0o666)
+    if not os.path.exists(outputPath):
+        os.makedirs(outputPath, 0o666)
         
     os.chdir(outputPath)
 
