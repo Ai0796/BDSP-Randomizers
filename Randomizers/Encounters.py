@@ -61,7 +61,7 @@ def RandomizeEncounters(text, legends, pools, safari):
         
     
     pool(pools)
-    env = UnityPy.load(src)  
+    env = UnityPy.load(os.path.join(romfsPath, yuzuModPath[5:]))  
     text.append("Gamesettings Loaded.")
     Encount(safari, legends, env, text)
     # saving an edited file
