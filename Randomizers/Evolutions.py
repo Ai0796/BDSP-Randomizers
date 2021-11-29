@@ -41,7 +41,7 @@ def RandomizeEvolutions(text):
     text.append("Evolutions Loaded.")
 
     ##One to one
-    r = random.sample(range(1,561), 560)
+    r = random.sample(range(1,494), 493)
 
     i = 0
 
