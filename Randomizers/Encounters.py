@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QTextEdit
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
-yuzuModPath = "romfs/StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
+yuzuModPath = "StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
 
 diamondEncount = 361824127573837173
 pearlEncount = -9035030829162387677
@@ -44,17 +44,9 @@ def RandomizeEncounters(text, legends, pools, safari):
     
     src = "gamesettings"
     
-    outputPath = os.path.join(cwd, "mods", modPath)
-    
-    if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
-        os.chdir(outputPath)
-    
-    elif os.path.exists(modPath) and os.path.isfile(os.path.join(modPath, src)):
-        os.chdir(modPath)
-        
-    elif os.path.exists(yuzuModPath) and os.path.isfile(os.path.join(yuzuModPath, src)):
-        os.chdir(yuzuModPath)
-            
+    if os.path.exists(os.path.join(romfsPath, yuzuModPath)) and os.path.isfile(os.path.join(romfsPath, yuzuModPath, src)):
+        os.chdir(romfsPath)
+
     else:
         text.append("ERROR: gamesettings not found ")
         return
@@ -73,12 +65,15 @@ def RandomizeEncounters(text, legends, pools, safari):
     #This output is uncompressed, make sure to compress using LZ4 in UABEA
 
     # If you arent in romfs path, make path and enter it
-    if cwd == os.getcwd():
-        Path(modPath).mkdir(parents=True, exist_ok=True)
-        os.chdir(modPath)
+    
+    outputPath = os.path.join(cwd, "mods", modPath)
+    
+    #if cwd == os.getcwd():
+    #    Path(modPath).mkdir(parents=True, exist_ok=True)
+    #    os.chdir(modPath)
         
-    if not os.path.exists(outputPath):
-        os.makedirs(outputPath, 0o666)
+    #if not os.path.exists(outputPath):
+    #    os.makedirs(outputPath, 0o666)
         
     os.chdir(outputPath)
 
@@ -86,6 +81,7 @@ def RandomizeEncounters(text, legends, pools, safari):
         f.write(env.file.save(packer = (64,2)))
     text.append("Encounters Saved.")
     # Returns to regular directory
+    
     os.chdir(cwd)
      
 #Have to move this outside of the function because im calling it from another file -- Sangawku
