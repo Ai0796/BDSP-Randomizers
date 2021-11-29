@@ -20,9 +20,9 @@ diamondStarter2Off = '{:08X}'.format(0x01FEABB4)
 diamondStarter3Off = '{:08X}'.format(0x01FEABB8)
 diamondOffsets = [diamondStarter1Off,diamondStarter2Off,diamondStarter3Off]
 
-pearlStarter1Off =  '{:08X}'.format(0x0248DDC8)
-pearlStarter2Off =  '{:08X}'.format(0x0248DE54)
-pearlStarter3Off =  '{:08X}'.format(0x0248DE58)
+pearlStarter1Off =  '{:08X}'.format(0x0238DEC8)
+pearlStarter2Off =  '{:08X}'.format(0x0238DF54)
+pearlStarter3Off =  '{:08X}'.format(0x0238DF58)
 pearlOffsets = [pearlStarter1Off, pearlStarter2Off, pearlStarter3Off]
 
 def build_diamond_ips(starters):
