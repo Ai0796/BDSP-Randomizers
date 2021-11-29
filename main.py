@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QColor
 from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters, Levels, Shop, TM, Starters
@@ -14,6 +14,10 @@ class AppWindow(QMainWindow):
         self.ui.btnRandomize.clicked.connect(self.buttonClicked)
     
     def buttonClicked(self):
+        #setup directory where romFS To modify is. 
+        dialog = QFileDialog()
+        romFSPath = dialog.getExistingDirectory(self, 'Select ROMFS path')
+        self.ui.tbLog.append("RomFS Directory set to " + romFSPath)
         
         if self.ui.cbStarters.isChecked():
             Starters.RandomizeStarters(self.ui.tbLog)
