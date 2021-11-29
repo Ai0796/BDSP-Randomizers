@@ -15,9 +15,10 @@ diamondBuildID = 'D9E96FB92878E3458AAE7E8D31AB32A9'
 pearlBuildID = '3C70CAE153DF0B4F8A7B24C60FD8D0E7'
 
 
-diamondStarter1Off = '{:08X}'.format(0x020EAA28)
-diamondStarter2Off = '{:08X}'.format(0x020EAAB8)
-diamondStarter3Off = '{:08X}'.format(0x020EAAB4)
+diamondStarter1Off = '{:08X}'.format(0x01FEAB28)
+diamondStarter2Off = '{:08X}'.format(0x01FEABB4)
+diamondStarter3Off = '{:08X}'.format(0x01FEABB8)
+
 
 pearlStarter1Off =  '{:08X}'.format(0x0248DDC8)
 pearlStarter2Off =  '{:08X}'.format(0x0248DE54)
@@ -53,7 +54,7 @@ def RandomizeStarters(text):
     "{} {}".format(diamondStarter1Off, hex1),
     "{} {}".format(diamondStarter2Off, hex2),
     "{} {}".format(diamondStarter3Off, hex3),
-    "@stop"]
+    ""]
     #write out diamond patch
     diamond = open("starterDiamond.pchtxt", "w")
     for element in pchDiamondPatch:
@@ -65,7 +66,7 @@ def RandomizeStarters(text):
     "{} {}".format(pearlStarter1Off, hex1),
     "{} {}".format(pearlStarter1Off, hex2),
     "{} {}".format(pearlStarter1Off, hex3),
-    "@stop"]
+    ""]
     
     #write out pearl patch
     pearl = open("starterPearl.pchtxt", "w")
