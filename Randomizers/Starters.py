@@ -8,7 +8,7 @@ from keystone import *
 from ips_util import Patch
 
 #DO NOT CHANGE UNLESS GAME IS UPDATED
-modPath = "mods/exefs/Data/"
+modPath = "mods/exefs/"
 
 #file name has to be the build id for IPS patches. 
 #for pchtxt patches it can be named whatever so we will use starter.pchtxt
