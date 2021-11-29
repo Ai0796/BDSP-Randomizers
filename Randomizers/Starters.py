@@ -5,7 +5,6 @@ import os
 from pathlib import Path
 from PyQt5.QtWidgets import QTextEdit
 from keystone import *
-from ips_util import Patch
 
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 modPath = "mods/exefs/"
