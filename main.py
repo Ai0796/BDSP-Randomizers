@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QColor
-from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters, Levels, Shop, TM 
+from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters, Levels, Shop, TM, Starters
 from Randomizers.dialog import Ui_MainWindow
 from Utilities import GlobalGameManager
 import sys
@@ -14,6 +14,10 @@ class AppWindow(QMainWindow):
         self.ui.btnRandomize.clicked.connect(self.buttonClicked)
     
     def buttonClicked(self):
+        
+        if self.ui.cbStarters.isChecked():
+            Starters.RandomizeStarters(self.ui.tbLog)
+    
         if self.ui.cbPokemon.isChecked():
             self.ui.tbLog.append('Randomizing Pokemon!')
             generations = []
@@ -52,7 +56,6 @@ class AppWindow(QMainWindow):
         if self.ui.cbShops.isChecked():
             self.ui.tbLog.append('Randomizing Shops!')
             Shop.RandomizeShops(self.ui.tbLog)
-        
         #if self.ui.cbLevels.isChecked():
         #    self.ui.tbLog.append('Randomizing Levels!')
         #    if self.ui.rbFlat.isChecked():

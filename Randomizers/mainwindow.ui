@@ -20,7 +20,7 @@
       <x>830</x>
       <y>0</y>
       <width>171</width>
-      <height>251</height>
+      <height>291</height>
      </rect>
     </property>
     <property name="title">
@@ -30,7 +30,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>20</y>
+       <y>40</y>
        <width>121</width>
        <height>17</height>
       </rect>
@@ -43,7 +43,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>100</y>
+       <y>120</y>
        <width>121</width>
        <height>17</height>
       </rect>
@@ -56,7 +56,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>40</y>
+       <y>60</y>
        <width>121</width>
        <height>17</height>
       </rect>
@@ -69,7 +69,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>60</y>
+       <y>80</y>
        <width>141</width>
        <height>17</height>
       </rect>
@@ -82,7 +82,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>80</y>
+       <y>100</y>
        <width>141</width>
        <height>17</height>
       </rect>
@@ -98,7 +98,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>220</y>
+       <y>260</y>
        <width>121</width>
        <height>17</height>
       </rect>
@@ -116,7 +116,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>120</y>
+       <y>140</y>
        <width>121</width>
        <height>17</height>
       </rect>
@@ -129,7 +129,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>140</y>
+       <y>160</y>
        <width>121</width>
        <height>17</height>
       </rect>
@@ -145,7 +145,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>200</y>
+       <y>240</y>
        <width>121</width>
        <height>17</height>
       </rect>
@@ -166,7 +166,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>180</y>
+       <y>220</y>
        <width>121</width>
        <height>17</height>
       </rect>
@@ -187,13 +187,26 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>160</y>
+       <y>200</y>
        <width>71</width>
        <height>16</height>
       </rect>
      </property>
      <property name="text">
       <string>Coming Soon</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="cbStarters">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>121</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Randomize Starters</string>
      </property>
     </widget>
    </widget>
@@ -445,9 +458,9 @@
     <property name="geometry">
      <rect>
       <x>830</x>
-      <y>250</y>
+      <y>290</y>
       <width>171</width>
-      <height>191</height>
+      <height>151</height>
      </rect>
     </property>
     <property name="title">
