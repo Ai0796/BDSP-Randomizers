@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 from PyQt5.QtWidgets import QTextEdit
 from keystone import *
+from ips_util import Patch
 
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 modPath = "mods/exefs/Data/"
@@ -18,11 +19,30 @@ pearlBuildID = '3C70CAE153DF0B4F8A7B24C60FD8D0E7'
 diamondStarter1Off = '{:08X}'.format(0x01FEAB28)
 diamondStarter2Off = '{:08X}'.format(0x01FEABB4)
 diamondStarter3Off = '{:08X}'.format(0x01FEABB8)
-
+diamondOffsets = [diamondStarter1Off,diamondStarter2Off,diamondStarter3Off]
 
 pearlStarter1Off =  '{:08X}'.format(0x0248DDC8)
 pearlStarter2Off =  '{:08X}'.format(0x0248DE54)
 pearlStarter3Off =  '{:08X}'.format(0x0248DE58)
+pearlOffsets = [pearlStarter1Off, pearlStarter2Off, pearlStarter3Off]
+
+def build_diamond_ips(starters):
+  patch = Patch()
+  for i in range(2):
+    patch.add_record(int(diamondOffsets[i], 16), int(starters[i], 16)) # Max out some stat
+  
+  with open(diamondBuildID + '.ips', 'w+b') as f:
+    f.write(patch.encode())
+    print(f)
+
+def build_pearl_ips(starters):
+  patch = Patch()
+  for i in range(2):
+    patch.add_record(pearlOffsets[i], starters[i]) # Max out some stat
+  
+  with open(pearlBuildID + '.ips', 'w+b') as f:
+    f.write(patch.encode())
+    print(f)
 
 
 def RandomizeStarters(text):
@@ -50,6 +70,7 @@ def RandomizeStarters(text):
     hex1 = ''.join( ['{:02X}'.format(b) for b in patch1[0]] )
     hex2 = ''.join( ['{:02X}'.format(b) for b in patch2[0]] )
     hex3 = ''.join( ['{:02X}'.format(b) for b in patch3[0]] )
+    hexIds = [hex1, hex2, hex3]
     
     text.append("Building Patch files.")
     #build diamond patch file. 
@@ -68,19 +89,26 @@ def RandomizeStarters(text):
     for element in pchDiamondPatch:
         diamond.write(element + "\n")
     diamond.close()
-
+    
+    #build our IPS file
+    #we can't currently build ips's because of the 3 byte address limitation 
+    #i have no clue how to fix. 
+    #build_diamond_ips(hexIds)
+    
+    
     #build pearl patch file. 
     pchPearlPatch = ["@nsobid-{}".format(pearlBuildID),"","@enabled",
     "{} {}".format(pearlStarter1Off, hex1),
-    "{} {}".format(pearlStarter1Off, hex2),
-    "{} {}".format(pearlStarter1Off, hex3),
+    "{} {}".format(pearlStarter2Off, hex2),
+    "{} {}".format(pearlStarter3Off, hex3),
     ""]
     
     #write out pearl patch
-    
     pearl = open("starterPearl.pchtxt", "w")
     for element in pchPearlPatch:
         pearl.write(element + "\n")
     pearl.close()
+    
+    
     
     text.append("Starters Randomized.")
