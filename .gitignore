@@ -1,4 +1,5 @@
 exe.win-amd64-3.9
+build*
 Randomizers/__pycache__
 Utilities/__pycache__
 __pycache__
