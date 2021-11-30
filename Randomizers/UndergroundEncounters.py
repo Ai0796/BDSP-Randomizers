@@ -16,6 +16,7 @@ UgEncount_09 = 6067500095907821527
 UgEncount_10 = -6533677965289877687
 UgEncount_11 = -117713607888148647
 UgEncount_12 = -4148679105701947902
+UgSpecialPokemon = -220502742419523805
 #UgEncount_20 just seems like the digletts and dugtrios that can be found in the underground
 pathList = [UgEncount_02, UgEncount_03, UgEncount_04, UgEncount_05, UgEncount_06, UgEncount_07, UgEncount_08, UgEncount_09, UgEncount_10, UgEncount_11, UgEncount_12]
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/UnderGround/data"
@@ -54,6 +55,11 @@ def RandomizeUG(text, romFSPath):
             if tree["m_Name"][:10] == "UgEncount_":
                 for mon in tree["table"]:
                     mon["monsno"] = random.randint(1, 493)
+            
+            elif tree["m_Name"] == "UgSpecialPokemon":
+                for mon in tree["Sheet1"]:
+                    mon["monsno"] = random.randint(1, 493)
+            
             else:
                 print("Error use different path_id")
                     
