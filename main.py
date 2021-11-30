@@ -16,6 +16,7 @@ class AppWindow(QMainWindow):
     def buttonClicked(self):
         #setup directory where romFS To modify is. 
         dialog = QFileDialog()
+        global romFSPath
         romFSPath = dialog.getExistingDirectory(self, 'Select ROMFS path')
         self.ui.tbLog.append("RomFS Directory set to " + romFSPath)
         
@@ -34,32 +35,31 @@ class AppWindow(QMainWindow):
             if self.ui.cbGen4.isChecked():
                 generations.append(4)
             #Fixed added safari -- sangawku
-            Encounters.RandomizeEncounters(self.ui.tbLog,self.ui.cbLegends.isChecked(), generations, self.ui.cbSafari.isChecked())
+            Encounters.RandomizeEncounters(self.ui.tbLog,self.ui.cbLegends.isChecked(), generations, self.ui.cbSafari.isChecked(), romFSPath)
             
         if self.ui.cbTrainers.isChecked():
             self.ui.tbLog.append('Randomizing Trainers!')
-            Trainers.RandomizeTrainers(self.ui.tbLog)
+            Trainers.RandomizeTrainers(self.ui.tbLog, romFSPath)
             
         if self.ui.cbTimeSkip.isChecked() or self.ui.cb60FPS.isChecked():
             self.ui.tbLog.append('Applying Utilities!')
-            GlobalGameManager.ApplyUtilities(self.ui.cb60FPS.isChecked(), self.ui.sbTimeStep.value(), self.ui.tbLog)
-        
+            GlobalGameManager.ApplyUtilities(self.ui.cb60FPS.isChecked(), self.ui.sbTimeStep.value(), self.ui.tbLog, romFSPath)
         
         if self.ui.cbUnderground.isChecked():
             self.ui.tbLog.append('Randomizing Underground Pokemon!')
-            UndergroundEncounters.RandomizeUG(self.ui.tbLog)
+            UndergroundEncounters.RandomizeUG(self.ui.tbLog, romFSPath)
             
         if self.ui.cbEvolutions.isChecked():
             self.ui.tbLog.append('Randomizing Evolutions!')
-            Evolutions.RandomizeEvolutions(self.ui.tbLog)
+            Evolutions.RandomizeEvolutions(self.ui.tbLog, romFSPath)
         
         if self.ui.cbTM.isChecked():
             self.ui.tbLog.append('Randomizing TMs!')
-            TM.RandomizeTMs(self.ui.tbLog)
+            TM.RandomizeTMs(self.ui.tbLog, romFSPath)
         
         if self.ui.cbShops.isChecked():
             self.ui.tbLog.append('Randomizing Shops!')
-            Shop.RandomizeShops(self.ui.tbLog)
+            Shop.RandomizeShops(self.ui.tbLog, romFSPath)
         #if self.ui.cbLevels.isChecked():
         #    self.ui.tbLog.append('Randomizing Levels!')
         #    if self.ui.rbFlat.isChecked():

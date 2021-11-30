@@ -19,10 +19,10 @@ UgEncount_12 = -4148679105701947902
 #UgEncount_20 just seems like the digletts and dugtrios that can be found in the underground
 pathList = [UgEncount_02, UgEncount_03, UgEncount_04, UgEncount_05, UgEncount_06, UgEncount_07, UgEncount_08, UgEncount_09, UgEncount_10, UgEncount_11, UgEncount_12]
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/UnderGround/data"
-yuzuModPath = "romfs/StreamingAssets/AssetAssistant/UnderGround/data"
+yuzuModPath = "StreamingAssets/AssetAssistant/UnderGround/data"
 # make sure the file UgData is in this folder
 # UgData s is inside UnderGround/Data
-def RandomizeUG(text):
+def RandomizeUG(text, romFSPath):
 
     src = "UgData"
     
@@ -34,18 +34,13 @@ def RandomizeUG(text):
     
     if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
         os.chdir(outputPath)
-        
-    elif os.path.exists(modPath) and os.path.isfile(os.path.join(modPath, src)):
-        os.chdir(modPath)
-        
-    elif os.path.exists(yuzuModPath) and os.path.isfile(os.path.join(yuzuModPath, src)):
-        os.chdir(yuzuModPath)
-        
+        env = UnityPy.load(os.path.join(outputPath, src))
+    elif os.path.exists(os.path.join(romFSPath, yuzuModPath)) and os.path.isfile(os.path.join(romFSPath, yuzuModPath, src)):
+        os.chdir(romFSPath)
+        env = UnityPy.load(os.path.join(romFSPath, yuzuModPath, src))
     else:
-        text.append("ERROR: UgData not found")
+        text.append("ERROR: UGData not found ")
         return
-
-    env = UnityPy.load(src)
     
     text.append("UGData Loaded.")
 
@@ -71,11 +66,6 @@ def RandomizeUG(text):
         # ...
         # 
         # 
-    #This output is compressed, thanks to Copycat#8110
-    if cwd == os.getcwd():
-        Path(modPath).mkdir(parents=True, exist_ok=True)
-        os.chdir(modPath)
-        
     if not os.path.exists(outputPath):
         os.makedirs(outputPath, 0o666)
         

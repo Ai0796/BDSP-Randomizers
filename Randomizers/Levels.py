@@ -10,14 +10,14 @@ from pathlib import Path
 diamondEncount = 361824127573837173
 pearlEncount = -9035030829162387677
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
-yuzuModPath = "romfs/StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
+yuzuModPath = "StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
 
 pathList = [diamondEncount, pearlEncount]
 # make sure the file gamesettings is in this folder
 # gamesettings is in Dpr/scriptableassets
 
         
-def RandomizeLevels(text, flat, min, max):
+def RandomizeLevels(text, flat, min, max, romFSPath):
 
     # Checks if romfs path already exist
     cwd = os.getcwd()
@@ -26,21 +26,14 @@ def RandomizeLevels(text, flat, min, max):
     
     outputPath = os.path.join(cwd, "mods", modPath)
     
-    if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
-        os.chdir(outputPath)
-    
-    elif os.path.exists(modPath) and os.path.isfile(os.path.join(modPath, src)):
-        os.chdir(modPath)
-        
-    elif os.path.exists(yuzuModPath) and os.path.isfile(os.path.join(yuzuModPath, src)):
-        os.chdir(yuzuModPath)
-            
-    else:
-        text.append("ERROR: gamesettings not found")
-        return
+    if os.path.exists(os.path.join(romFSPath, yuzuModPath)) and os.path.isfile(os.path.join(romFSPath, yuzuModPath, src)):
+        os.chdir(romFSPath)
 
-    
-    env = UnityPy.load(src)  
+    else:
+        text.append("ERROR: gamesettings not found ")
+        return
+        
+    env = UnityPy.load(os.path.join(romFSPath, yuzuModPath, src))  
     text.append("Gamesettings Loaded.")
     text.append("Randomizing Pokemon Levels.")
     for obj in env.objects:
@@ -82,9 +75,6 @@ def RandomizeLevels(text, flat, min, max):
         # 
         # 
     #This output is uncompressed, make sure to compress using LZ4 in UABEA
-    if cwd == os.getcwd():
-        Path(modPath).mkdir(parents=True, exist_ok=True)
-        os.chdir(modPath)
         
     if not os.path.exists(outputPath):
         os.makedirs(outputPath, 0o666)

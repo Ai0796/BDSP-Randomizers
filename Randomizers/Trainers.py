@@ -8,7 +8,7 @@ from pathlib import Path
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 Trainer_Table = 676024375065692598
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr"
-yuzuModPath = "romfs/StreamingAssets/AssetAssistant/Dpr"
+yuzuModPath = "StreamingAssets/AssetAssistant/Dpr"
 pathList = [Trainer_Table]
 
 #Level Increase
@@ -26,7 +26,7 @@ def getMoveList():
     with open(filepath, "r") as f:
         return f.read().splitlines()
 
-def RandomizeTrainers(text):
+def RandomizeTrainers(text, romFSPath):
     # make sure masterdatas is in same folder
     cwd = os.getcwd()
     
@@ -36,21 +36,17 @@ def RandomizeTrainers(text):
     src = "masterdatas"
     
     outputPath = os.path.join(cwd, "mods", modPath)
-    
+
     if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
         os.chdir(outputPath)
-    
-    elif os.path.exists(modPath) and os.path.isfile(os.path.join(modPath, src)) :
-        os.chdir(modPath)
-        
-    elif os.path.exists(yuzuModPath) and os.path.isfile(os.path.join(yuzuModPath, src)):
-        os.chdir(yuzuModPath)
-    
+        env = UnityPy.load(os.path.join(outputPath, src))
+    elif os.path.exists(os.path.join(romFSPath, yuzuModPath)) and os.path.isfile(os.path.join(romFSPath, yuzuModPath, src)):
+        os.chdir(romFSPath)
+        env = UnityPy.load(os.path.join(romFSPath, yuzuModPath, src))
     else:
         text.append("ERROR: masterdatas not found ")
         return
 
-    env = UnityPy.load(src)
     extract_dir = "Walker"
     text.append("Trainers Loaded.")
     
@@ -116,11 +112,7 @@ def RandomizeTrainers(text):
         # ...
         # 
         # 
-    #This output is compressed, thanks to Copycat#8110
-    if cwd == os.getcwd():
-        Path(modPath).mkdir(parents=True, exist_ok=True)
-        os.chdir(modPath)
-        
+    #This output is compressed, thanks to Copycat#8110        
     # outputPath = os.path.join(cwd, "mods", modPath)
     
     if not os.path.exists(outputPath):

@@ -10,34 +10,29 @@ evolveTable = 5139195221601552760
 pathList = [evolveTable]
 
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Pml"
-yuzuModPath = "romfs/StreamingAssets/AssetAssistant/Pml"
+yuzuModPath = "StreamingAssets/AssetAssistant/Pml"
 
 # make sure the file personal_masterdatas is in this folder
 # personal_masterdatas is inside Pml
-def RandomizeEvolutions(text):
+def RandomizeEvolutions(text, romFSPath):
 
     # Checks if romfs path already exist
     cwd = os.getcwd()
-    
+    text.append(cwd)
     src = "personal_masterdatas"
 
     outputPath = os.path.join(cwd, "mods", modPath)
-    
+
     if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
         os.chdir(outputPath)
-    
-    elif os.path.exists(modPath) and os.path.isfile(os.path.join(modPath, src)):
-        os.chdir(modPath)
-        
-    elif os.path.exists(yuzuModPath) and os.path.isfile(os.path.join(yuzuModPath, src)):
-        os.chdir(yuzuModPath)
-    
+        env = UnityPy.load(os.path.join(outputPath, src))
+    elif os.path.exists(os.path.join(romFSPath, yuzuModPath)) and os.path.isfile(os.path.join(romFSPath, yuzuModPath, src)):
+        os.chdir(romFSPath)
+        env = UnityPy.load(os.path.join(romFSPath, yuzuModPath, src))
     else:
-        text.append("ERROR: personal_masterdatas not found")
+        text.append("ERROR: personal_masterdatas not found ")
         return
 
-    
-    env = UnityPy.load(src)
     text.append("Evolutions Loaded.")
 
     ##One to one
@@ -54,6 +49,9 @@ def RandomizeEvolutions(text):
                 for monID in tree['Evolve']:
                     monID["ar"] = [4, 0, r[i], 0, 1]
                     i += 1
+                    # UGLY FIX ASAP - Copycat
+                    if i == 493:
+                        break
                 #Saves the object tree
                 obj.save_typetree(tree)
             else:
@@ -67,11 +65,6 @@ def RandomizeEvolutions(text):
         # 
         # 
     #This output is compressed, thanks to Copycat#8110
-
-    # If you arent in romfs path, make path and enter it
-    if cwd == os.getcwd():
-        Path(modPath).mkdir(parents=True, exist_ok=True)
-        os.chdir(modPath)
         
     if not os.path.exists(outputPath):
         os.makedirs(outputPath, 0o666)

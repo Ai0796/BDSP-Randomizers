@@ -12,32 +12,27 @@ timeManager = 8
 qualityManager = 12
 
 modPath = "romfs/Data"
-yuzuModPath = "romfs"
+yuzuModPath = ""
 
 pathList = [timeManager, qualityManager]
 
-def ApplyUtilities(VSync, timeStep, text):
+def ApplyUtilities(VSync, timeStep, text, romFSPath):
     
     cwd = os.getcwd()
     src = "globalgamemanagers"
     
     outputPath = os.path.join(cwd, "mods", modPath)
-    
+
     if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
         os.chdir(outputPath)
-    
-    elif os.path.exists(modPath) and os.path.isfile(os.path.join(modPath, src)):
-        os.chdir(modPath)
-        
-    elif os.path.exists(yuzuModPath) and os.path.isfile(os.path.join(yuzuModPath, src)):
-        os.chdir(yuzuModPath)
-        
+        env = UnityPy.load(os.path.join(outputPath, src))
+    elif os.path.exists(os.path.join(romFSPath, yuzuModPath)) and os.path.isfile(os.path.join(romFSPath, yuzuModPath, src)):
+        os.chdir(romFSPath)
+        env = UnityPy.load(os.path.join(romFSPath, yuzuModPath, src))
     else:
-        text.append("ERROR: globalGameManager not found")
+        text.append("ERROR: GlobalGameManagers not found ")
         return
-            
-    
-    env = UnityPy.load(src)  
+        
     text.append("GlobalGameManagers Loaded.")
     ChangeSettings(VSync, timeStep, env, text)
     # saving an edited file
@@ -47,10 +42,6 @@ def ApplyUtilities(VSync, timeStep, text):
         # 
         # 
     #This output is uncompressed, make sure to compress using LZ4 in UABEA
-    if cwd == os.getcwd():
-        Path(modPath).mkdir(parents=True, exist_ok=True)
-        os.chdir(modPath)
-        
     if not os.path.exists(outputPath):
         os.makedirs(outputPath, 0o666)
         
