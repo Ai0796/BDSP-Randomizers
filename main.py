@@ -21,7 +21,7 @@ class AppWindow(QMainWindow):
         self.ui.tbLog.append("RomFS Directory set to " + romFSPath)
         
         if self.ui.cbStarters.isChecked():
-            Starters.RandomizeStarters(self.ui.tbLog)
+            Starters.RandomizeStarters(self.ui.tbLog, romFSPath)
     
         if self.ui.cbPokemon.isChecked():
             self.ui.tbLog.append('Randomizing Pokemon!')

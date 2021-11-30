@@ -9,6 +9,8 @@ from keystone import *
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 modPath = "mods/exefs/"
 
+
+
 #file name has to be the build id for IPS patches. 
 #for pchtxt patches it can be named whatever so we will use starter.pchtxt
 diamondBuildID = 'D9E96FB92878E3458AAE7E8D31AB32A9'
@@ -47,33 +49,27 @@ pearlStarterRival3Off = '{:08X}'.format(0x0238E2D8)
 
 #Change hardcoded pokemon name 
 #AssetAssistant/Message/English
+#PathIDs inside Unity
+#DO NOT CHANGE UNLESS GAME IS UPDATED
 engMsgPathID = -5307844841844767521
+pathList = [engMsgPathID]
 
+modPathEng = "romfs/Data/StreamingAssets/Message"
+yuzuModPathEng = "StreamingAssets/AssetAssistant/Message"
 #8-EV_POKESELECT_02 Worddata 6(0 idx) Turtwig
 #8-EV_POKESELECT_03 Worddata 6(0 idx) Chimchar
 #8-EV_POKESELECT_04 Worddata 6(0 idx) Piplup
-
-def build_diamond_ips(starters):
-  patch = Patch()
-  for i in range(2):
-    patch.add_record(int(diamondOffsets[i], 16), int(starters[i], 16)) # Max out some stat
-  
-  with open(diamondBuildID + '.ips', 'w+b') as f:
-    f.write(patch.encode())
-    print(f)
-
-def build_pearl_ips(starters):
-  patch = Patch()
-  for i in range(2):
-    patch.add_record(pearlOffsets[i], starters[i]) # Max out some stat
-  
-  with open(pearlBuildID + '.ips', 'w+b') as f:
-    f.write(patch.encode())
-    print(f)
+def getPokemonNames():
+    
+    filepath = "Resources//pokemon.txt"
+    with open(filepath, "r") as f:
+        return f.read().splitlines()
 
 
-def RandomizeStarters(text):
+def RandomizeStarters(text, romFSPath):
     cwd = os.getcwd()
+    outputPath = os.path.join(cwd, "mods", modPathEng)
+    pokeNames = getPokemonNames()
 
     text.append("Randomizing Starters!")
 
@@ -120,6 +116,48 @@ def RandomizeStarters(text):
     "{} {}".format(diamondStarterRival2Off, hex5),
     "{} {}".format(diamondStarterRival3Off, hex6),
     ""]
+    
+    src = "english"
+    if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
+        os.chdir(outputPath)
+        env = UnityPy.load(os.path.join(outputPath, src))
+    elif os.path.exists(os.path.join(romFSPath, yuzuModPathEng)) and os.path.isfile(os.path.join(romFSPath, yuzuModPathEng, src)):
+        os.chdir(romFSPath)
+        env = UnityPy.load(os.path.join(romFSPath, yuzuModPathEng, src))
+    else:
+        text.append("ERROR: English messages not found ")
+        return
+        
+        
+    #do pokemon name patching before anything else. 
+    if not os.path.exists(modPathEng):
+        os.makedirs(modPathEng, 0o666)
+    os.chdir(modPathEng)
+    for obj in env.objects:
+        
+        if obj.path_id in pathList:
+            tree = obj.read_typetree()
+            
+            #Disgusting things have been done.
+            #Hard coded english message values. 
+            #print("Old starter1 name :" + tree['labelDataArray'][28]['wordDataArray'][6]['str'])
+            tree['labelDataArray'][28]['wordDataArray'][6]['str'] = pokeNames[mon1]
+            #print("New starter1 name :" + tree['labelDataArray'][28]['wordDataArray'][6]['str'])
+            #print("Old starter2 name :" + tree['labelDataArray'][29]['wordDataArray'][6]['str'])
+            tree['labelDataArray'][29]['wordDataArray'][6]['str'] = pokeNames[mon2]
+            #print("New starter2 name :" + tree['labelDataArray'][29]['wordDataArray'][6]['str'])
+            #print("Old starter3 name :" + tree['labelDataArray'][30]['wordDataArray'][6]['str'])
+            tree['labelDataArray'][30]['wordDataArray'][6]['str'] = pokeNames[mon3]
+            #print("New starter3 name :" + tree['labelDataArray'][30]['wordDataArray'][6]['str'])
+            #Saves the object tree
+            obj.save_typetree(tree)
+    
+    with open("english", "wb") as f:
+        f.write(env.file.save(packer = (64,2)))
+        
+    #Change back to root dir before working on pchtxt patches
+    os.chdir(cwd)
+
     #write out diamond patch
     if not os.path.exists(modPath):
         os.makedirs(modPath, 0o666)
