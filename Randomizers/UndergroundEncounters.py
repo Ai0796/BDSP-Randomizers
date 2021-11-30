@@ -25,7 +25,7 @@ yuzuModPath = "StreamingAssets/AssetAssistant/UnderGround/data"
 # UgData s is inside UnderGround/Data
 def RandomizeUG(text, romFSPath):
 
-    src = "UgData"
+    src = "ugdata"
     
     # legendaryList = [144, 145, 146, 150, 151, 243, 244, 245, 249, 250, 251, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493]
 
@@ -40,10 +40,10 @@ def RandomizeUG(text, romFSPath):
         os.chdir(romFSPath)
         env = UnityPy.load(os.path.join(romFSPath, yuzuModPath, src))
     else:
-        text.append("ERROR: UGData not found ")
+        text.append("ERROR: ugdata not found ")
         return
     
-    text.append("UGData Loaded.")
+    text.append("ugdata Loaded.")
 
     for obj in env.objects:
         
