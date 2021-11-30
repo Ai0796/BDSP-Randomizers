@@ -6,15 +6,45 @@ from pathlib import Path
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
-evolveTable = 5139195221601552760
-pathList = [evolveTable]
+personalTable = 6925071152922426992
+pathList = [personalTable]
 
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Pml"
 yuzuModPath = "StreamingAssets/AssetAssistant/Pml"
 
+'''
+Broken Abilities
+Wonder Guard 25
+Disguise 209
+Stance Change 176
+Battle Bond 210
+Power Construct 211
+RKS System 225
+Gulp Missile 241
+Ice Face 248
+Hunger Switch 258
+As One (1) 266
+As One (2) 267
+'''
+
+brokenAbilities = [25, 209, 176, 210, 211, 225, 241, 248, 258, 266, 267]
+
+def verifyAbilities(ability):
+    return ability in brokenAbilities
+
+def getAbilities():
+    min = 1
+    max = 268
+    abilityList = random.sample(range(min, max), 3)
+    for i in range(len(abilityList)):
+        while verifyAbilities(abilityList[i]):
+            abilityList[i] = random.randrange(min, max)
+            
+    return abilityList
+
 # make sure the file personal_masterdatas is in this folder
 # personal_masterdatas is inside Pml
-def RandomizeEvolutions(text, romFSPath):
+def RandomizeAbilities(text, romFSPath):
 
     # Checks if romfs path already exist
     cwd = os.getcwd()
@@ -35,31 +65,25 @@ def RandomizeEvolutions(text, romFSPath):
         text.append("ERROR: personal_masterdatas not found ")
         return
 
-    text.append("Evolutions Loaded.")
-
-    ##One to one
-    r = random.sample(range(1,494), 493)
-
-    i = 0
+    text.append("Abilities Loaded.")
 
     for obj in env.objects:
         
         if obj.path_id in pathList:
             tree = obj.read_typetree()
             
-            if tree['m_Name'] == "EvolveTable":
-                for monID in tree['Evolve']:
-                    monID["ar"] = [4, 0, r[i], 0, 1]
-                    i += 1
-                    # UGLY FIX ASAP - Copycat
-                    if i == 493:
-                        break
+            if tree['m_Name'] == "PersonalTable":
+                for monID in tree['Evolve'][1:]: ##There's dummy data for the 0th pokemon, probably for indexing reasons
+                    abilities  = getAbilities()
+                    for i in range(len(abilities)):
+                        monID["Tokusei"f"{abilities}"] = abilities[i]
+                    
                 #Saves the object tree
                 obj.save_typetree(tree)
             else:
                 print("Error use different path_id")
 
-    text.append("Evolutions Randomized.")
+    text.append("Abilities Randomized.")
     # saving an edited file
     # apply modifications to the objects
     # don't forget to use data.save()
@@ -75,6 +99,6 @@ def RandomizeEvolutions(text, romFSPath):
     
     with open("personal_masterdatas", "wb") as f:
         f.write(env.file.save(packer = (64,2)))
-    text.append("Evolutions Saved.")
+    text.append("Abilities Saved.")
     
     os.chdir(cwd)
