@@ -54,7 +54,7 @@ pearlStarterRival3Off = '{:08X}'.format(0x0238E2D8)
 engMsgPathID = -5307844841844767521
 pathList = [engMsgPathID]
 
-modPathEng = "romfs/Data/StreamingAssets/AssetAssistant/Message"
+modPathEng = "mods/romfs/Data/StreamingAssets/AssetAssistant/Message"
 yuzuModPathEng = "StreamingAssets/AssetAssistant/Message"
 #8-EV_POKESELECT_02 Worddata 6(0 idx) Turtwig
 #8-EV_POKESELECT_03 Worddata 6(0 idx) Chimchar
@@ -68,7 +68,6 @@ def getPokemonNames():
 
 def RandomizeStarters(text, romFSPath):
     cwd = os.getcwd()
-    outputPath = os.path.join(cwd, "mods", modPathEng)
     pokeNames = getPokemonNames()
 
     text.append("Randomizing Starters!")
@@ -118,18 +117,17 @@ def RandomizeStarters(text, romFSPath):
     ""]
     
     src = "english"
+    
+    outputPath = os.path.join(cwd, "mods", modPathEng)
     if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
-        os.chdir(outputPath)
         env = UnityPy.load(os.path.join(outputPath, src))
         
     elif os.path.exists(os.path.join(romFSPath, yuzuModPathEng)) and os.path.isfile(os.path.join(romFSPath, yuzuModPathEng, src)):
-        os.chdir(romFSPath)
         env = UnityPy.load(os.path.join(romFSPath, yuzuModPathEng, src))
         
     else:
         text.append("ERROR: English messages not found ")
         return
-        
         
     #do pokemon name patching before anything else. 
     if not os.path.exists(modPathEng):
