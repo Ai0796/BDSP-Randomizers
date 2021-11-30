@@ -143,8 +143,8 @@ def RandomizeStarters(text):
     "{} {}".format(pearlStarter2Off, hex2),
     "{} {}".format(pearlStarter3Off, hex3),
     "{} {}".format(pearlStarterRival1Off, hex4),
-    "{} {}".format(pearlStarter2RivalOff, hex5),
-    "{} {}".format(pearlStarter3RivalOff, hex6),
+    "{} {}".format(pearlStarterRival2Off, hex5),
+    "{} {}".format(pearlStarterRival3Off, hex6),
     ""]
     
     #write out pearl patch
