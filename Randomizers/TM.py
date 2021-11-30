@@ -31,6 +31,7 @@ def RandomizeTMs(text, romFSPath):
     if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
         os.chdir(outputPath)
         env = UnityPy.load(os.path.join(outputPath, src))
+        
     elif os.path.exists(os.path.join(romFSPath, yuzuModPath)) and os.path.isfile(os.path.join(romFSPath, yuzuModPath, src)):
         os.chdir(romFSPath)
         env = UnityPy.load(os.path.join(romFSPath, yuzuModPath, src))

@@ -4,6 +4,7 @@ from PyQt5.QtGui import QPalette, QColor
 from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters, Levels, Shop, TM, Starters
 from Randomizers.dialog import Ui_MainWindow
 from Utilities import GlobalGameManager
+from os import path
 import sys
 
 class AppWindow(QMainWindow):
@@ -18,6 +19,10 @@ class AppWindow(QMainWindow):
         dialog = QFileDialog()
         global romFSPath
         romFSPath = dialog.getExistingDirectory(self, 'Select ROMFS path')
+        
+        if path.exists(path.join(romFSPath, "Data")):
+            romFSPath = path.join(romFSPath, "Data")
+            
         self.ui.tbLog.append("RomFS Directory set to " + romFSPath)
         
         if self.ui.cbStarters.isChecked():
