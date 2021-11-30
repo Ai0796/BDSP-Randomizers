@@ -73,10 +73,10 @@ def RandomizeAbilities(text, romFSPath):
             tree = obj.read_typetree()
             
             if tree['m_Name'] == "PersonalTable":
-                for monID in tree['Evolve'][1:]: ##There's dummy data for the 0th pokemon, probably for indexing reasons
+                for monID in tree['Personal'][1:]: ##There's dummy data for the 0th pokemon, probably for indexing reasons
                     abilities  = getAbilities()
                     for i in range(len(abilities)):
-                        monID["Tokusei"f"{abilities}"] = abilities[i]
+                        monID["tokusei"f"{i + 1}"] = abilities[i]
                     
                 #Saves the object tree
                 obj.save_typetree(tree)
