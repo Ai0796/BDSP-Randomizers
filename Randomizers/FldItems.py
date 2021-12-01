@@ -60,7 +60,7 @@ def generateRandom():
         itemNo = random.randrange(lowRange, highRange)
     return itemNo
     
-def RandomizeShops(text, romFSPath):
+def RandomizeFieldItems(text, romFSPath):
     # Checks if romfs path already exist
         
     src = "ev_script"
