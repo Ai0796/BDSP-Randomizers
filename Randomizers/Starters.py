@@ -65,10 +65,16 @@ def getPokemonNames():
     with open(filepath, "r") as f:
         return f.read().splitlines()
 
+def getPokemonCatagory():
+    
+    filepath = "Resources//categories.txt"
+    with open(filepath, "r") as f:
+        return f.read().splitlines()
 
 def RandomizeStarters(text, romFSPath):
     cwd = os.getcwd()
     pokeNames = getPokemonNames()
+    pokeCateg = getPokemonCatagory()
 
     text.append("Randomizing Starters!")
 
@@ -78,6 +84,7 @@ def RandomizeStarters(text, romFSPath):
     mon1 = random.choice(range(1, 493))
     mon2 = random.choice(range(1, 493))
     mon3 = random.choice(range(1, 493))
+            
     #assign build the asm string
     starter1 = "mov w0, #" + hex(mon1)
     starter2 = "mov w8, #" + hex(mon2)
@@ -142,12 +149,15 @@ def RandomizeStarters(text, romFSPath):
             #Disgusting things have been done.
             #Hard coded english message values. 
             #print("Old starter1 name :" + tree['labelDataArray'][28]['wordDataArray'][6]['str'])
+            tree['labelDataArray'][28]['wordDataArray'][2]['str'] = pokeCateg[mon1]
             tree['labelDataArray'][28]['wordDataArray'][6]['str'] = pokeNames[mon1]
             #print("New starter1 name :" + tree['labelDataArray'][28]['wordDataArray'][6]['str'])
             #print("Old starter2 name :" + tree['labelDataArray'][29]['wordDataArray'][6]['str'])
+            tree['labelDataArray'][29]['wordDataArray'][2]['str'] = pokeCateg[mon2]
             tree['labelDataArray'][29]['wordDataArray'][6]['str'] = pokeNames[mon2]
             #print("New starter2 name :" + tree['labelDataArray'][29]['wordDataArray'][6]['str'])
             #print("Old starter3 name :" + tree['labelDataArray'][30]['wordDataArray'][6]['str'])
+            tree['labelDataArray'][30]['wordDataArray'][2]['str'] = pokeCateg[mon3]
             tree['labelDataArray'][30]['wordDataArray'][6]['str'] = pokeNames[mon3]
             #print("New starter3 name :" + tree['labelDataArray'][30]['wordDataArray'][6]['str'])
             #Saves the object tree
