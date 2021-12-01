@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QColor
-from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters, Levels, Shop, TM, Starters
+from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters, Levels, Shop, TM, Starters, Ability, TMCompat
 from Randomizers.dialog import Ui_MainWindow
 from Utilities import GlobalGameManager
 from os import path
