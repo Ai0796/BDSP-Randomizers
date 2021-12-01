@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QColor
-from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters, Levels, Shop, TM, Starters
+from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters, Levels, Shop, TM, Starters, TMCompat, Ability
 from Randomizers.dialog import Ui_MainWindow
 from Utilities import GlobalGameManager
 from os import path
@@ -65,6 +65,13 @@ class AppWindow(QMainWindow):
         if self.ui.cbShops.isChecked():
             self.ui.tbLog.append('Randomizing Shops!')
             Shop.RandomizeShops(self.ui.tbLog, romFSPath)
+        
+        if self.ui.cbTMCompat.isChecked():
+            TMCompat.RandomizeCompat(self.ui.tbLog, romFSPath)
+        
+        if self.ui.cbAbilities.isChecked():
+            Ability.RandomizeAbilities(self.ui.tbLog, romFSPath)
+        
         #if self.ui.cbLevels.isChecked():
         #    self.ui.tbLog.append('Randomizing Levels!')
         #    if self.ui.rbFlat.isChecked():

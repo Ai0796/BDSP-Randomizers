@@ -31,7 +31,7 @@ def generateInt(bitAmount):
 
 # make sure the file personal_masterdatas is in this folder
 # personal_masterdatas is inside Pml
-def RandomizeAbilities(text, romFSPath):
+def RandomizeCompat(text, romFSPath):
 
     # Checks if romfs path already exist
     cwd = os.getcwd()

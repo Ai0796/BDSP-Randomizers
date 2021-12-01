@@ -11,16 +11,16 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string notr="true">BDSP Randomizer</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>830</x>
+      <x>840</x>
       <y>0</y>
-      <width>171</width>
-      <height>291</height>
+      <width>161</width>
+      <height>331</height>
      </rect>
     </property>
     <property name="title">
@@ -98,7 +98,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>260</y>
+       <y>300</y>
        <width>121</width>
        <height>17</height>
       </rect>
@@ -140,28 +140,7 @@
     </widget>
     <widget class="QCheckBox" name="cbFieldItems">
      <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>240</y>
-       <width>121</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <strikeout>true</strikeout>
-      </font>
-     </property>
-     <property name="text">
-      <string>Randomize Field Items</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbFieldItems_2">
-     <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -173,7 +152,28 @@
      </property>
      <property name="font">
       <font>
-       <strikeout>true</strikeout>
+       <strikeout>false</strikeout>
+      </font>
+     </property>
+     <property name="text">
+      <string>Randomize Field Items</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="cbAbilities">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>200</y>
+       <width>121</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <strikeout>false</strikeout>
       </font>
      </property>
      <property name="text">
@@ -187,7 +187,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>200</y>
+       <y>280</y>
        <width>71</width>
        <height>16</height>
       </rect>
@@ -207,6 +207,19 @@
      </property>
      <property name="text">
       <string>Randomize Starters</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="cbTMCompat">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>180</y>
+       <width>131</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Randomize TM Compat</string>
      </property>
     </widget>
    </widget>
@@ -451,15 +464,15 @@
      </rect>
     </property>
     <property name="text">
-     <string>Lets go!!!</string>
+     <string notr="true">Lets go!!!</string>
     </property>
    </widget>
    <widget class="QGroupBox" name="groupBox_4">
     <property name="geometry">
      <rect>
-      <x>830</x>
-      <y>290</y>
-      <width>171</width>
+      <x>690</x>
+      <y>250</y>
+      <width>141</width>
       <height>151</height>
      </rect>
     </property>
@@ -492,49 +505,116 @@
       <string>Timestep Multipler</string>
      </property>
     </widget>
+    <widget class="QGroupBox" name="groupBox_5">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>121</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Timestep</string>
+     </property>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Timestep</string>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="sbTimeStep">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>21</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="singleStep">
+       <double>0.100000000000000</double>
+      </property>
+      <property name="value">
+       <double>1.000000000000000</double>
+      </property>
+     </widget>
+    </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_5">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
+   <widget class="QGroupBox" name="groupBox_6">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>250</y>
-      <width>131</width>
-      <height>51</height>
+      <x>840</x>
+      <y>330</y>
+      <width>161</width>
+      <height>111</height>
      </rect>
     </property>
     <property name="title">
-     <string>Timestep</string>
+     <string>*Lockes</string>
     </property>
-    <widget class="QLabel" name="label_4">
+    <widget class="QCheckBox" name="cbPokemon_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>121</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <strikeout>true</strikeout>
+      </font>
+     </property>
+     <property name="text">
+      <string>Mega RandomLocke</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="cbSafari_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>121</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <strikeout>true</strikeout>
+      </font>
+     </property>
+     <property name="text">
+      <string notr="true">Nuzlocke</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="cbIronLocke">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>47</width>
-       <height>13</height>
+       <width>121</width>
+       <height>17</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <strikeout>true</strikeout>
+      </font>
      </property>
      <property name="text">
-      <string>Timestep</string>
-     </property>
-    </widget>
-    <widget class="QDoubleSpinBox" name="sbTimeStep">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>21</y>
-       <width>62</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="singleStep">
-      <double>0.100000000000000</double>
-     </property>
-     <property name="value">
-      <double>1.000000000000000</double>
+      <string notr="true">IronLocke</string>
      </property>
     </widget>
    </widget>
