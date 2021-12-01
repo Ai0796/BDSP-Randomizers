@@ -18,7 +18,7 @@ def RandomizeEvolutions(text, romFSPath):
 
     # Checks if romfs path already exist
     cwd = os.getcwd()
-    text.append(cwd)
+    # text.append(cwd)
     src = "personal_masterdatas"
 
     outputPath = os.path.join(cwd, "mods", modPath)

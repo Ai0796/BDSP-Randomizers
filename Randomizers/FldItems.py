@@ -30,11 +30,13 @@ def uselessItemRemover(itemNo):
         return True
     elif itemNo >= 256 and itemNo <= 264: #Lucky punch to Yellow scarf
         return True
+    elif itemNo == 216: #EXP Share
+        return True
     else:
         return False
 
 def isTM(itemNo):
-    return itemNo >= 328 and itemNo <= 464
+    return (itemNo >= 328 and itemNo <= 464)
 
 #This is taken directly from xLumas original randomizer
 def encode_float(var):
@@ -89,8 +91,9 @@ def RandomizeShops(text, romFSPath):
                     if len(item["Label"]) > 15: ##This is just a hack since scripts are also included in field items
                         fldItem = item["Commands"]["Arg"][2]["data"] #Don't ask why it's stored like this I wouldn't know
                         decoded = decode_int(fldItem)
-                        if not isTM(decoded):
+                        if not isTM(decoded) and item["Commands"]["Arg"][1]["data"] == 187 and len(fldItem) >= 9:
                             ##Set item to new encoded value
+                            print(decoded)
                             item["Commands"]["Arg"][2]["data"] = encode_float(generateRandom())
             else:
                 print("Error use different path_id")        
