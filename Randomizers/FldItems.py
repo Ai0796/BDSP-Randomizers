@@ -95,9 +95,6 @@ def RandomizeFieldItems(text, romFSPath):
                         if not isTM(decoded) and len(str(fldItem)) >= 9:
                             ##Set item to new encoded value
                             item["Commands"][0]["Arg"][1]["data"] = encode_float(generateRandom())
-                    else:
-                        print(item["Label"])
-                        print(item["Commands"][0]["Arg"][0]["data"])
                 obj.save_typetree(tree)
             else:
                 print("Error use different path_id")        
