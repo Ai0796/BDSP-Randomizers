@@ -71,20 +71,54 @@ def getPokemonCatagory():
     with open(filepath, "r") as f:
         return f.read().splitlines()
 
+def getPokemonColor():
+
+    filepath = "Resources//color.txt"
+    with open(filepath, "r") as f:
+        return f.read().splitlines()
+
+def colorPokemon(monID):
+    color = "<color=#FFFFFFFF>"
+
+    colorHex = {0 : "<color=#F01E1EFF>", # Red
+                1 : "<color=#0064FFFF>", # Blue
+                2 : "<color=#CB1003FF>", # Yellow
+                3 : "<color=#00FF00FF>", # Green
+                4 : "<color=#383431FF>", # Black
+                5 : "<color=#8E5B2CFF>", # Brown
+                6 : "<color=#CC00CCFF>", # Purple
+                7 : "<color=#669999FF>", # Gray
+                8 : "<color=#b0b0b0FF>", # White
+                9 : "<color=#FF00FFFF>" # Pink
+        }
+
+    for i in getPokemonColor():
+        for j in i.split(","):
+            if getPokemonNames()[monID] == j:
+                color = colorHex[getPokemonColor().index(i)]
+
+    return color
+                
 def RandomizeStarters(text, romFSPath):
     cwd = os.getcwd()
     pokeNames = getPokemonNames()
     pokeCateg = getPokemonCatagory()
+    pokeColor = getPokemonColor()
 
     text.append("Randomizing Starters!")
-
+    
     #initialize Keystone-Engine 
     ks = Ks(KS_ARCH_ARM64, KS_MODE_LITTLE_ENDIAN)
     #randomize our mons. 
     mon1 = random.choice(range(1, 493))
     mon2 = random.choice(range(1, 493))
     mon3 = random.choice(range(1, 493))
-            
+
+    #color mons
+    colorPokemonmon1 = colorPokemon(mon1)
+    colorPokemonmon2 = colorPokemon(mon2)
+    colorPokemonmon3 = colorPokemon(mon3)
+    
     #assign build the asm string
     starter1 = "mov w0, #" + hex(mon1)
     starter2 = "mov w8, #" + hex(mon2)
@@ -149,15 +183,21 @@ def RandomizeStarters(text, romFSPath):
             #Disgusting things have been done.
             #Hard coded english message values. 
             #print("Old starter1 name :" + tree['labelDataArray'][28]['wordDataArray'][6]['str'])
+            tree['labelDataArray'][28]['wordDataArray'][1]['str'] = colorPokemonmon1
             tree['labelDataArray'][28]['wordDataArray'][2]['str'] = pokeCateg[mon1]
+            tree['labelDataArray'][28]['wordDataArray'][5]['str'] = colorPokemonmon1
             tree['labelDataArray'][28]['wordDataArray'][6]['str'] = pokeNames[mon1]
             #print("New starter1 name :" + tree['labelDataArray'][28]['wordDataArray'][6]['str'])
             #print("Old starter2 name :" + tree['labelDataArray'][29]['wordDataArray'][6]['str'])
+            tree['labelDataArray'][29]['wordDataArray'][1]['str'] = colorPokemonmon2
             tree['labelDataArray'][29]['wordDataArray'][2]['str'] = pokeCateg[mon2]
+            tree['labelDataArray'][29]['wordDataArray'][5]['str'] = colorPokemonmon2
             tree['labelDataArray'][29]['wordDataArray'][6]['str'] = pokeNames[mon2]
             #print("New starter2 name :" + tree['labelDataArray'][29]['wordDataArray'][6]['str'])
             #print("Old starter3 name :" + tree['labelDataArray'][30]['wordDataArray'][6]['str'])
+            tree['labelDataArray'][30]['wordDataArray'][1]['str'] = colorPokemonmon3
             tree['labelDataArray'][30]['wordDataArray'][2]['str'] = pokeCateg[mon3]
+            tree['labelDataArray'][30]['wordDataArray'][5]['str'] = colorPokemonmon3
             tree['labelDataArray'][30]['wordDataArray'][6]['str'] = pokeNames[mon3]
             #print("New starter3 name :" + tree['labelDataArray'][30]['wordDataArray'][6]['str'])
             #Saves the object tree
