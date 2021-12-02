@@ -2,8 +2,9 @@
 
 # Required Files
 
-Right now our randomizer has 4 required files:
+Right now our randomizer has 5 required files:
 - masterdatas
+- ev_script
 - personal_masterdatas
 - gamesettings
 - UgData
@@ -12,6 +13,7 @@ You can get those files by dumping your cartridge via tools such as [NXDumpTool]
 
 # Usage
 
-- Extract the archive into a directory with the romfs folder from Brilliant Diamond or Shining Pearl
+- Extract the archive
 - Run main.exe and select your randomization settings
+- Once you click the randomize button select your romfs folder
 - Once finished it will automatically create a Data folder in your romfs folder that contains the mod. After that, install like a standard switch mod
