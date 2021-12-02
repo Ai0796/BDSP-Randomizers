@@ -112,12 +112,7 @@ def Encount(safari, legend, env, text):
                                         mon['monsNo'] = random.choice(encPool)
             if safari:
                 for area in tree['safari']:
-                    for key in area.keys():
-                        if type(area[key]) != int:
-                            if type(area[key][0]) == dict:
-                                for mon in area[key]:
-                                    if mon['MonsNo'] != 0:
-                                        mon['MonsNo'] = random.choice(encPool)
+                    area["MonsNo"] = random.choice(encPool)
             #Saves the object tree
             obj.save_typetree(tree)
     text.append("Randomzing Done.")
