@@ -79,7 +79,7 @@ def getPokemonNames():
     with open(filepath, "r") as f:
         return f.read().splitlines()
 
-def getPokemonCatagory():
+def getPokemonCategory():
     
     filepath = "Resources//categories.txt"
     with open(filepath, "r") as f:
@@ -116,8 +116,7 @@ def colorPokemon(monID):
 def RandomizeStarters(text, romFSPath):
     cwd = os.getcwd()
     pokeNames = getPokemonNames()
-    pokeCateg = getPokemonCatagory()
-    pokeColor = getPokemonColor()
+    pokeCateg = getPokemonCategory()
 
     text.append("Randomizing Starters!")
     
