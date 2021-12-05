@@ -1,4 +1,5 @@
 #py -m pip install UnityPy
+from platform import version
 import UnityPy
 import random
 import os
@@ -13,8 +14,21 @@ modPath = "mods/exefs/"
 
 #file name has to be the build id for IPS patches. 
 #for pchtxt patches it can be named whatever so we will use starter.pchtxt
-diamondBuildID = 'D9E96FB92878E3458AAE7E8D31AB32A9'
-pearlBuildID = '3C70CAE153DF0B4F8A7B24C60FD8D0E7'
+diamondBuildID100 = 'F87FC6075104EC4D9642A4AA6BB22216'
+diamondBuildID110 = 'EA058A067CBD6943A6CF65B4588B6098'
+diamondBuildID111 = 'D9E96FB92878E3458AAE7E8D31AB32A9'
+diamondBuildID112 = '1B5215DF918BA04BB3894852387F82FF'
+pearlBuildID100 = '1284AB14C1477243AE2A3550EF828709'
+pearlBuildID110 = '609FAC97880FA04CA6A8626D54A2BAB2'
+pearlBuildID111 = '3C70CAE153DF0B4F8A7B24C60FD8D0E7'
+pearlBuildID112 = '5D3A3B56321FFD4CB5B5AEDC62550AFB'
+
+
+#Defines each build ID in a list so we can iterate through it when writing starters
+versions = ["100", "110", "111", "112"]
+diamondBuilds = [diamondBuildID100, diamondBuildID110, diamondBuildID111, diamondBuildID112]
+pearlBuilds = [pearlBuildID100, pearlBuildID110, pearlBuildID111, pearlBuildID112]
+
 
 #diamond 
 #turtwig w0, 183
@@ -147,16 +161,8 @@ def RandomizeStarters(text, romFSPath):
     hexIds = [hex1, hex2, hex3, hex4, hex5, hex6]
     
     text.append("Building Patch files.")
-    #build diamond patch file. 
-    pchDiamondPatch = ["@nsobid-{}".format(diamondBuildID),"","@enabled",
-    "{} {}".format(diamondStarter1Off, hex1),
-    "{} {}".format(diamondStarter2Off, hex2),
-    "{} {}".format(diamondStarter3Off, hex3),
-    "{} {}".format(diamondStarterRival1Off, hex4),
-    "{} {}".format(diamondStarterRival2Off, hex5),
-    "{} {}".format(diamondStarterRival3Off, hex6),
-    ""]
     
+            
     src = "english"
     
     outputPath = os.path.join(cwd, "mods", modPathEng)
@@ -215,10 +221,23 @@ def RandomizeStarters(text, romFSPath):
 
     os.chdir(modPath)
     
-    diamond = open("starterDiamond.pchtxt", "w")
-    for element in pchDiamondPatch:
-        diamond.write(element + "\n")
-    diamond.close()
+    for i in range(len(diamondBuilds)):
+        diamondBuildID = diamondBuilds[i]
+        version = versions[i]
+        #build diamond patch file. 
+        pchDiamondPatch = ["@nsobid-{}".format(diamondBuildID),"","@enabled",
+        "{} {}".format(diamondStarter1Off, hex1),
+        "{} {}".format(diamondStarter2Off, hex2),
+        "{} {}".format(diamondStarter3Off, hex3),
+        "{} {}".format(diamondStarterRival1Off, hex4),
+        "{} {}".format(diamondStarterRival2Off, hex5),
+        "{} {}".format(diamondStarterRival3Off, hex6),
+        ""]
+        
+        diamond = open("starterDiamond"f"{version}.pchtxt", "w")
+        for element in pchDiamondPatch:
+            diamond.write(element + "\n")
+        diamond.close()
     
     #build our IPS file
     #we can't currently build ips's because of the 3 byte address limitation 
@@ -226,24 +245,29 @@ def RandomizeStarters(text, romFSPath):
     #build_diamond_ips(hexIds)
     
     
-    #build pearl patch file. 
-    pchPearlPatch = ["@nsobid-{}".format(pearlBuildID),"","@enabled",
-    "{} {}".format(pearlStarter1Off, hex1),
-    "{} {}".format(pearlStarter2Off, hex2),
-    "{} {}".format(pearlStarter3Off, hex3),
-    "{} {}".format(pearlStarterRival1Off, hex4),
-    "{} {}".format(pearlStarterRival2Off, hex5),
-    "{} {}".format(pearlStarterRival3Off, hex6),
-    ""]
     
-    #write out pearl patch
-    pearl = open("starterPearl.pchtxt", "w")
-    for element in pchPearlPatch:
-        pearl.write(element + "\n")
-    pearl.close()
-    
-    
-    
+    for i in range(len(pearlBuilds)):
+        pearlBuildID = pearlBuilds[i]
+        version = versions[i]
+        #build pearl patch file. 
+        pchPearlPatch = ["@nsobid-{}".format(pearlBuildID),"","@enabled",
+        "{} {}".format(pearlStarter1Off, hex1),
+        "{} {}".format(pearlStarter2Off, hex2),
+        "{} {}".format(pearlStarter3Off, hex3),
+        "{} {}".format(pearlStarterRival1Off, hex4),
+        "{} {}".format(pearlStarterRival2Off, hex5),
+        "{} {}".format(pearlStarterRival3Off, hex6),
+        ""]
+        
+        #write out pearl patch
+        pearl = open("starterPearl"f"{version}.pchtxt", "w")
+        for element in pchPearlPatch:
+            pearl.write(element + "\n")
+        pearl.close()
+        
+        
+        
+        
+    ##Return to original directory
     text.append("Starters Randomized.")
-
     os.chdir(cwd)
