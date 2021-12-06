@@ -89,12 +89,13 @@ def RandomizeFieldItems(text, romFSPath):
             if tree['m_Name'] == "fld_item":
                 for item in tree["Scripts"]:
                     # print(item["Commands"])
-                    if item["Commands"][0]["Arg"][0]["data"] in [41, 187, 194]: ##This is just a hack since scripts are also included in field items
-                        fldItem = item["Commands"][0]["Arg"][1]["data"] #Don't ask why it's stored like this I wouldn't know
-                        decoded = decode_int(fldItem)
-                        if not isTM(decoded) and len(str(fldItem)) >= 9:
-                            ##Set item to new encoded value
-                            item["Commands"][0]["Arg"][1]["data"] = encode_float(generateRandom())
+                    if "ev_fld_item" in item["label"]:
+                        if item["Commands"][0]["Arg"][0]["data"] in [41, 187, 194]: ##This is just a hack since scripts are also included in field items
+                            fldItem = item["Commands"][0]["Arg"][1]["data"] #Don't ask why it's stored like this I wouldn't know
+                            decoded = decode_int(fldItem)
+                            if not isTM(decoded) and len(str(fldItem)) >= 9:
+                                ##Set item to new encoded value
+                                item["Commands"][0]["Arg"][1]["data"] = encode_float(generateRandom())
                 obj.save_typetree(tree)
             else:
                 print("Error use different path_id")        
