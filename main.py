@@ -15,7 +15,7 @@ class AppWindow(QMainWindow):
         self.ui.btnRandomize.clicked.connect(self.buttonClicked)
     
     def buttonClicked(self):
-        #setup directory where romFS To modify is. 
+        #setup directory where romFS Tok modify is. 
         dialog = QFileDialog()
         global romFSPath
         romFSPath = dialog.getExistingDirectory(self, 'Select ROMFS path')

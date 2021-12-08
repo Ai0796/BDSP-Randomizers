@@ -90,7 +90,7 @@ def RandomizeFieldItems(text, romFSPath):
                 for item in tree["Scripts"]:
                     # print(item["Commands"])
                     if "ev_fld_item" in item["label"]:
-                        if item["Commands"][0]["Arg"][0]["data"] in [41, 187, 194]: ##This is just a hack since scripts are also included in field items
+                        if item["Commands"][0]["Arg"][0]["data"] == 187: ##This is just a hack since scripts are also included in field items
                             fldItem = item["Commands"][0]["Arg"][1]["data"] #Don't ask why it's stored like this I wouldn't know
                             decoded = decode_int(fldItem)
                             if not isTM(decoded) and len(str(fldItem)) >= 9:
