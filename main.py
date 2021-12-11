@@ -48,6 +48,8 @@ class AppWindow(QMainWindow):
             if self.ui.cbMoves.isChecked():
                 self.ui.tbLog.append('Randomizing Movesets!')
                 Moves.RandomizerMoves(self.ui.tbLog, romFSPath)
+                self.ui.tbLog.append('Updating Trainer Movesets!')
+                Trainers.updateMovesets(self.ui.tbLog, romFSPath)
                 
             if self.ui.cbTrainers.isChecked():
                 self.ui.tbLog.append('Randomizing Trainers!')
