@@ -23,8 +23,13 @@ def getAbilityList():
 def getMoveList():
     
     filepath = "Resources//moves.txt"
-    with open(filepath, "r") as f:
-        return f.read().splitlines()
+    tempFilepath = "Resources//tempMoveIndex.txt"
+    if os.path.exists(tempFilepath):
+        with open(tempFilepath, "r") as f:
+            return f.read().splitlines()
+    else:
+        with open(filepath, "r") as f:
+            return f.read().splitlines()
 
 def RandomizeTrainers(text, romFSPath):
     # make sure masterdatas is in same folder

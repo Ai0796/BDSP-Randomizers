@@ -31,7 +31,7 @@
       <rect>
        <x>10</x>
        <y>40</y>
-       <width>121</width>
+       <width>180</width>
        <height>17</height>
       </rect>
      </property>
@@ -44,7 +44,7 @@
       <rect>
        <x>10</x>
        <y>120</y>
-       <width>121</width>
+       <width>180</width>
        <height>17</height>
       </rect>
      </property>
@@ -57,7 +57,7 @@
       <rect>
        <x>10</x>
        <y>60</y>
-       <width>121</width>
+       <width>180</width>
        <height>17</height>
       </rect>
      </property>
@@ -99,7 +99,7 @@
       <rect>
        <x>10</x>
        <y>300</y>
-       <width>121</width>
+       <width>180</width>
        <height>17</height>
       </rect>
      </property>
@@ -117,7 +117,7 @@
       <rect>
        <x>10</x>
        <y>140</y>
-       <width>121</width>
+       <width>180</width>
        <height>17</height>
       </rect>
      </property>
@@ -130,7 +130,7 @@
       <rect>
        <x>10</x>
        <y>160</y>
-       <width>121</width>
+       <width>180</width>
        <height>17</height>
       </rect>
      </property>
@@ -146,7 +146,7 @@
       <rect>
        <x>10</x>
        <y>220</y>
-       <width>121</width>
+       <width>180</width>
        <height>17</height>
       </rect>
      </property>
@@ -167,7 +167,7 @@
       <rect>
        <x>10</x>
        <y>200</y>
-       <width>121</width>
+       <width>180</width>
        <height>17</height>
       </rect>
      </property>
@@ -180,6 +180,27 @@
       <string>Randomize Abilities</string>
      </property>
     </widget>
+    <widget class="QCheckBox" name="cbMoves">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>240</y>
+       <width>180</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <strikeout>false</strikeout>
+      </font>
+     </property>
+     <property name="text">
+      <string>Randomize Moves</string>
+     </property>
+    </widget>
     <widget class="QLabel" name="label_5">
      <property name="enabled">
       <bool>false</bool>
@@ -188,7 +209,7 @@
       <rect>
        <x>10</x>
        <y>280</y>
-       <width>71</width>
+       <width>180</width>
        <height>16</height>
       </rect>
      </property>
@@ -201,7 +222,7 @@
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>121</width>
+       <width>180</width>
        <height>17</height>
       </rect>
      </property>
@@ -484,7 +505,7 @@
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>121</width>
+       <width>180</width>
        <height>17</height>
       </rect>
      </property>
@@ -497,7 +518,7 @@
       <rect>
        <x>10</x>
        <y>40</y>
-       <width>121</width>
+       <width>180</width>
        <height>17</height>
       </rect>
      </property>
@@ -513,7 +534,7 @@
       <rect>
        <x>10</x>
        <y>90</y>
-       <width>121</width>
+       <width>180</width>
        <height>51</height>
       </rect>
      </property>
@@ -568,7 +589,7 @@
       <rect>
        <x>10</x>
        <y>40</y>
-       <width>121</width>
+       <width>180</width>
        <height>17</height>
       </rect>
      </property>
@@ -586,7 +607,7 @@
       <rect>
        <x>10</x>
        <y>60</y>
-       <width>121</width>
+       <width>180</width>
        <height>17</height>
       </rect>
      </property>
@@ -604,7 +625,7 @@
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>121</width>
+       <width>180</width>
        <height>17</height>
       </rect>
      </property>

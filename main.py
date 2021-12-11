@@ -1,11 +1,12 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QColor
-from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters, Levels, Shop, TM, Starters, TMCompat, Ability, FldItems
+from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters, Levels, Shop, TM, Starters, TMCompat, Ability, FldItems, Moves
 from Randomizers.dialog import Ui_MainWindow
 from Utilities import GlobalGameManager
-from os import error, path
+from os import error, path, remove
 import sys
+import traceback
 
 class AppWindow(QMainWindow):
     def __init__(self):
@@ -44,6 +45,10 @@ class AppWindow(QMainWindow):
                 #Fixed added safari -- sangawku
                 Encounters.RandomizeEncounters(self.ui.tbLog,self.ui.cbLegends.isChecked(), generations, self.ui.cbSafari.isChecked(), romFSPath)
                 
+            if self.ui.cbMoves.isChecked():
+                self.ui.tbLog.append('Randomizing Movesets!')
+                Moves.RandomizerMoves(self.ui.tbLog, romFSPath)
+                
             if self.ui.cbTrainers.isChecked():
                 self.ui.tbLog.append('Randomizing Trainers!')
                 Trainers.RandomizeTrainers(self.ui.tbLog, romFSPath)
@@ -75,13 +80,20 @@ class AppWindow(QMainWindow):
                 Ability.RandomizeAbilities(self.ui.tbLog, romFSPath)
             
             if self.ui.cbFieldItems.isChecked():
-                FldItems.RandomizeFieldItems(self.ui.tbLog, romFSPath)
+                FldItems.RandomizeFieldItems(self.ui.tbLog, romFSPath)          
                 
-        except Exception as inst: 
+            ##Deletes temp files at the end
+            moves = "Resources//tempMoveIndex.txt"
+            
+            tempFileList = [moves]
+            for file in tempFileList:
+                if path.exists(file):
+                    remove(file)
+                
+        except Exception: 
             self.ui.tbLog.append("An Error has occured: ")
-            self.ui.tbLog.append(str(type(inst)))
-            self.ui.tbLog.append(str(type(inst.args)))
-            self.ui.tbLog.append(str(type(inst)))
+            self.ui.tbLog.append(traceback.format_exc())
+            # self.ui.tbLog.append(str(type(inst.args)))
         #if self.ui.cbLevels.isChecked():
         #    self.ui.tbLog.append('Randomizing Levels!')
         #    if self.ui.rbFlat.isChecked():
