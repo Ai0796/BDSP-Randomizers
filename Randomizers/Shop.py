@@ -28,6 +28,8 @@ def uselessItemRemover(itemNo):
         return True
     elif itemNo >= 256 and itemNo <= 264: #Lucky punch to Yellow scarf
         return True
+    elif itemNo == 216: #EXP Share
+        return True
     else:
         return False
     
