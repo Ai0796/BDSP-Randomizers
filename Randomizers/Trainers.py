@@ -14,6 +14,16 @@ pathList = [Trainer_Table]
 #Level Increase
 LevelIncrease = 1
 
+##Gym Leaders, Rival 3rd fight onwards, E4, Champion, Galactic Admins
+rivalBattles = [351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 481, 493, 494, 663, 664, 665, 666, 667, 668]
+gymLeaders = [175, 179, 240, 241, 242, 243, 244, 245, 676, 677, 678, 679, 680, 681, 682, 683]
+eliteFour = [185, 186, 187, 188, 696, 697, 698, 699, 701, 702, 703, 704]
+champion = [191, 700, 705]
+galacticAdmins = [220, 308, 309, 310, 311, 312, 313, 314, 401]
+
+importantList = rivalBattles + gymLeaders + eliteFour + champion + galacticAdmins
+
+
 def getAbilityList():
     
     filepath = "Resources//ability.txt"
@@ -30,8 +40,19 @@ def getMoveList():
     else:
         with open(filepath, "r") as f:
             return f.read().splitlines()
+        
+def getAverageLevel(trainer):
+    levelList = []
+    for pokeNum in range(1, 7):
+        level = trainer["P"f"{pokeNum}Level"]
+        if level > 0:
+            levelList.append(level)
+    if len(levelList) > 0:
+        return sum(levelList)/len(levelList)
+    else:
+        return 0
 
-def RandomizeTrainers(text, romFSPath):
+def RandomizeTrainers(text, minImportant, minBasic, romFSPath, scaleWithLevel=True):
     # make sure masterdatas is in same folder
     cwd = os.getcwd()
     
@@ -64,6 +85,22 @@ def RandomizeTrainers(text, romFSPath):
             #TrainerPoke
             if tree['m_Name'] == "TrainerTable":
                 for dic in tree['TrainerPoke']:
+                    
+                    trainerID = dic["ID"]
+                    
+                    ##Used to increase the amount of pokemon in party
+                    if scaleWithLevel:
+                        averageLevel = getAverageLevel(dic)
+                        if trainerID in importantList:
+                            pokeAmount = minImportant
+                        else:
+                            pokeAmount = max(int(averageLevel/10), minBasic)
+                            pokeAmount = min(pokeAmount, 6) ##Max at 6 pokemon
+                        ##For all pokemon under the average level, adds a new pokemon
+                        for pokeNum in range(1, pokeAmount + 1):
+                            if dic["P"f"{pokeNum}Level"] < averageLevel:
+                                dic["P"f"{pokeNum}Level"] = averageLevel
+                    
                     for pokeNum in range(1, 7):
                         # print(dic["P"f"{pokeNum}Level"])
                         level = dic["P"f"{pokeNum}Level"]
