@@ -23,6 +23,16 @@ modPath = "romfs/Data/StreamingAssets/AssetAssistant/UnderGround/data"
 yuzuModPath = "StreamingAssets/AssetAssistant/UnderGround/data"
 # make sure the file UgData is in this folder
 # UgData s is inside UnderGround/Data
+
+
+
+def generateSample(min, max, size):
+    return random.sample(range(min, max + 1), size)
+
+
+
+
+
 def RandomizeUG(text, romFSPath):
 
     src = "ugdata"
@@ -55,12 +65,20 @@ def RandomizeUG(text, romFSPath):
             
             # print(str(i) + ": " + str(data))
             if tree["m_Name"][:10] == "UgEncount_":
+                tableLength = len(tree["table"])
+                sample = generateSample(1, 493, tableLength)
+                i = 0
                 for mon in tree["table"]:
-                    mon["monsno"] = random.randint(1, 493)
+                    mon["monsno"] = sample[i]
+                    i += 1
             
             elif tree["m_Name"] == "UgSpecialPokemon":
+                tableLength = len(tree["Sheet1"])
+                sample = generateSample(1, 493, tableLength)
+                i = 0
+                
                 for mon in tree["Sheet1"]:
-                    mon["monsno"] = random.randint(1, 493)
+                    mon["monsno"] = sample[i]
             
             else:
                 print("Error use different path_id")
