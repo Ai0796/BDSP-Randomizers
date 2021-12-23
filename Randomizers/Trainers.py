@@ -211,7 +211,6 @@ def updateMovesets(text, romFSPath):
                             ##Moves 1 through 4
                             amountOfMoves = min(4, len(possibleMoves))
                             for moveNum in range(1, amountOfMoves + 1):
-                                print(possibleMoves[-moveNum])
                                 dic["P"f"{pokeNum}Waza"f"{moveNum}"] = possibleMoves[-moveNum]
                                 
                             #Sets the rest of the pokemons moves to 0

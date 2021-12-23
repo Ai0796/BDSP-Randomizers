@@ -4,7 +4,7 @@ from PyQt5.QtGui import QPalette, QColor
 from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters, Levels, Shop, TM, Starters, TMCompat, Ability, FldItems, Moves
 from Randomizers.dialog import Ui_MainWindow
 from Utilities import GlobalGameManager
-from os import error, path, remove
+from os import error, path, remove, getcwd, chdir
 import sys
 import traceback
 
@@ -25,6 +25,8 @@ class AppWindow(QMainWindow):
             romFSPath = path.join(romFSPath, "Data")
             
         self.ui.tbLog.append("RomFS Directory set to " + romFSPath)
+        
+        chdir(getcwd())
         
         try:
             
@@ -53,7 +55,7 @@ class AppWindow(QMainWindow):
                 
             if self.ui.cbTrainers.isChecked():
                 self.ui.tbLog.append('Randomizing Trainers!')
-                Trainers.RandomizeTrainers(self.ui.tbLog, romFSPath)
+                Trainers.RandomizeTrainers(self.ui.tbLog, 0, 0, romFSPath, scaleWithLevel=False)
                 
             if self.ui.cbTimeSkip.isChecked() or self.ui.cb60FPS.isChecked():
                 self.ui.tbLog.append('Applying Utilities!')
