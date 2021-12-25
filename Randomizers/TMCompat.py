@@ -56,7 +56,7 @@ def RandomizeCompat(text, romFSPath):
 
     for obj in env.objects:
         
-        if obj.path_id in pathList:
+        # if obj.path_id in pathList:
             tree = obj.read_typetree()
             
             if tree['m_Name'] == "PersonalTable":

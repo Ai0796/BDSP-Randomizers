@@ -38,7 +38,7 @@ def RandomizeLevels(text, flat, min, max, romFSPath):
     text.append("Randomizing Pokemon Levels.")
     for obj in env.objects:
         
-        if obj.path_id in pathList:
+        # if obj.path_id in pathList:
             tree = obj.read_typetree()
             
             ##Two encounter tables are named FieldEncountTable_d (diamond) and FieldEncountTable_p (pearl)
