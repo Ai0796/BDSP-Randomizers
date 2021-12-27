@@ -5,6 +5,7 @@ from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters,
 from Randomizers.dialog import Ui_MainWindow
 from Utilities import GlobalGameManager
 from os import error, path, remove, getcwd, chdir
+import shutil
 import sys
 import traceback
 
@@ -26,6 +27,7 @@ class AppWindow(QMainWindow):
             
         self.ui.tbLog.append("RomFS Directory set to " + romFSPath)
         
+        shutil.rmtree('mods')
         chdir(getcwd())
         
         try:

@@ -18,16 +18,20 @@ diamondBuildID100 = 'F87FC6075104EC4D9642A4AA6BB22216'
 diamondBuildID110 = 'EA058A067CBD6943A6CF65B4588B6098'
 diamondBuildID111 = 'D9E96FB92878E3458AAE7E8D31AB32A9'
 diamondBuildID112 = '1B5215DF918BA04BB3894852387F82FF'
+diamondBuildID113 = 'BC259F7EE8E79A4995CDC79E69CAC6CD'
+
+
 pearlBuildID100 = '1284AB14C1477243AE2A3550EF828709'
 pearlBuildID110 = '609FAC97880FA04CA6A8626D54A2BAB2'
 pearlBuildID111 = '3C70CAE153DF0B4F8A7B24C60FD8D0E7'
 pearlBuildID112 = '5D3A3B56321FFD4CB5B5AEDC62550AFB'
+pearlBuildID113 = '046D130F0873314A81D795C157E44A2F'
 
 
 #Defines each build ID in a list so we can iterate through it when writing starters
-versions = ["100", "110", "111", "112"]
-diamondBuilds = [diamondBuildID100, diamondBuildID110, diamondBuildID111, diamondBuildID112]
-pearlBuilds = [pearlBuildID100, pearlBuildID110, pearlBuildID111, pearlBuildID112]
+versions = ["100", "110", "111", "112", "113"]
+diamondBuilds = [diamondBuildID100, diamondBuildID110, diamondBuildID111, diamondBuildID112, diamondBuildID113]
+pearlBuilds = [pearlBuildID100, pearlBuildID110, pearlBuildID111, pearlBuildID112, pearlBuildID113]
 
 
 #diamond 
