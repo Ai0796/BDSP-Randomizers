@@ -71,7 +71,7 @@ def RandomizeShops(text, romFSPath):
     text.append("Items Shop Loaded.")
 
     for obj in env.objects:
-        # if obj.path_id in pathList:
+        if obj.path_id in pathList:
             tree = obj.read_typetree()
             if tree['m_Name'] == "ShopTable":
                 for shop in shopList:

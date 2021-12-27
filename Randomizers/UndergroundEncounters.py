@@ -59,8 +59,8 @@ def RandomizeUG(text, romFSPath):
 
     for obj in env.objects:
         
-        # if obj.path_id in pathList:
-                # save decoded data
+        if obj.path_id in pathList:
+            # save decoded data
             tree = obj.read_typetree()
             
             # print(str(i) + ": " + str(data))

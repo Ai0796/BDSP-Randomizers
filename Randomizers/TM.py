@@ -44,7 +44,7 @@ def RandomizeTMs(text, romFSPath):
     text.append("TMs loaded.")
 
     for obj in env.objects:
-        # if obj.path_id in pathList:
+        if obj.path_id in pathList:
             tree = obj.read_typetree()
             if tree['m_Name'] == "ItemTable":
                 ##Selects 100 unique moves

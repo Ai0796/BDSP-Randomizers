@@ -190,7 +190,7 @@ def updateMovesets(text, romFSPath):
         return
     
     for obj in env.objects:
-        # if obj.path_id in pathList:
+        if obj.path_id in pathList:
             tree = obj.read_typetree()
 
             #TrainerPoke

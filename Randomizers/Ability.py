@@ -42,6 +42,7 @@ def getAbilities():
             
     return abilityList
 
+
 # make sure the file personal_masterdatas is in this folder
 # personal_masterdatas is inside Pml
 def RandomizeAbilities(text, romFSPath):
@@ -69,7 +70,7 @@ def RandomizeAbilities(text, romFSPath):
 
     for obj in env.objects:
         
-        # if obj.path_id in pathList:
+        if obj.path_id in pathList:
             tree = obj.read_typetree()
             
             if tree['m_Name'] == "PersonalTable":
