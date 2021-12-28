@@ -66,7 +66,8 @@ def ChangeSettings(VSync, timeStep, env, text):
     for obj in env.objects:
         
         if obj.path_id in pathList:
-            if timeStep != 1.0 and obj.path_id == 8:
+            
+            if timeStep != 1.0 and obj.type.name == "TimeManager":
                 text.append("Timestep Enabled.")
                 tree = obj.get_raw_data()
                 fixed_timestep = fixed_timestep / timeStep
@@ -75,11 +76,13 @@ def ChangeSettings(VSync, timeStep, env, text):
                 tree = struct.pack('4f', fixed_timestep, maximum_allowed_timestep, m_timescale, maximum_particle_timestep)
                 #Saves the object tree
                 obj.set_raw_data(tree)
-            elif VSync and obj.path_id == 12:
+                
+            elif VSync and obj.type.name == "QualitySettings":
                 text.append("60FPS Mod Enabled.")
                 tree = obj.get_raw_data()
+                # print(obj.read())
                 tree2 = bytearray(tree)
-                tree2[0x58] = 0
+                tree2[0x58] = 1
                 finaltree = bytes(tree2)
                 #Saves the object tree
                 obj.set_raw_data(finaltree)
