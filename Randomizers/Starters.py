@@ -23,6 +23,26 @@ pathList = [engMsgPathID]
 
 modPathEng = "mods/romfs/Data/StreamingAssets/AssetAssistant/Message"
 yuzuModPathEng = "StreamingAssets/AssetAssistant/Message"
+
+BD = GameType.BD
+SP = GameType.SP
+
+##Fix once We figure out how to iterate through enums
+version100 = GameRevision.REV_100
+version110 = GameRevision.REV_110
+version111 = GameRevision.REV_111
+version112 = GameRevision.REV_112
+version113 = GameRevision.REV_113
+
+gameVersionIDs = [
+    version100,
+    version110,
+    version111,
+    version112,
+    version113
+]
+
+gameVersionNames = ["100", "110", "111", "112", "113"]
 #8-EV_POKESELECT_02 Worddata 6(0 idx) Turtwig
 #8-EV_POKESELECT_03 Worddata 6(0 idx) Chimchar
 #8-EV_POKESELECT_04 Worddata 6(0 idx) Piplup
@@ -47,22 +67,26 @@ def getPokemonColor():
 def colorPokemon(monID):
     color = "<color=#FFFFFFFF>"
 
-    colorHex = {0 : "<color=#F01E1EFF>", # Red
-                1 : "<color=#0064FFFF>", # Blue
-                2 : "<color=#CB1003FF>", # Yellow
-                3 : "<color=#00FF00FF>", # Green
-                4 : "<color=#383431FF>", # Black
-                5 : "<color=#8E5B2CFF>", # Brown
-                6 : "<color=#CC00CCFF>", # Purple
-                7 : "<color=#669999FF>", # Gray
-                8 : "<color=#b0b0b0FF>", # White
-                9 : "<color=#FF00FFFF>" # Pink
-        }
+    try:
+        colorHex = {0 : "<color=#F01E1EFF>", # Red
+                    1 : "<color=#0064FFFF>", # Blue
+                    2 : "<color=#CB1003FF>", # Yellow
+                    3 : "<color=#00FF00FF>", # Green
+                    4 : "<color=#383431FF>", # Black
+                    5 : "<color=#8E5B2CFF>", # Brown
+                    6 : "<color=#CC00CCFF>", # Purple
+                    7 : "<color=#669999FF>", # Gray
+                    8 : "<color=#b0b0b0FF>", # White
+                    9 : "<color=#FF00FFFF>" # Pink
+            }
 
-    for i in getPokemonColor():
-        for j in i.split(","):
-            if getPokemonNames()[monID] == j:
-                color = colorHex[getPokemonColor().index(i)]
+        for i in getPokemonColor():
+            for j in i.split(","):
+                if getPokemonNames()[monID] == j:
+                    color = colorHex[getPokemonColor().index(i)]
+                    
+    except:
+        print("UTF-8 Error, Pokemon color will be default")
 
     return color
 
@@ -92,6 +116,7 @@ def RandomizeStarters(text, romFSPath):
     colorPokemonmon1 = colorPokemon(mon1)
     colorPokemonmon2 = colorPokemon(mon2)
     colorPokemonmon3 = colorPokemon(mon3) 
+    
 
     src = "english"
     
@@ -150,15 +175,16 @@ def RandomizeStarters(text, romFSPath):
 
     os.chdir(modPath)
     
-    text.append("Creating BD IPS patch.")
-    gameOffsets = GameOffsets(GameType.BD, GameRevision.REV_113)
-    with open(f'{gameOffsets.buildID}.ips', 'wb') as ipsFile:
-        ipsFile.write(GenerateStarterPatches(gameOffsets, mon1, mon2, mon3))
-    
-    text.append("Creating SP IPS patch.")
-    gameOffsets = GameOffsets(GameType.SP, GameRevision.REV_113)
-    with open(f'{gameOffsets.buildID}.ips', 'wb') as ipsFile:
-        ipsFile.write(GenerateStarterPatches(gameOffsets, mon1, mon2, mon3))
+    text.append("Creating Starter IPS patches.")
+    for versionID in gameVersionIDs:
+        
+        gameOffsets = GameOffsets(BD, versionID)
+        with open(f'{gameOffsets.buildID}.ips', 'wb') as ipsFile:
+            ipsFile.write(GenerateStarterPatches(gameOffsets, mon1, mon2, mon3))
+        
+        gameOffsets = GameOffsets(SP, versionID)
+        with open(f'{gameOffsets.buildID}.ips', 'wb') as ipsFile:
+            ipsFile.write(GenerateStarterPatches(gameOffsets, mon1, mon2, mon3))
         
     # Return to original directory
     text.append("Starters Randomized.")
