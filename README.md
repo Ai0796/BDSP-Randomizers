@@ -1,4 +1,5 @@
-# Pokemon Brilliant Diamond Shining Pearl Randomizer by Aldo796, Copycat, SanGawku, and XLuma
+# Pokemon Brilliant Diamond Shining Pearl Randomizer 
+## by Aldo796, Copycat, SanGawku, XLuma, and Red.#9015
 
 # Required Files
 
