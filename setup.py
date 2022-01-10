@@ -3,8 +3,14 @@ from cx_Freeze import setup, Executable
 
 # Dependencies are automatically detected, but it might need fine tuning.
 # "packages": ["os"] is used as example only
-build_exe_options = {"packages": ["os"], "excludes": ["tkinter",], 
-                    "include_files": ["BDSP.png", "Resources"]}
+build_exe_options = {"packages": ["os"], 
+                    "excludes": ["tkinter", "sqlite3", 
+                                  "scipy.lib.lapack.flapack", "PyQt4",
+                                  "numpy.core._dotblas", 
+                                  "numpy", "matplotlib"],
+                    "include_files": ["BDSP.png", "Resources"],
+                    "includes": ["Randomizers"],
+                    "optimize": 2}
 
 # base="Win32GUI" should be used only for Windows GUI app
 base = None

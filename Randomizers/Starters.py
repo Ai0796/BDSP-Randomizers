@@ -27,20 +27,7 @@ yuzuModPathEng = "StreamingAssets/AssetAssistant/Message"
 BD = GameType.BD
 SP = GameType.SP
 
-##Fix once We figure out how to iterate through enums
-version100 = GameRevision.REV_100
-version110 = GameRevision.REV_110
-version111 = GameRevision.REV_111
-version112 = GameRevision.REV_112
-version113 = GameRevision.REV_113
-
-gameVersionIDs = [
-    version100,
-    version110,
-    version111,
-    version112,
-    version113
-]
+gameVersionIDs = [x for x in GameRevision]
 
 gameVersionNames = ["100", "110", "111", "112", "113"]
 #8-EV_POKESELECT_02 Worddata 6(0 idx) Turtwig
