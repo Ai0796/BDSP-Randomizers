@@ -6,64 +6,13 @@ import os
 from pathlib import Path
 from PyQt5.QtWidgets import QTextEdit
 from keystone import *
+from Randomizers.Patches.Enums.GameRevision import GameRevision
+from Randomizers.Patches.Enums.GameType import GameType
+from Randomizers.Patches.GameOffsets.GameOffsets import GameOffsets
+from Randomizers.Patches.Patch import Patch
 
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 modPath = "mods/exefs/"
-
-
-
-#file name has to be the build id for IPS patches. 
-#for pchtxt patches it can be named whatever so we will use starter.pchtxt
-diamondBuildID100 = 'F87FC6075104EC4D9642A4AA6BB22216'
-diamondBuildID110 = 'EA058A067CBD6943A6CF65B4588B6098'
-diamondBuildID111 = 'D9E96FB92878E3458AAE7E8D31AB32A9'
-diamondBuildID112 = '1B5215DF918BA04BB3894852387F82FF'
-diamondBuildID113 = 'BC259F7EE8E79A4995CDC79E69CAC6CD'
-
-
-pearlBuildID100 = '1284AB14C1477243AE2A3550EF828709'
-pearlBuildID110 = '609FAC97880FA04CA6A8626D54A2BAB2'
-pearlBuildID111 = '3C70CAE153DF0B4F8A7B24C60FD8D0E7'
-pearlBuildID112 = '5D3A3B56321FFD4CB5B5AEDC62550AFB'
-pearlBuildID113 = '046D130F0873314A81D795C157E44A2F'
-
-
-#Defines each build ID in a list so we can iterate through it when writing starters
-versions = ["100", "110", "111", "112", "113"]
-diamondBuilds = [diamondBuildID100, diamondBuildID110, diamondBuildID111, diamondBuildID112, diamondBuildID113]
-pearlBuilds = [pearlBuildID100, pearlBuildID110, pearlBuildID111, pearlBuildID112, pearlBuildID113]
-
-
-#diamond 
-#turtwig w0, 183
-#chimchar w8, 186
-#Pilup w9, 189
-diamondStarter1Off = '{:08X}'.format(0x01FEAB28)
-diamondStarter2Off = '{:08X}'.format(0x01FEABB4)
-diamondStarter3Off = '{:08X}'.format(0x01FEABB8)
-#diamond rival
-#you pick turtwig he pick chimchar w0, 186
-#you pick chimchar he pick pillup w8,189 
-#you Pilup he pick turtwig w9, 183
-diamondStarterRival1Off = '{:08X}'.format(0x01FEAEA8)
-diamondStarterRival2Off = '{:08X}'.format(0x01FEAF34)
-diamondStarterRival3Off = '{:08X}'.format(0x01FEAF38)
-
-#pearl
-#turtwig w0, 183
-#chimchar w8, 186
-#Pilup w9, 189
-pearlStarter1Off =  '{:08X}'.format(0x0238DEC8)
-pearlStarter2Off =  '{:08X}'.format(0x0238DF54)
-pearlStarter3Off =  '{:08X}'.format(0x0238DF58)
-
-#pearl rival
-#you pick turtwig he pick chimchar w0, 186
-#you pick chimchar he pick pillup w8,189 
-#you Pilup he pick turtwig w9, 183
-pearlStarterRival1Off = '{:08X}'.format(0x0238E248)
-pearlStarterRival2Off = '{:08X}'.format(0x0238E2D4)
-pearlStarterRival3Off = '{:08X}'.format(0x0238E2D8)
 
 #Change hardcoded pokemon name 
 #AssetAssistant/Message/English
@@ -116,7 +65,19 @@ def colorPokemon(monID):
                 color = colorHex[getPokemonColor().index(i)]
 
     return color
-                
+
+def GenerateStarterPatches(gameOffsets: GameOffsets, starter1: int, starer2: int, starter3: int) -> bytearray:
+    patch = Patch(shift=0x100)
+
+    patch.addPatch(gameOffsets.starterGrassOffset, f'mov w0, #{hex(starter1)}')
+    patch.addPatch(gameOffsets.starterFireOffset, f'mov w8, #{hex(starer2)}')
+    patch.addPatch(gameOffsets.starterWaterOffset, f'mov w9, #{hex(starter3)}')
+
+    patch.addPatch(gameOffsets.rivalGrassOffset, f'mov w0, #{hex(starer2)}')
+    patch.addPatch(gameOffsets.rivalFireOffset, f'mov w8, #{hex(starter3)}')
+    patch.addPatch(gameOffsets.rivalWaterOffset, f'mov w8, #{hex(starter1)}')
+    return patch.generateIPS32Patch()
+
 def RandomizeStarters(text, romFSPath):
     cwd = os.getcwd()
     pokeNames = getPokemonNames()
@@ -124,48 +85,14 @@ def RandomizeStarters(text, romFSPath):
 
     text.append("Randomizing Starters!")
     
-    #initialize Keystone-Engine 
-    ks = Ks(KS_ARCH_ARM64, KS_MODE_LITTLE_ENDIAN)
-    #randomize our mons. 
-    mon1 = random.choice(range(1, 493))
-    mon2 = random.choice(range(1, 493))
-    mon3 = random.choice(range(1, 493))
-
-    #color mons
+    mon1 = random.randint(1, 493)
+    mon2 = random.randint(1, 493)
+    mon3 = random.randint(1, 493)
+    
     colorPokemonmon1 = colorPokemon(mon1)
     colorPokemonmon2 = colorPokemon(mon2)
-    colorPokemonmon3 = colorPokemon(mon3)
-    
-    #assign build the asm string
-    starter1 = "mov w0, #" + hex(mon1)
-    starter2 = "mov w8, #" + hex(mon2)
-    starter3 = "mov w9, #" + hex(mon3)
-    #rival build. 
-    rival1 = "mov w0, #" + hex(mon2)
-    rival2 = "mov w8, #" + hex(mon3)
-    rival3 = "mov w8, #" + hex(mon1)
-    
-    #build our asm patch
-    patch1 = ks.asm(starter1)
-    patch2 = ks.asm(starter2)
-    patch3 = ks.asm(starter3)
-    patchR1 = ks.asm(rival1)
-    patchR2 = ks.asm(rival2)
-    patchR3 = ks.asm(rival3)
-    
-    text.append("Assembling Patch.")
-    #convert to strings. 
-    hex1 = ''.join( ['{:02X}'.format(b) for b in patch1[0]] )
-    hex2 = ''.join( ['{:02X}'.format(b) for b in patch2[0]] )
-    hex3 = ''.join( ['{:02X}'.format(b) for b in patch3[0]] )
-    hex4 = ''.join( ['{:02X}'.format(b) for b in patchR1[0]] )
-    hex5 = ''.join( ['{:02X}'.format(b) for b in patchR2[0]] )
-    hex6 = ''.join( ['{:02X}'.format(b) for b in patchR3[0]] )
-    hexIds = [hex1, hex2, hex3, hex4, hex5, hex6]
-    
-    text.append("Building Patch files.")
-    
-            
+    colorPokemonmon3 = colorPokemon(mon3) 
+
     src = "english"
     
     outputPath = os.path.join(cwd, "mods", modPathEng)
@@ -214,63 +141,25 @@ def RandomizeStarters(text, romFSPath):
     
     with open("english", "wb") as f:
         f.write(env.file.save(packer = (64,2)))
-        
-    #Change back to root dir before working on pchtxt patches
+ 
+    #Change back to root dir before working on ips patches
     os.chdir(cwd)
 
-    #write out diamond patch
     if not os.path.exists(modPath):
         os.makedirs(modPath, 0o666)
 
     os.chdir(modPath)
     
-    for i in range(len(diamondBuilds)):
-        diamondBuildID = diamondBuilds[i]
-        version = versions[i]
-        #build diamond patch file. 
-        pchDiamondPatch = ["@nsobid-{}".format(diamondBuildID),"","@enabled",
-        "{} {}".format(diamondStarter1Off, hex1),
-        "{} {}".format(diamondStarter2Off, hex2),
-        "{} {}".format(diamondStarter3Off, hex3),
-        "{} {}".format(diamondStarterRival1Off, hex4),
-        "{} {}".format(diamondStarterRival2Off, hex5),
-        "{} {}".format(diamondStarterRival3Off, hex6),
-        ""]
-        
-        diamond = open("starterDiamond"f"{version}.pchtxt", "w")
-        for element in pchDiamondPatch:
-            diamond.write(element + "\n")
-        diamond.close()
+    text.append("Creating BD IPS patch.")
+    gameOffsets = GameOffsets(GameType.BD, GameRevision.REV_113)
+    with open(f'{gameOffsets.buildID}.ips', 'wb') as ipsFile:
+        ipsFile.write(GenerateStarterPatches(gameOffsets, mon1, mon2, mon3))
     
-    #build our IPS file
-    #we can't currently build ips's because of the 3 byte address limitation 
-    #i have no clue how to fix. 
-    #build_diamond_ips(hexIds)
-    
-    
-    
-    for i in range(len(pearlBuilds)):
-        pearlBuildID = pearlBuilds[i]
-        version = versions[i]
-        #build pearl patch file. 
-        pchPearlPatch = ["@nsobid-{}".format(pearlBuildID),"","@enabled",
-        "{} {}".format(pearlStarter1Off, hex1),
-        "{} {}".format(pearlStarter2Off, hex2),
-        "{} {}".format(pearlStarter3Off, hex3),
-        "{} {}".format(pearlStarterRival1Off, hex4),
-        "{} {}".format(pearlStarterRival2Off, hex5),
-        "{} {}".format(pearlStarterRival3Off, hex6),
-        ""]
+    text.append("Creating SP IPS patch.")
+    gameOffsets = GameOffsets(GameType.SP, GameRevision.REV_113)
+    with open(f'{gameOffsets.buildID}.ips', 'wb') as ipsFile:
+        ipsFile.write(GenerateStarterPatches(gameOffsets, mon1, mon2, mon3))
         
-        #write out pearl patch
-        pearl = open("starterPearl"f"{version}.pchtxt", "w")
-        for element in pchPearlPatch:
-            pearl.write(element + "\n")
-        pearl.close()
-        
-        
-        
-        
-    ##Return to original directory
+    # Return to original directory
     text.append("Starters Randomized.")
     os.chdir(cwd)
