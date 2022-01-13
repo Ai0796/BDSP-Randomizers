@@ -6,10 +6,10 @@ import os
 from pathlib import Path
 from PyQt5.QtWidgets import QTextEdit
 from keystone import *
-from Randomizers.Patches.Enums.GameRevision import GameRevision
-from Randomizers.Patches.Enums.GameType import GameType
-from Randomizers.Patches.GameOffsets.GameOffsets import GameOffsets
-from Randomizers.Patches.Patch import Patch
+from Resources.Patches.Enums.GameRevision import GameRevision
+from Resources.Patches.Enums.GameType import GameType
+from Resources.Patches.GameOffsets.GameOffsets import GameOffsets
+from Resources.Patches.Patch import Patch
 
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 modPath = "mods/exefs/"
