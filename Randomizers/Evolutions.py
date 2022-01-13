@@ -6,7 +6,9 @@ from pathlib import Path
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
-evolveTable = 5139195221601552760
+from Resources.pathIDs.personal_masterdatas_pathIDs import personal_masterdatas
+
+evolveTable = personal_masterdatas.EvolveTable
 pathList = [evolveTable]
 
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Pml"

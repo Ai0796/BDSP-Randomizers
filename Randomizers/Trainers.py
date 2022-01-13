@@ -4,9 +4,12 @@ from PyQt5.QtWidgets import QTextEdit
 import os
 from pathlib import Path
 
+
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
-Trainer_Table = 676024375065692598
+from Resources.pathIDs.masterdatas_pathIDs import masterdatas
+
+Trainer_Table = masterdatas.TrainerTable
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr"
 yuzuModPath = "StreamingAssets/AssetAssistant/Dpr"
 pathList = [Trainer_Table]
@@ -22,6 +25,8 @@ champion = [191, 700, 705]
 galacticAdmins = [220, 308, 309, 310, 311, 312, 313, 314, 401]
 
 importantList = rivalBattles + gymLeaders + eliteFour + champion + galacticAdmins
+
+doNotChange = [x for x in range(487, 493)]
 
 
 def getAbilityList():
@@ -51,6 +56,9 @@ def getAverageLevel(trainer):
         return sum(levelList)/len(levelList)
     else:
         return 0
+    
+    
+
 
 def RandomizeTrainers(text, minImportant, minBasic, romFSPath, scaleWithLevel=True):
     # make sure masterdatas is in same folder
@@ -88,6 +96,9 @@ def RandomizeTrainers(text, minImportant, minBasic, romFSPath, scaleWithLevel=Tr
                     
                     trainerID = dic["ID"]
                     
+                    if trainerID in doNotChange:
+                        continue
+                    
                     ##Used to increase the amount of pokemon in party
                     if scaleWithLevel:
                         averageLevel = getAverageLevel(dic)
@@ -109,12 +120,14 @@ def RandomizeTrainers(text, minImportant, minBasic, romFSPath, scaleWithLevel=Tr
                             dic["P"f"{pokeNum}Level"] = int(dic["P"f"{pokeNum}Level"] * LevelIncrease)
                             if dic["P"f"{pokeNum}Level"] > 100:
                                 dic["P"f"{pokeNum}Level"] = 100
+                                
                             newPokemon = random.randint(1,493)
                             dic["P"f"{pokeNum}MonsNo"] = newPokemon
                             
                             ##Ability Selection
                             dic["P"f"{pokeNum}Tokusei"] = int(random.choice(abilityList[newPokemon-1].split(",")[1:]))
                             
+                            ##Move Selection
                             possibleMoves = []
                             monMoveList = moveList[newPokemon-1].split(",")
                             for i in range(int(len(monMoveList)/2)):
@@ -127,7 +140,7 @@ def RandomizeTrainers(text, minImportant, minBasic, romFSPath, scaleWithLevel=Tr
                             for moveNum in range(1, amountOfMoves + 1):
                                 dic["P"f"{pokeNum}Waza"f"{moveNum}"] = possibleMoves[-moveNum]
                                 
-                            #Sets the rest of the pokemons moves to 0
+                            #Sets Unselected of the pokemons moves to 0
                             for moveNum in range(amountOfMoves + 1, 5):
                                 dic["P"f"{pokeNum}Waza"f"{moveNum}"] = 0
                             

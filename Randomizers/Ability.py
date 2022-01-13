@@ -6,7 +6,9 @@ from pathlib import Path
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
-personalTable = 6925071152922426992
+from Resources.pathIDs.personal_masterdatas_pathIDs import personal_masterdatas
+
+personalTable = personal_masterdatas.PersonalTable
 pathList = [personalTable]
 
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Pml"

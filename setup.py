@@ -3,11 +3,12 @@ from cx_Freeze import setup, Executable
 
 # Dependencies are automatically detected, but it might need fine tuning.
 # "packages": ["os"] is used as example only
+
 build_exe_options = {"packages": ["os"], 
                     "excludes": ["tkinter", "sqlite3", 
                                   "scipy.lib.lapack.flapack", "PyQt4",
                                   "numpy.core._dotblas", 
-                                  "numpy", "matplotlib"],
+                                  "numpy", "matplotlib", "PyTorch"],
                     "include_files": ["BDSP.png", "Resources"],
                     "includes": ["Randomizers"],
                     "optimize": 2}

@@ -10,8 +10,10 @@ from PyQt5.QtWidgets import QTextEdit
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
 yuzuModPath = "StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
 
-diamondEncount = 361824127573837173
-pearlEncount = -9035030829162387677
+from Resources.pathIDs.gamesettings_pathIDs import gamesettings
+
+diamondEncount = gamesettings.FieldEncountTable_d
+pearlEncount = gamesettings.FieldEncountTable_p
 
 pathList = [diamondEncount, pearlEncount]
 lengendaries = [144,145,146,150,151,243,244,245,249,250,251,377,378,379,380,381,382,383,384,385,386,480,481,482,483,484,485,486,487,488,491]

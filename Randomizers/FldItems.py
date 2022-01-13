@@ -8,7 +8,9 @@ import struct
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
-fld_item = -4074276362271022109
+from Resources.pathIDs.ev_script_pathIDs import ev_script
+
+fld_item = ev_script.fld_item
 pathList = [fld_item]
 
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr"

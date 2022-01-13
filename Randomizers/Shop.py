@@ -7,7 +7,9 @@ from pathlib import Path
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
-shopTable = 5586546078177307292
+from Resources.pathIDs.masterdatas_pathIDs import masterdatas
+
+shopTable = masterdatas.ShopTable
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr"
 yuzuModPath = "StreamingAssets/AssetAssistant/Dpr/"
 pathList = [shopTable]

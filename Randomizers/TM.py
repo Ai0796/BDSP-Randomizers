@@ -7,7 +7,9 @@ from pathlib import Path
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
-ItemTable = 252928009371549925
+from Resources.pathIDs.personal_masterdatas_pathIDs import personal_masterdatas
+
+ItemTable = personal_masterdatas.ItemTable
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Pml"
 yuzuModPath = "StreamingAssets/AssetAssistant/Pml"
 pathList = [ItemTable]
