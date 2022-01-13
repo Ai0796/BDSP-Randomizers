@@ -27,6 +27,8 @@ class AppWindow(QMainWindow):
             
         self.ui.tbLog.append("RomFS Directory set to " + romFSPath)
         
+        self.ui.tbLog.append("Output folder set to {}".format(path.join(getcwd(), "mods")))
+        
         #Deletes remnamts of old randomizer
         if path.exists('mods'):
             shutil.rmtree('mods')

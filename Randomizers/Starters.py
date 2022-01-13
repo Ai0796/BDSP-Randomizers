@@ -18,7 +18,9 @@ modPath = "mods/exefs/"
 #AssetAssistant/Message/English
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
-engMsgPathID = -5307844841844767521
+from Resources.pathIDs.english_pathIDs import english
+
+engMsgPathID = english.english_dp_scenario2
 pathList = [engMsgPathID]
 
 modPathEng = "mods/romfs/Data/StreamingAssets/AssetAssistant/Message"
