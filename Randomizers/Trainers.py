@@ -14,9 +14,6 @@ modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr"
 yuzuModPath = "StreamingAssets/AssetAssistant/Dpr"
 pathList = [Trainer_Table]
 
-#Level Increase
-LevelIncrease = 1
-
 ##Gym Leaders, Rival 3rd fight onwards, E4, Champion, Galactic Admins
 rivalBattles = [351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 481, 493, 494, 663, 664, 665, 666, 667, 668]
 gymLeaders = [175, 179, 240, 241, 242, 243, 244, 245, 676, 677, 678, 679, 680, 681, 682, 683]
@@ -60,7 +57,7 @@ def getAverageLevel(trainer):
     
 
 
-def RandomizeTrainers(text, minImportant, minBasic, romFSPath, scaleWithLevel=True):
+def RandomizeTrainers(text, minImportant, minBasic, levelIncrease, romFSPath, scaleWithLevel=True):
     # make sure masterdatas is in same folder
     cwd = os.getcwd()
     
@@ -116,10 +113,10 @@ def RandomizeTrainers(text, minImportant, minBasic, romFSPath, scaleWithLevel=Tr
                         # print(dic["P"f"{pokeNum}Level"])
                         level = dic["P"f"{pokeNum}Level"]
                         if level > 0:
-                            #Increases level by 50% with a cap at level 100
-                            dic["P"f"{pokeNum}Level"] = int(dic["P"f"{pokeNum}Level"] * LevelIncrease)
-                            if dic["P"f"{pokeNum}Level"] > 100:
-                                dic["P"f"{pokeNum}Level"] = 100
+                            #Increases level by 50% with a cap at 255 (the game will set to 100 normally anyways)
+                            dic["P"f"{pokeNum}Level"] = int(dic["P"f"{pokeNum}Level"] * levelIncrease)
+                            if dic["P"f"{pokeNum}Level"] > 255:
+                                dic["P"f"{pokeNum}Level"] = 255
                                 
                             newPokemon = random.randint(1,493)
                             dic["P"f"{pokeNum}MonsNo"] = newPokemon

@@ -36,7 +36,7 @@
       <property name="title">
        <string>Pokemon Options</string>
       </property>
-      <layout class="QFormLayout" name="formLayout">
+      <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
         <widget class="QCheckBox" name="cbGen1">
          <property name="text">
@@ -87,6 +87,14 @@
          </property>
         </widget>
        </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>*This only effects
+ encounters</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>
@@ -106,7 +114,7 @@
        <item>
         <widget class="QCheckBox" name="cbPokemon">
          <property name="text">
-          <string>Randomize Pokemon</string>
+          <string>Randomize Encounters</string>
          </property>
         </widget>
        </item>
@@ -200,7 +208,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Randomize Moves</string>
+          <string>Randomize Movesets</string>
          </property>
         </widget>
        </item>
@@ -258,18 +266,21 @@
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QDoubleSpinBox" name="sbMax">
+        <widget class="QDoubleSpinBox" name="sbLevel">
+         <property name="suffix">
+          <string>%</string>
+         </property>
          <property name="minimum">
-          <double>0.100000000000000</double>
+          <double>-50.000000000000000</double>
          </property>
          <property name="maximum">
-          <double>5.000000000000000</double>
+          <double>500.000000000000000</double>
          </property>
          <property name="singleStep">
-          <double>0.100000000000000</double>
+          <double>1.000000000000000</double>
          </property>
          <property name="value">
-          <double>1.000000000000000</double>
+          <double>0.000000000000000</double>
          </property>
         </widget>
        </item>
@@ -313,7 +324,7 @@ Increase%</string>
        <item>
         <widget class="QCheckBox" name="cbTimeSkip">
          <property name="text">
-          <string>Speed Multipler</string>
+          <string>Speed Multiplier</string>
          </property>
         </widget>
        </item>
