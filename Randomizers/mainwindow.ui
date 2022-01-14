@@ -6,647 +6,416 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1005</width>
-    <height>605</height>
+    <width>1033</width>
+    <height>619</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string notr="true">BDSP Randomizer</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGroupBox" name="groupBox">
-    <property name="geometry">
-     <rect>
-      <x>840</x>
-      <y>0</y>
-      <width>161</width>
-      <height>331</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Randomizers</string>
-    </property>
-    <widget class="QCheckBox" name="cbPokemon">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>40</y>
-       <width>180</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Randomize Pokemon</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbTrainers">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>120</y>
-       <width>180</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Randomize Trainers</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbSafari">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>60</y>
-       <width>180</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Randomize Safari</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbUnderground">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>80</y>
-       <width>141</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Randomize Underground</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbEvolutions">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>100</y>
-       <width>141</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Randomize Evolutions</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbLevels">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>300</y>
-       <width>180</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <strikeout>true</strikeout>
-      </font>
-     </property>
-     <property name="text">
-      <string>Randomize Levels</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbShops">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>140</y>
-       <width>180</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Randomize Shops</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbTM">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>160</y>
-       <width>180</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Randomize TMs</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbFieldItems">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>220</y>
-       <width>180</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <strikeout>false</strikeout>
-      </font>
-     </property>
-     <property name="text">
-      <string>Randomize Field Items</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbAbilities">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>200</y>
-       <width>180</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <strikeout>false</strikeout>
-      </font>
-     </property>
-     <property name="text">
-      <string>Randomize Abilities</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbMoves">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>240</y>
-       <width>180</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <strikeout>false</strikeout>
-      </font>
-     </property>
-     <property name="text">
-      <string>Randomize Moves</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_5">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>280</y>
-       <width>180</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Coming Soon</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbStarters">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>180</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Randomize Starters</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbTMCompat">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>180</y>
-       <width>131</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Randomize TM Compat</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QTextEdit" name="tbLog">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>270</y>
-      <width>671</width>
-      <height>291</height>
-     </rect>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-    <property name="placeholderText">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>0</y>
-      <width>571</width>
-      <height>251</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap>BDSP.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QGroupBox" name="groupBox_2">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>0</y>
-      <width>131</width>
-      <height>111</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Pokemon Options</string>
-    </property>
-    <widget class="QCheckBox" name="cbGen1">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>51</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Gen 1</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbGen2">
-     <property name="geometry">
-      <rect>
-       <x>70</x>
-       <y>30</y>
-       <width>51</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Gen 2</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbGen3">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>60</y>
-       <width>51</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Gen 3</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbGen4">
-     <property name="geometry">
-      <rect>
-       <x>70</x>
-       <y>60</y>
-       <width>51</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Gen 4</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbLegends">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>85</y>
-       <width>111</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Keep Legendarys</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="groupBox_3">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>110</y>
-      <width>131</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Level Options</string>
-    </property>
-    <widget class="QRadioButton" name="rbFlat">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>111</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Flat Random</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="rbPercent">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>40</y>
-       <width>111</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>% Random</string>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="sbMin">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>80</y>
-       <width>42</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="minimum">
-      <number>1</number>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="sbMax">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>110</y>
-       <width>42</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="minimum">
-      <number>1</number>
-     </property>
-     <property name="value">
-      <number>99</number>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>80</y>
-       <width>47</width>
-       <height>13</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Min Lvl</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>110</y>
-       <width>47</width>
-       <height>13</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Max Lvl</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QPushButton" name="btnRandomize">
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>460</y>
-      <width>301</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string notr="true">Lets go!!!</string>
-    </property>
-   </widget>
-   <widget class="QGroupBox" name="groupBox_4">
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>250</y>
-      <width>141</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Utilities</string>
-    </property>
-    <widget class="QCheckBox" name="cb60FPS">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>180</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>60FPS Mod</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbTimeSkip">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>40</y>
-       <width>180</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Timestep Multipler</string>
-     </property>
-    </widget>
-    <widget class="QGroupBox" name="groupBox_5">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>90</y>
-       <width>180</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Timestep</string>
-     </property>
-     <widget class="QLabel" name="label_4">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>47</width>
-        <height>13</height>
-       </rect>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0" rowspan="2">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>BDSP.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="title">
+       <string>Pokemon Options</string>
+      </property>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="cbGen1">
+         <property name="text">
+          <string>Gen 1</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QCheckBox" name="cbGen2">
+         <property name="text">
+          <string>Gen 2</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="cbGen3">
+         <property name="text">
+          <string>Gen 3</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QCheckBox" name="cbGen4">
+         <property name="text">
+          <string>Gen 4</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QCheckBox" name="cbLegends">
+         <property name="text">
+          <string>Keep Legendarys</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="2" rowspan="3" alignment="Qt::AlignLeft">
+     <widget class="QGroupBox" name="groupBox">
+      <property name="title">
+       <string>Randomizers</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QCheckBox" name="cbStarters">
+         <property name="text">
+          <string>Randomize Starters</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbPokemon">
+         <property name="text">
+          <string>Randomize Pokemon</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbSafari">
+         <property name="text">
+          <string>Randomize Safari</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbUnderground">
+         <property name="text">
+          <string>Randomize Underground</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbEvolutions">
+         <property name="text">
+          <string>Randomize Evolutions</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbTrainers">
+         <property name="text">
+          <string>Randomize Trainers</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbShops">
+         <property name="text">
+          <string>Randomize Shops</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbTM">
+         <property name="text">
+          <string>Randomize TMs</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbTMCompat">
+         <property name="text">
+          <string>Randomize TM Compat</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbAbilities">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="font">
+          <font>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
+         <property name="text">
+          <string>Randomize Abilities</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbFieldItems">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="font">
+          <font>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
+         <property name="text">
+          <string>Randomize Field Items</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbMoves">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="font">
+          <font>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
+         <property name="text">
+          <string>Randomize Moves</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_5">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Coming Soon</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbLevels">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="font">
+          <font>
+           <strikeout>true</strikeout>
+          </font>
+         </property>
+         <property name="text">
+          <string>Randomize Levels</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>131</width>
+        <height>141</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Level Options</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="rbFlat">
+         <property name="text">
+          <string>Level Multiplier</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QDoubleSpinBox" name="sbMax">
+         <property name="minimum">
+          <double>0.100000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>5.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.100000000000000</double>
+         </property>
+         <property name="value">
+          <double>1.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>
+
+
+
+Increase%</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="2" column="0" rowspan="3">
+     <widget class="QTextEdit" name="tbLog">
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="placeholderText">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1" rowspan="2">
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="title">
+       <string>Utilities</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QCheckBox" name="cb60FPS">
+         <property name="text">
+          <string>60FPS Mod</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbTimeSkip">
+         <property name="text">
+          <string>Speed Multipler</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_5">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="title">
+          <string>Timestep</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Speedup
+Amount</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDoubleSpinBox" name="sbTimeStep">
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+            <property name="value">
+             <double>1.000000000000000</double>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QGroupBox" name="groupBox_6">
+      <property name="title">
+       <string>*Lockes</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QCheckBox" name="cbIronLocke">
+         <property name="font">
+          <font>
+           <strikeout>true</strikeout>
+          </font>
+         </property>
+         <property name="text">
+          <string notr="true">IronLocke</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbPokemon_3">
+         <property name="font">
+          <font>
+           <strikeout>true</strikeout>
+          </font>
+         </property>
+         <property name="text">
+          <string>Mega RandomLocke</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbSafari_3">
+         <property name="font">
+          <font>
+           <strikeout>true</strikeout>
+          </font>
+         </property>
+         <property name="text">
+          <string notr="true">Nuzlocke</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="4" column="1" colspan="2">
+     <widget class="QPushButton" name="btnRandomize">
+      <property name="font">
+       <font>
+        <pointsize>28</pointsize>
+       </font>
       </property>
       <property name="text">
-       <string>Timestep</string>
+       <string notr="true">Randomize</string>
       </property>
      </widget>
-     <widget class="QDoubleSpinBox" name="sbTimeStep">
-      <property name="geometry">
-       <rect>
-        <x>60</x>
-        <y>21</y>
-        <width>51</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="singleStep">
-       <double>0.100000000000000</double>
-      </property>
-      <property name="value">
-       <double>1.000000000000000</double>
-      </property>
-     </widget>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="groupBox_6">
-    <property name="geometry">
-     <rect>
-      <x>840</x>
-      <y>330</y>
-      <width>161</width>
-      <height>111</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>*Lockes</string>
-    </property>
-    <widget class="QCheckBox" name="cbPokemon_3">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>40</y>
-       <width>180</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <strikeout>true</strikeout>
-      </font>
-     </property>
-     <property name="text">
-      <string>Mega RandomLocke</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbSafari_3">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>60</y>
-       <width>180</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <strikeout>true</strikeout>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">Nuzlocke</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbIronLocke">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>180</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <strikeout>true</strikeout>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">IronLocke</string>
-     </property>
-    </widget>
-   </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1005</width>
-     <height>21</height>
+     <width>1033</width>
+     <height>17</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
