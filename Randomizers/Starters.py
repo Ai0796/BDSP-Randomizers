@@ -128,6 +128,9 @@ def RandomizeStarters(text, romFSPath):
     for obj in env.objects:
         
         if obj.path_id in pathList:
+            
+            print("Found {}".format(src))
+            
             tree = obj.read_typetree()
             
             #Disgusting things have been done.

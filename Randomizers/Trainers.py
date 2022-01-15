@@ -86,6 +86,8 @@ def RandomizeTrainers(text, minImportant, minBasic, levelIncrease, romFSPath, sc
     for obj in env.objects:
         if obj.path_id in pathList:
             tree = obj.read_typetree()
+            
+            print("Found {}".format(src))
 
             #TrainerPoke
             if tree['m_Name'] == "TrainerTable":

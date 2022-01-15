@@ -95,6 +95,7 @@ def Encount(safari, legend, env, text):
     for obj in env.objects:
         
         if obj.path_id in pathList:
+            
             tree = obj.read_typetree()
             
             ##Two encounter tables are named FieldEncountTable_d (diamond) and FieldEncountTable_p (pearl)

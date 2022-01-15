@@ -48,6 +48,9 @@ def RandomizeTMs(text, romFSPath):
     for obj in env.objects:
         if obj.path_id in pathList:
             tree = obj.read_typetree()
+            
+            print("Found {}".format(src))
+            
             if tree['m_Name'] == "ItemTable":
                 ##Selects 100 unique moves
                 r = random.sample(TMList, 100)

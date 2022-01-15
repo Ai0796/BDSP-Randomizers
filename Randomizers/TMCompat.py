@@ -61,6 +61,8 @@ def RandomizeCompat(text, romFSPath):
         if obj.path_id in pathList:
             tree = obj.read_typetree()
             
+            print("Found {}".format(src))
+            
             if tree['m_Name'] == "PersonalTable":
                 for monID in tree['Personal'][1:]: ##There's dummy data for the 0th pokemon, probably for indexing reasons
                     ##I don't know how else you would do this so this is just gonna be hardcoded

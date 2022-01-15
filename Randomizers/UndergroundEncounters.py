@@ -60,6 +60,8 @@ def RandomizeUG(text, romFSPath):
             # save decoded data
             tree = obj.read_typetree()
             
+            print("Found {}".format(src))
+            
             # print(str(i) + ": " + str(data))
             if tree["m_Name"][:10] == "UgEncount_":
                 tableLength = len(tree["table"])

@@ -87,6 +87,9 @@ def RandomizeFieldItems(text, romFSPath):
 
     for obj in env.objects:
         if obj.path_id in pathList:
+            
+            print("Found {}".format(src))
+            
             tree = obj.read_typetree()
             if tree['m_Name'] == "fld_item":
                 for item in tree["Scripts"]:
