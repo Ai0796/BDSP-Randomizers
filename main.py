@@ -8,6 +8,7 @@ from os import error, path, remove, getcwd, chdir
 import shutil
 import sys
 import traceback
+import subprocess
 
 class AppWindow(QMainWindow):
     def __init__(self):
@@ -103,6 +104,9 @@ class AppWindow(QMainWindow):
             for file in tempFileList:
                 if path.exists(file):
                     remove(file)
+                    
+            if path.exists("mods"):
+                subprocess.Popen('explorer "mods"')
                 
         except Exception: 
             self.ui.tbLog.append("An Error has occured: ")
