@@ -134,19 +134,19 @@ def RandomizeStarters(text, romFSPath):
             #Hard coded english message values. 
             #print("Old starter1 name :" + tree['labelDataArray'][28]['wordDataArray'][6]['str'])
             tree['labelDataArray'][28]['wordDataArray'][1]['str'] = colorPokemonmon1
-            tree['labelDataArray'][28]['wordDataArray'][2]['str'] = pokeCateg[mon1]
+            tree['labelDataArray'][28]['wordDataArray'][2]['str'] = pokeCateg[mon1-1]
             tree['labelDataArray'][28]['wordDataArray'][5]['str'] = colorPokemonmon1
             tree['labelDataArray'][28]['wordDataArray'][6]['str'] = pokeNames[mon1]
             #print("New starter1 name :" + tree['labelDataArray'][28]['wordDataArray'][6]['str'])
             #print("Old starter2 name :" + tree['labelDataArray'][29]['wordDataArray'][6]['str'])
             tree['labelDataArray'][29]['wordDataArray'][1]['str'] = colorPokemonmon2
-            tree['labelDataArray'][29]['wordDataArray'][2]['str'] = pokeCateg[mon2]
+            tree['labelDataArray'][29]['wordDataArray'][2]['str'] = pokeCateg[mon2-1]
             tree['labelDataArray'][29]['wordDataArray'][5]['str'] = colorPokemonmon2
             tree['labelDataArray'][29]['wordDataArray'][6]['str'] = pokeNames[mon2]
             #print("New starter2 name :" + tree['labelDataArray'][29]['wordDataArray'][6]['str'])
             #print("Old starter3 name :" + tree['labelDataArray'][30]['wordDataArray'][6]['str'])
             tree['labelDataArray'][30]['wordDataArray'][1]['str'] = colorPokemonmon3
-            tree['labelDataArray'][30]['wordDataArray'][2]['str'] = pokeCateg[mon3]
+            tree['labelDataArray'][30]['wordDataArray'][2]['str'] = pokeCateg[mon3-1]
             tree['labelDataArray'][30]['wordDataArray'][5]['str'] = colorPokemonmon3
             tree['labelDataArray'][30]['wordDataArray'][6]['str'] = pokeNames[mon3]
             #print("New starter3 name :" + tree['labelDataArray'][30]['wordDataArray'][6]['str'])
