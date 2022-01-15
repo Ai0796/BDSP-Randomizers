@@ -9,7 +9,7 @@ from pathlib import Path
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 from Resources.pathIDs.masterdatas_pathIDs import masterdatas
 
-Trainer_Table = masterdatas.TrainerTable
+Trainer_Table = masterdatas.TrainerTable.value
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr"
 yuzuModPath = "StreamingAssets/AssetAssistant/Dpr"
 pathList = [Trainer_Table]

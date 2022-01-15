@@ -9,7 +9,7 @@ from pathlib import Path
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 from Resources.pathIDs.personal_masterdatas_pathIDs import personal_masterdatas
 
-ItemTable = personal_masterdatas.ItemTable
+ItemTable = personal_masterdatas.ItemTable.value
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Pml"
 yuzuModPath = "StreamingAssets/AssetAssistant/Pml"
 pathList = [ItemTable]

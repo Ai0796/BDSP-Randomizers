@@ -12,8 +12,8 @@ yuzuModPath = "StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
 
 from Resources.pathIDs.gamesettings_pathIDs import gamesettings
 
-diamondEncount = gamesettings.FieldEncountTable_d
-pearlEncount = gamesettings.FieldEncountTable_p
+diamondEncount = gamesettings.FieldEncountTable_d.value
+pearlEncount = gamesettings.FieldEncountTable_p.value
 
 pathList = [diamondEncount, pearlEncount]
 lengendaries = [144,145,146,150,151,243,244,245,249,250,251,377,378,379,380,381,382,383,384,385,386,480,481,482,483,484,485,486,487,488,491]

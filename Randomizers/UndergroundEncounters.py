@@ -8,18 +8,18 @@ from pathlib import Path
 from Resources.pathIDs.ugdata_pathIDs import ugdata
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
-UgEncount_02 = ugdata.UgEncount_02
-UgEncount_03 = ugdata.UgEncount_03
-UgEncount_04 = ugdata.UgEncount_04
-UgEncount_05 = ugdata.UgEncount_05
-UgEncount_06 = ugdata.UgEncount_06
-UgEncount_07 = ugdata.UgEncount_07
-UgEncount_08 = ugdata.UgEncount_08
-UgEncount_09 = ugdata.UgEncount_09
-UgEncount_10 = ugdata.UgEncount_10
-UgEncount_11 = ugdata.UgEncount_11
-UgEncount_12 = ugdata.UgEncount_12
-UgSpecialPokemon = ugdata.UgSpecialPokemon
+UgEncount_02 = ugdata.UgEncount_02.value
+UgEncount_03 = ugdata.UgEncount_03.value
+UgEncount_04 = ugdata.UgEncount_04.value
+UgEncount_05 = ugdata.UgEncount_05.value
+UgEncount_06 = ugdata.UgEncount_06.value
+UgEncount_07 = ugdata.UgEncount_07.value
+UgEncount_08 = ugdata.UgEncount_08.value
+UgEncount_09 = ugdata.UgEncount_09.value
+UgEncount_10 = ugdata.UgEncount_10.value
+UgEncount_11 = ugdata.UgEncount_11.value
+UgEncount_12 = ugdata.UgEncount_12.value
+UgSpecialPokemon = ugdata.UgSpecialPokemon.value
 #UgEncount_20 just seems like the digletts and dugtrios that can be found in the underground
 pathList = [UgEncount_02, UgEncount_03, UgEncount_04, UgEncount_05, UgEncount_06, UgEncount_07, UgEncount_08, UgEncount_09, UgEncount_10, UgEncount_11, UgEncount_12]
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/UnderGround/data"

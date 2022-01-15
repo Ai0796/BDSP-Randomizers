@@ -8,7 +8,7 @@ from pathlib import Path
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 from Resources.pathIDs.personal_masterdatas_pathIDs import personal_masterdatas
 
-evolveTable = personal_masterdatas.EvolveTable
+evolveTable = personal_masterdatas.EvolveTable.value
 pathList = [evolveTable]
 
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Pml"

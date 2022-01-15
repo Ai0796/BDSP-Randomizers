@@ -10,7 +10,7 @@ import struct
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 from Resources.pathIDs.ev_script_pathIDs import ev_script
 
-fld_item = ev_script.fld_item
+fld_item = ev_script.fld_item.value
 pathList = [fld_item]
 
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr"

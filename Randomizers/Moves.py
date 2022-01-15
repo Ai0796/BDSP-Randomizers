@@ -8,7 +8,7 @@ from pathlib import Path
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 from Resources.pathIDs.personal_masterdatas_pathIDs import personal_masterdatas
 
-moveTable = personal_masterdatas.WazaOboeTable
+moveTable = personal_masterdatas.WazaOboeTable.value
 pathList = [moveTable]
 
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Pml"
@@ -24,9 +24,6 @@ def saveMoveList(file):
     filepath = "Resources//tempMoveIndex.txt"
     with open(filepath, "w") as f:
         f.write(file)
-            
-    
-    
 
 # make sure the file personal_masterdatas is in this folder
 # personal_masterdatas is inside Pml
@@ -76,7 +73,9 @@ def RandomizerMoves(text, romFSPath):
                         
                 #Saves the object tree
                 obj.save_typetree(tree)
+                
             else:
+                
                 print("Error use different path_id")
                 
     
