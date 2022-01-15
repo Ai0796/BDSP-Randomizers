@@ -95,7 +95,7 @@ class AppWindow(QMainWindow):
                 Ability.RandomizeAbilities(self.ui.tbLog, romFSPath)
             
             if self.ui.cbFieldItems.isChecked():
-                FldItems.RandomizeFieldItems(self.ui.tbLog, romFSPath)          
+                FldItems.RandomizeFieldItems(self.ui.tbLog, romFSPath)
                 
             ##Deletes temp files at the end
             moves = "Resources//tempMoveIndex.txt"
