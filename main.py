@@ -3,6 +3,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QColor
 from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters, Levels, Shop, TM, Starters, TMCompat, Ability, FldItems, Moves
 from Randomizers.dialog import Ui_MainWindow
+from AdditionalMods import truesize
 from Utilities import GlobalGameManager
 from os import error, path, remove, getcwd, chdir
 import shutil
@@ -96,6 +97,9 @@ class AppWindow(QMainWindow):
             
             if self.ui.cbFieldItems.isChecked():
                 FldItems.RandomizeFieldItems(self.ui.tbLog, romFSPath)
+                
+            if self.ui.cbTrueSize.isChecked():
+                truesize.truesize(self.ui.tbLog, romFSPath)
                 
             ##Deletes temp files at the end
             moves = "Resources//tempMoveIndex.txt"
