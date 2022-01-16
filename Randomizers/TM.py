@@ -4,15 +4,23 @@ import random
 from PyQt5.QtWidgets import QTextEdit
 import os
 from pathlib import Path
+from Resources.paths.filenames import filenames
+from Resources.paths.loadUnityPath import loadUnityPath
+from Resources.paths.paths import paths
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 from Resources.pathIDs.personal_masterdatas_pathIDs import personal_masterdatas
 
 ItemTable = personal_masterdatas.ItemTable.value
-modPath = "romfs/Data/StreamingAssets/AssetAssistant/Pml"
-yuzuModPath = "StreamingAssets/AssetAssistant/Pml"
 pathList = [ItemTable]
+
+modBasePath = paths.modPath.value
+yuzuModPath = paths.personal_masterdatas.value
+modPath = os.path.join(modBasePath, yuzuModPath)
+
+src = filenames.personal_masterdatas.value
+
 
 def getMoveList():
     
@@ -29,18 +37,9 @@ def RandomizeTMs(text, romFSPath):
     cwd = os.getcwd()
     
     outputPath = os.path.join(cwd, "mods", modPath)
+    romFSPath = os.path.join(romFSPath, yuzuModPath)
     
-    if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
-        os.chdir(outputPath)
-        env = UnityPy.load(os.path.join(outputPath, src))
-        
-    elif os.path.exists(os.path.join(romFSPath, yuzuModPath)) and os.path.isfile(os.path.join(romFSPath, yuzuModPath, src)):
-        os.chdir(romFSPath)
-        env = UnityPy.load(os.path.join(romFSPath, yuzuModPath, src))
-        
-    else:
-        text.append("ERROR: personal_masterdatas not found ")
-        return
+    env = loadUnityPath(romFSPath, outputPath, src, text)
     
     extract_dir = "Walker"
     text.append("TMs loaded.")

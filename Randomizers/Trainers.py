@@ -3,15 +3,21 @@ import random
 from PyQt5.QtWidgets import QTextEdit
 import os
 from pathlib import Path
-
+from Resources.paths.filenames import filenames
+from Resources.paths.loadUnityPath import loadUnityPath
+from Resources.paths.paths import paths
+from Resources.pathIDs.masterdatas_pathIDs import masterdatas
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
-from Resources.pathIDs.masterdatas_pathIDs import masterdatas
+modBasePath = paths.modPath.value
+yuzuModPath = paths.masterdatas.value
+modPath = os.path.join(modBasePath, yuzuModPath)
+
+src = filenames.masterdatas.value
 
 Trainer_Table = masterdatas.TrainerTable.value
-modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr"
-yuzuModPath = "StreamingAssets/AssetAssistant/Dpr"
+
 pathList = [Trainer_Table]
 
 ##Gym Leaders, Rival 3rd fight onwards, E4, Champion, Galactic Admins
@@ -24,7 +30,7 @@ galacticAdmins = [220, 308, 309, 310, 311, 312, 313, 314, 401]
 importantList = rivalBattles + gymLeaders + eliteFour + champion + galacticAdmins
 
 doNotChange = [x for x in range(487, 493)]
-
+##Catching Tutorial Pokemon
 
 def getAbilityList():
     
@@ -53,8 +59,6 @@ def getAverageLevel(trainer):
         return sum(levelList)/len(levelList)
     else:
         return 0
-    
-    
 
 
 def RandomizeTrainers(text, minImportant, minBasic, levelIncrease, romFSPath, scaleWithLevel=True):
@@ -64,24 +68,10 @@ def RandomizeTrainers(text, minImportant, minBasic, levelIncrease, romFSPath, sc
     abilityList = getAbilityList()
     moveList = getMoveList()
     
-    src = "masterdatas"
-    
     outputPath = os.path.join(cwd, "mods", modPath)
-
-    if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
-        os.chdir(outputPath)
-        env = UnityPy.load(os.path.join(outputPath, src))
-        
-    elif os.path.exists(os.path.join(romFSPath, yuzuModPath)) and os.path.isfile(os.path.join(romFSPath, yuzuModPath, src)):
-        os.chdir(romFSPath)
-        env = UnityPy.load(os.path.join(romFSPath, yuzuModPath, src))
-    else:
-        text.append("ERROR: masterdatas not found ")
-        return
-
-    extract_dir = "Walker"
-    text.append("Trainers Loaded.")
+    romFSPath = os.path.join(romFSPath, yuzuModPath)
     
+    env = loadUnityPath(romFSPath, outputPath, src, text)
     
     for obj in env.objects:
         if obj.path_id in pathList:
@@ -184,22 +174,12 @@ def updateMovesets(text, romFSPath):
     
     moveList = getMoveList()
     
-    src = "masterdatas"
-    
     cwd = os.getcwd()
     
     outputPath = os.path.join(cwd, "mods", modPath)
-
-    if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
-        os.chdir(outputPath)
-        env = UnityPy.load(os.path.join(outputPath, src))
-        
-    elif os.path.exists(os.path.join(romFSPath, yuzuModPath)) and os.path.isfile(os.path.join(romFSPath, yuzuModPath, src)):
-        os.chdir(romFSPath)
-        env = UnityPy.load(os.path.join(romFSPath, yuzuModPath, src))
-    else:
-        text.append("ERROR: masterdatas not found ")
-        return
+    romFSPath = os.path.join(romFSPath, yuzuModPath)
+    
+    env = loadUnityPath(romFSPath, outputPath, src, text)
     
     for obj in env.objects:
         if obj.path_id in pathList:

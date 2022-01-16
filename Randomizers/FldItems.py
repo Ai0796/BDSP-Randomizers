@@ -5,6 +5,9 @@ from PyQt5.QtWidgets import QTextEdit
 import os
 from pathlib import Path
 import struct
+from Resources.paths.filenames import filenames
+from Resources.paths.loadUnityPath import loadUnityPath
+from Resources.paths.paths import paths
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
@@ -13,8 +16,11 @@ from Resources.pathIDs.ev_script_pathIDs import ev_script
 fld_item = ev_script.fld_item.value
 pathList = [fld_item]
 
-modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr"
-yuzuModPath = "StreamingAssets/AssetAssistant/Dpr"
+modBasePath = paths.modPath.value
+yuzuModPath = paths.ev_script.value
+modPath = os.path.join(modBasePath, yuzuModPath)
+
+src = filenames.ev_script.value
 
 def uselessItemRemover(itemNo):
     
@@ -64,26 +70,13 @@ def generateRandom():
     
 def RandomizeFieldItems(text, romFSPath):
     # Checks if romfs path already exist
-        
-    src = "ev_script"
     
     cwd = os.getcwd()
     
     outputPath = os.path.join(cwd, "mods", modPath)
+    romFSPath = os.path.join(romFSPath, yuzuModPath)
     
-    if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
-        os.chdir(outputPath)
-        env = UnityPy.load(os.path.join(outputPath, src))
-        
-    elif os.path.exists(os.path.join(romFSPath, yuzuModPath)) and os.path.isfile(os.path.join(romFSPath, yuzuModPath, src)):
-        os.chdir(romFSPath)
-        env = UnityPy.load(os.path.join(romFSPath, yuzuModPath, src))
-    else:
-        text.append("ERROR: ev_script not found")
-        return
-    
-    extract_dir = "Walker"
-    text.append("Field Items Loaded.")
+    env = loadUnityPath(romFSPath, outputPath, src, text)
 
     for obj in env.objects:
         if obj.path_id in pathList:

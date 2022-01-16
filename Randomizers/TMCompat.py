@@ -3,6 +3,9 @@ import random
 from PyQt5.QtWidgets import QTextEdit
 import os
 from pathlib import Path
+from Resources.paths.filenames import filenames
+from Resources.paths.loadUnityPath import loadUnityPath
+from Resources.paths.paths import paths
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
@@ -11,8 +14,11 @@ from Resources.pathIDs.personal_masterdatas_pathIDs import personal_masterdatas
 personalTable = personal_masterdatas.PersonalTable.value
 pathList = [personalTable]
 
-modPath = "romfs/Data/StreamingAssets/AssetAssistant/Pml"
-yuzuModPath = "StreamingAssets/AssetAssistant/Pml"
+modBasePath = paths.modPath.value
+yuzuModPath = paths.personal_masterdatas.value
+modPath = os.path.join(modBasePath, yuzuModPath)
+
+src = filenames.personal_masterdatas.value
 
 '''
 TM Compatibility is broken into 3 32 bit integers and one 4 bit integer to cover all 100 TMs
@@ -38,21 +44,11 @@ def RandomizeCompat(text, romFSPath):
     # Checks if romfs path already exist
     cwd = os.getcwd()
     # text.append(cwd)
-    src = "personal_masterdatas"
 
     outputPath = os.path.join(cwd, "mods", modPath)
-
-    if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
-        os.chdir(outputPath)
-        env = UnityPy.load(os.path.join(outputPath, src))
-        
-    elif os.path.exists(os.path.join(romFSPath, yuzuModPath)) and os.path.isfile(os.path.join(romFSPath, yuzuModPath, src)):
-        os.chdir(romFSPath)
-        env = UnityPy.load(os.path.join(romFSPath, yuzuModPath, src))
-        
-    else:
-        text.append("ERROR: personal_masterdatas not found ")
-        return
+    romFSPath = os.path.join(romFSPath, yuzuModPath)
+    
+    env = loadUnityPath(romFSPath, outputPath, src, text)
 
     text.append("TM Compatibility Loaded.")
 

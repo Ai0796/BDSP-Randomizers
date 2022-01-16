@@ -3,6 +3,9 @@ import random
 from PyQt5.QtWidgets import QTextEdit
 import os
 from pathlib import Path
+from Resources.paths.filenames import filenames
+from Resources.paths.loadUnityPath import loadUnityPath
+from Resources.paths.paths import paths
 
 ##PathID Enum
 from Resources.pathIDs.ugdata_pathIDs import ugdata
@@ -22,10 +25,13 @@ UgEncount_12 = ugdata.UgEncount_12.value
 UgSpecialPokemon = ugdata.UgSpecialPokemon.value
 #UgEncount_20 just seems like the digletts and dugtrios that can be found in the underground
 pathList = [UgEncount_02, UgEncount_03, UgEncount_04, UgEncount_05, UgEncount_06, UgEncount_07, UgEncount_08, UgEncount_09, UgEncount_10, UgEncount_11, UgEncount_12]
-modPath = "romfs/Data/StreamingAssets/AssetAssistant/UnderGround/data"
-yuzuModPath = "StreamingAssets/AssetAssistant/UnderGround/data"
 
-src = "ugdata"
+modBasePath = paths.modPath.value
+yuzuModPath = paths.ugdata.value
+modPath = os.path.join(modBasePath, yuzuModPath)
+
+
+src = filenames.ugdata.value
 # make sure the file UgData is in this folder
 # UgData is inside UnderGround/Data
 
@@ -39,20 +45,9 @@ def RandomizeUG(text, romFSPath):
     cwd = os.getcwd()
     
     outputPath = os.path.join(cwd, "mods", modPath)
+    romFSPath = os.path.join(romFSPath, yuzuModPath)
     
-    if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
-        os.chdir(outputPath)
-        env = UnityPy.load(os.path.join(outputPath, src))
-        
-    elif os.path.exists(os.path.join(romFSPath, yuzuModPath)) and os.path.isfile(os.path.join(romFSPath, yuzuModPath, src)):
-        os.chdir(romFSPath)
-        env = UnityPy.load(os.path.join(romFSPath, yuzuModPath, src))
-        
-    else:
-        text.append("ERROR: ugdata not found ")
-        return
-    
-    text.append("ugdata Loaded.")
+    env = loadUnityPath(romFSPath, outputPath, src, text)
 
     for obj in env.objects:
         

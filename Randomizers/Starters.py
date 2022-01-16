@@ -10,6 +10,9 @@ from Randomizers.Patches.Enums.GameRevision import GameRevision
 from Randomizers.Patches.Enums.GameType import GameType
 from Randomizers.Patches.GameOffsets.GameOffsets import GameOffsets
 from Randomizers.Patches.Patch import Patch
+from Resources.paths.filenames import filenames
+from Resources.paths.loadUnityPath import loadUnityPath
+from Resources.paths.paths import paths
 
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 modPath = "mods/exefs/"
@@ -20,11 +23,15 @@ modPath = "mods/exefs/"
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 from Resources.pathIDs.english_pathIDs import english
 
-engMsgPathID = english.english_dp_scenario2
+engMsgPathID = english.english_dp_scenario1.value
 pathList = [engMsgPathID]
 
-modPathEng = "mods/romfs/Data/StreamingAssets/AssetAssistant/Message"
-yuzuModPathEng = "StreamingAssets/AssetAssistant/Message"
+modBasePath = paths.modPath.value
+yuzuModPath = paths.english.value
+modPathEng = os.path.join(modBasePath, yuzuModPath)
+modPath = "mods/exefs"
+
+src = filenames.english.value
 
 BD = GameType.BD
 SP = GameType.SP
@@ -110,21 +117,15 @@ def RandomizeStarters(text, romFSPath):
     src = "english"
     
     outputPath = os.path.join(cwd, "mods", modPathEng)
-    if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
-        env = UnityPy.load(os.path.join(outputPath, src))
-        
-    elif os.path.exists(os.path.join(romFSPath, yuzuModPathEng)) and os.path.isfile(os.path.join(romFSPath, yuzuModPathEng, src)):
-        env = UnityPy.load(os.path.join(romFSPath, yuzuModPathEng, src))
-        
-    else:
-        text.append("ERROR: English messages not found ")
-        return
+    romFSPath = os.path.join(romFSPath, yuzuModPath)
+    
+    env = loadUnityPath(romFSPath, outputPath, src, text)
         
     #do pokemon name patching before anything else. 
-    if not os.path.exists(modPathEng):
-        os.makedirs(modPathEng, 0o666)
+    if not os.path.exists(outputPath):
+        os.makedirs(outputPath, 0o666)
         
-    os.chdir(modPathEng)
+    os.chdir(outputPath)
     for obj in env.objects:
         
         if obj.path_id in pathList:
@@ -137,19 +138,19 @@ def RandomizeStarters(text, romFSPath):
             #Hard coded english message values. 
             #print("Old starter1 name :" + tree['labelDataArray'][28]['wordDataArray'][6]['str'])
             tree['labelDataArray'][28]['wordDataArray'][1]['str'] = colorPokemonmon1
-            tree['labelDataArray'][28]['wordDataArray'][2]['str'] = pokeCateg[mon1-1]
+            tree['labelDataArray'][28]['wordDataArray'][2]['str'] = pokeCateg[mon1]
             tree['labelDataArray'][28]['wordDataArray'][5]['str'] = colorPokemonmon1
             tree['labelDataArray'][28]['wordDataArray'][6]['str'] = pokeNames[mon1]
             #print("New starter1 name :" + tree['labelDataArray'][28]['wordDataArray'][6]['str'])
             #print("Old starter2 name :" + tree['labelDataArray'][29]['wordDataArray'][6]['str'])
             tree['labelDataArray'][29]['wordDataArray'][1]['str'] = colorPokemonmon2
-            tree['labelDataArray'][29]['wordDataArray'][2]['str'] = pokeCateg[mon2-1]
+            tree['labelDataArray'][29]['wordDataArray'][2]['str'] = pokeCateg[mon2]
             tree['labelDataArray'][29]['wordDataArray'][5]['str'] = colorPokemonmon2
             tree['labelDataArray'][29]['wordDataArray'][6]['str'] = pokeNames[mon2]
             #print("New starter2 name :" + tree['labelDataArray'][29]['wordDataArray'][6]['str'])
             #print("Old starter3 name :" + tree['labelDataArray'][30]['wordDataArray'][6]['str'])
             tree['labelDataArray'][30]['wordDataArray'][1]['str'] = colorPokemonmon3
-            tree['labelDataArray'][30]['wordDataArray'][2]['str'] = pokeCateg[mon3-1]
+            tree['labelDataArray'][30]['wordDataArray'][2]['str'] = pokeCateg[mon3]
             tree['labelDataArray'][30]['wordDataArray'][5]['str'] = colorPokemonmon3
             tree['labelDataArray'][30]['wordDataArray'][6]['str'] = pokeNames[mon3]
             #print("New starter3 name :" + tree['labelDataArray'][30]['wordDataArray'][6]['str'])

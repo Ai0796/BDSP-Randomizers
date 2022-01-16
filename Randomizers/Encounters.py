@@ -4,12 +4,12 @@ import random
 import os
 from pathlib import Path
 from PyQt5.QtWidgets import QTextEdit
+from Resources.paths.filenames import filenames
+from Resources.paths.loadUnityPath import loadUnityPath
+from Resources.paths.paths import paths
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
-modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
-yuzuModPath = "StreamingAssets/AssetAssistant/Dpr/scriptableobjects"
-
 from Resources.pathIDs.gamesettings_pathIDs import gamesettings
 
 diamondEncount = gamesettings.FieldEncountTable_d.value
@@ -19,6 +19,12 @@ pathList = [diamondEncount, pearlEncount]
 lengendaries = [144,145,146,150,151,243,244,245,249,250,251,377,378,379,380,381,382,383,384,385,386,480,481,482,483,484,485,486,487,488,491]
 encPool = []
 encLegPool = []
+
+modBasePath = paths.modPath.value
+yuzuModPath = paths.gamesettings.value
+modPath = os.path.join(modBasePath, yuzuModPath)
+
+src = filenames.gamesettings.value
 
 # make sure the file gamesettings is in this folder
 # gamesettings is in Dpr/scriptableassets
@@ -44,23 +50,14 @@ def RandomizeEncounters(text, legends, pools, safari, romFSPath):
     # Checks if romfs path already exist
     cwd = os.getcwd()
     
-    src = "gamesettings"
+    
 
     outputPath = os.path.join(cwd, "mods", modPath)
-
-    if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
-        os.chdir(outputPath)
-        env = UnityPy.load(os.path.join(outputPath, src))
-        
-    elif os.path.exists(os.path.join(romFSPath, yuzuModPath)) and os.path.isfile(os.path.join(romFSPath, yuzuModPath, src)):
-        os.chdir(romFSPath)
-        env = UnityPy.load(os.path.join(romFSPath, yuzuModPath, src))
-    else:
-        text.append("ERROR: gamesettings not found ")
-        return
+    romFSPath = os.path.join(romFSPath, yuzuModPath)
+    
+    env = loadUnityPath(romFSPath, outputPath, src, text)
     
     pool(pools)
-    text.append("Gamesettings Loaded.")
     Encount(safari, legends, env, text)
     # saving an edited file
     # apply modifications to the objects
