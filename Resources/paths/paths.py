@@ -8,8 +8,8 @@ class paths(Enum):
     
     modPath = "romfs/Data"
     exefsModPath = "exefs"
-    emulatorPath = "emulatorRandomized"
-    atmospherePath = "atmosphereRandomized/atmosphere"
+    emulatorPath = "mods/emulatorRandomized"
+    atmospherePath = "mods/atmosphereRandomized/atmosphere"
     atmosphereRomfsDiamond = "contents/0100000011D90000"
     atmosphereRomfsPearl = "contents/010018E011D92000"
     atmosphereExefsPath = "exefs_patches/Starters/"

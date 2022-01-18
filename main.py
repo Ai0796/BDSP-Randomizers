@@ -119,8 +119,8 @@ class AppWindow(QMainWindow):
             ##Copies files generated for Yuzu into a path generated for Atmosphere
             AtmospherePaths.MovePath(self.ui.tbLog)
                     
-            if path.exists("emulatorRandomized"):
-                subprocess.Popen('explorer "emulatorRandomized"')
+            if path.exists("mods"):
+                subprocess.Popen('explorer "mods"')
                 
         except Exception: 
             self.ui.tbLog.append("An Error has occured: ")
