@@ -17,6 +17,7 @@ pathList = [evolveTable]
 modBasePath = paths.modPath.value
 yuzuModPath = paths.personal_masterdatas.value
 modPath = os.path.join(modBasePath, yuzuModPath)
+outputModPath = paths.emulatorPath.value
 
 src = filenames.personal_masterdatas.value
 
@@ -27,7 +28,7 @@ def RandomizeEvolutions(text, romFSPath):
     # Checks if romfs path already exist
     cwd = os.getcwd()
 
-    outputPath = os.path.join(cwd, "mods", modPath)
+    outputPath = os.path.join(cwd, outputModPath, modPath)
     romFSPath = os.path.join(romFSPath, yuzuModPath)
     
     env = loadUnityPath(romFSPath, outputPath, src, text)

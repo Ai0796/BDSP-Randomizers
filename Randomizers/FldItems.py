@@ -19,6 +19,7 @@ pathList = [fld_item]
 modBasePath = paths.modPath.value
 yuzuModPath = paths.ev_script.value
 modPath = os.path.join(modBasePath, yuzuModPath)
+outputModPath = paths.emulatorPath.value
 
 src = filenames.ev_script.value
 
@@ -73,7 +74,7 @@ def RandomizeFieldItems(text, romFSPath):
     
     cwd = os.getcwd()
     
-    outputPath = os.path.join(cwd, "mods", modPath)
+    outputPath = os.path.join(cwd, outputModPath, modPath)
     romFSPath = os.path.join(romFSPath, yuzuModPath)
     
     env = loadUnityPath(romFSPath, outputPath, src, text)

@@ -29,6 +29,7 @@ pathList = [UgEncount_02, UgEncount_03, UgEncount_04, UgEncount_05, UgEncount_06
 modBasePath = paths.modPath.value
 yuzuModPath = paths.ugdata.value
 modPath = os.path.join(modBasePath, yuzuModPath)
+outputModPath = paths.emulatorPath.value
 
 
 src = filenames.ugdata.value
@@ -44,7 +45,7 @@ def RandomizeUG(text, romFSPath):
 
     cwd = os.getcwd()
     
-    outputPath = os.path.join(cwd, "mods", modPath)
+    outputPath = os.path.join(cwd, outputModPath, modPath)
     romFSPath = os.path.join(romFSPath, yuzuModPath)
     
     env = loadUnityPath(romFSPath, outputPath, src, text)

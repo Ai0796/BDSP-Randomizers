@@ -13,6 +13,9 @@ modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr"
 yuzuModPath = "StreamingAssets/AssetAssistant/Dpr"
 
 
+##Goal, Make sure every map in the game can be reached (except Wayward Cave)
+##Make sure the game can be completeable in order (gyms 1-8, e4 1-4, champion)
+
 def randomizeWarps(romFSPath):
     # make sure masterdatas is in same folder
     cwd = os.getcwd()

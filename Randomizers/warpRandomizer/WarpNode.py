@@ -1,49 +1,28 @@
-from msilib.schema import Class
-from tokenize import String
-from turtle import position
+from WarpEdge import WarpEdge
+from zoneIDs import zoneIDs
 
-
-# class WarpNode():
-    
-#     def __init__(self, Position: tuple, WarpZone: int, WarpIndex: int, InputDir: int, FlagIndex: int, ScriptLabel: int, ExitLabel: int, ConnectionName: String):
-        
-#         self.x = Position[0]
-#         self.y = Position[1]
-#         self.z = Position[2]
-        
-        
-#         ##I'm 90% sure you just need WarpZone and WarpIndex for teleportation
-#         self.WarpZone = WarpZone
-#         self.WarpIndex = WarpIndex
-#         self.InputDir = InputDir
-#         self.FlagIndex = FlagIndex
-#         self.ScriptLabel = ScriptLabel
-#         self.ExitLabel = ExitLabel
-#         self.ConnectionName = ConnectionName
-        
-#     def setPosition(self, Position: tuple):
-        
-#         self.x = Position[0]
-#         self.y = Position[1]
-#         self.z = Position[2]
-        
-#     def getWarpZone(self):
-#         return self.WarpZone
-    
-#     def getWarpIndex(self):
-#         return self.WarpIndex
-        
-    
 class WarpNode():
     
-    def __init__(self, WarpZone: int, WarpIndex: int):
+    zoneConverter = zoneIDs()
+    
+    def __init__(self, warpEdges: list, name: str):
         
         ##I'm 90% sure you just need WarpZone and WarpIndex for teleportation
-        self.WarpZone = WarpZone
-        self.WarpIndex = WarpIndex
+        self.warpEdges = warpEdges
+        self.name = name
+        self.zoneID = WarpNode.zoneConverter.getZoneID(name)
         
-    def getWarpZone(self):
-        return self.WarpZone
+    def getWarpEdges(self):
+        return self.warpEdges
     
-    def getWarpIndex(self):
-        return self.WarpIndex
+    def getSize(self):
+        return len(self.warpEdges)
+    
+    def setEdges(self, warpEdges: list):
+        self.warpEdges = warpEdges
+        
+    def getName(self):
+        return self.name
+    
+    def getZoneID(self):
+        return self.zoneID

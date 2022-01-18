@@ -13,6 +13,7 @@ from Resources.pathIDs.masterdatas_pathIDs import masterdatas
 modBasePath = paths.modPath.value
 yuzuModPath = paths.masterdatas.value
 modPath = os.path.join(modBasePath, yuzuModPath)
+outputModPath = paths.emulatorPath.value
 
 src = filenames.masterdatas.value
 
@@ -68,7 +69,7 @@ def RandomizeTrainers(text, minImportant, minBasic, levelIncrease, romFSPath, sc
     abilityList = getAbilityList()
     moveList = getMoveList()
     
-    outputPath = os.path.join(cwd, "mods", modPath)
+    outputPath = os.path.join(cwd, outputModPath, modPath)
     romFSPath = os.path.join(romFSPath, yuzuModPath)
     
     env = loadUnityPath(romFSPath, outputPath, src, text)
@@ -176,7 +177,7 @@ def updateMovesets(text, romFSPath):
     
     cwd = os.getcwd()
     
-    outputPath = os.path.join(cwd, "mods", modPath)
+    outputPath = os.path.join(cwd, outputModPath, modPath)
     romFSPath = os.path.join(romFSPath, yuzuModPath)
     
     env = loadUnityPath(romFSPath, outputPath, src, text)

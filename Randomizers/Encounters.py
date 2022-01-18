@@ -23,6 +23,7 @@ encLegPool = []
 modBasePath = paths.modPath.value
 yuzuModPath = paths.gamesettings.value
 modPath = os.path.join(modBasePath, yuzuModPath)
+outputModPath = paths.emulatorPath.value
 
 src = filenames.gamesettings.value
 
@@ -52,7 +53,7 @@ def RandomizeEncounters(text, legends, pools, safari, romFSPath):
     
     
 
-    outputPath = os.path.join(cwd, "mods", modPath)
+    outputPath = os.path.join(cwd, outputModPath, modPath)
     romFSPath = os.path.join(romFSPath, yuzuModPath)
     
     env = loadUnityPath(romFSPath, outputPath, src, text)

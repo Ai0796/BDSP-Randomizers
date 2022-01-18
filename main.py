@@ -5,6 +5,7 @@ from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters,
 from Randomizers.dialog import Ui_MainWindow
 from AdditionalMods import truesize
 from Utilities import GlobalGameManager
+import AtmospherePaths
 from os import error, path, remove, getcwd, chdir
 import shutil
 import sys
@@ -12,6 +13,11 @@ import traceback
 import subprocess
 
 class AppWindow(QMainWindow):
+    
+    atmospherePath = "atmosphereRandomized"
+    emulatorPath = "emulatorRandomized"
+    pathList = (atmospherePath, emulatorPath)
+    
     def __init__(self):
         super().__init__()
         self.ui = Ui_MainWindow()
@@ -32,8 +38,9 @@ class AppWindow(QMainWindow):
         self.ui.tbLog.append("Output folder set to {}".format(path.join(getcwd(), "mods")))
         
         #Deletes remnamts of old randomizer
-        if path.exists('mods'):
-            shutil.rmtree('mods')
+        for oldPath in AppWindow.pathList:
+            if path.exists(oldPath):
+                shutil.rmtree(oldPath)
         chdir(getcwd())
         
         try:
@@ -109,8 +116,11 @@ class AppWindow(QMainWindow):
                 if path.exists(file):
                     remove(file)
                     
-            if path.exists("mods"):
-                subprocess.Popen('explorer "mods"')
+            ##Copies files generated for Yuzu into a path generated for Atmosphere
+            AtmospherePaths.MovePath(self.ui.tbLog)
+                    
+            if path.exists("emulatorRandomized"):
+                subprocess.Popen('explorer "emulatorRandomized"')
                 
         except Exception: 
             self.ui.tbLog.append("An Error has occured: ")

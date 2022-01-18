@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QTextEdit
 import os
 from pathlib import Path
 from WarpNode import WarpNode
+from WarpEdge import WarpEdge
 
 
 #PathIDs inside Unity
@@ -40,17 +41,23 @@ def getWarps(romFSPath):
     
     print(os.getcwd())
     
-    warpList = []
     
+    nodeList = []
     for obj in env.objects:
         if obj.type.name == "MonoBehaviour":
             tree = obj.read_typetree()
 
             #TrainerPoke
             if tree['m_Name'][:7] == "MapWarp":
+                name = tree['m_Name'].split("_")[1]
+                warpList = []
                 for warp in tree['Data']:
-                    warpNode = WarpNode(warp["WarpZone"], warp["WarpIndex"])
-                    warpList.append(warpNode)
+                    warpEdge = WarpEdge(warp["WarpZone"], warp["WarpIndex"])
+                    warpList.append(warpEdge)
+                    
+                warpNode = WarpNode(warpList, name)
+                nodeList.append(warpNode)
+                print(warpNode.getZoneID())
                 
                 
     return warpList

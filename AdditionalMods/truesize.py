@@ -13,6 +13,7 @@ from Resources.pathIDs.masterdatas_pathIDs import masterdatas
 modBasePath = paths.modPath.value
 yuzuModPath = paths.masterdatas.value
 modPath = os.path.join(modBasePath, yuzuModPath)
+outputModPath = paths.emulatorPath.value
 
 src = filenames.masterdatas.value
 
@@ -24,7 +25,7 @@ def truesize(text, romFSPath):
     # make sure masterdatas is in same folder
     cwd = os.getcwd()
 
-    outputPath = os.path.join(cwd, "mods", modPath)
+    outputPath = os.path.join(cwd, outputModPath, modPath)
     romFSPath = os.path.join(romFSPath, yuzuModPath)
     
     env = loadUnityPath(romFSPath, outputPath, src, text)

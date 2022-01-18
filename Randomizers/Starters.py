@@ -14,9 +14,6 @@ from Resources.paths.filenames import filenames
 from Resources.paths.loadUnityPath import loadUnityPath
 from Resources.paths.paths import paths
 
-#DO NOT CHANGE UNLESS GAME IS UPDATED
-modPath = "mods/exefs/"
-
 #Change hardcoded pokemon name 
 #AssetAssistant/Message/English
 #PathIDs inside Unity
@@ -27,9 +24,12 @@ engMsgPathID = english.english_dp_scenario1.value
 pathList = [engMsgPathID]
 
 modBasePath = paths.modPath.value
+exefsModPath = paths.exefsModPath.value
 yuzuModPath = paths.english.value
 modPathEng = os.path.join(modBasePath, yuzuModPath)
-modPath = "mods/exefs"
+outputModPath = paths.emulatorPath.value
+modPath = os.path.join(outputModPath, exefsModPath)
+
 
 src = filenames.english.value
 
@@ -116,7 +116,7 @@ def RandomizeStarters(text, romFSPath):
 
     src = "english"
     
-    outputPath = os.path.join(cwd, "mods", modPathEng)
+    outputPath = os.path.join(cwd, outputModPath, modPathEng)
     romFSPath = os.path.join(romFSPath, yuzuModPath)
     
     env = loadUnityPath(romFSPath, outputPath, src, text)

@@ -17,6 +17,7 @@ pathList = [personalTable]
 modBasePath = paths.modPath.value
 yuzuModPath = paths.personal_masterdatas.value
 modPath = os.path.join(modBasePath, yuzuModPath)
+outputModPath = paths.emulatorPath.value
 
 src = filenames.personal_masterdatas.value
 
@@ -59,7 +60,7 @@ def RandomizeAbilities(text, romFSPath):
     cwd = os.getcwd()
     # text.append(cwd)
     
-    outputPath = os.path.join(cwd, "mods", modPath)
+    outputPath = os.path.join(cwd, outputModPath, modPath)
     romFSPath = os.path.join(romFSPath, yuzuModPath)
     
     env = loadUnityPath(romFSPath, outputPath, src, text)
