@@ -30,7 +30,7 @@ def uselessItemRemover(itemNo):
         return True
     elif itemNo >= 137 and itemNo <= 148: #Grass mail to Brick mail
         return True
-    elif itemNo >= 113 and itemNo <= 134: #Braces and Arceus Plates
+    elif itemNo >= 113 and itemNo <= 134: #Braces and unusable items
         return True
     elif itemNo in [236, 155, 70, 71]: #Light ball, Oran berry, Shoal Salt, and Shoal Shell
         return True
@@ -40,18 +40,28 @@ def uselessItemRemover(itemNo):
         return True
     elif itemNo == 216: #EXP Share
         return True
+    elif itemNo in [0, 1, 5, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134]:
+        return True
     else:
         return False
     
-def generateRandom():
+def generateRandom(amount):
+    randomList = []
     lowRange = 1
     highRange = 327
     
-    itemNo = random.randrange(lowRange, highRange)
-    ##while item is useless generate a different item
-    while uselessItemRemover(itemNo):
+    pokeballNo = random.randint(1, 15) ##Puts a pokeball in the first slot
+    randomList.append(pokeballNo)
+    
+    for i in range(amount - 1):
         itemNo = random.randrange(lowRange, highRange)
-    return itemNo
+        ##while item is useless generate a different item
+        while uselessItemRemover(itemNo) or itemNo in randomList:
+            itemNo = random.randrange(lowRange, highRange)
+            
+        randomList.append(itemNo)
+        
+    return randomList
     
 def RandomizeShops(text, romFSPath):
 
@@ -67,7 +77,6 @@ def RandomizeShops(text, romFSPath):
     
     shopList = ["FS", "FixedShop"]
     
-    extract_dir = "Walker"
     text.append("Items Shop Loaded.")
 
     for obj in env.objects:
@@ -78,8 +87,11 @@ def RandomizeShops(text, romFSPath):
             tree = obj.read_typetree()
             if tree['m_Name'] == "ShopTable":
                 for shop in shopList:
+                    itemList = generateRandom(len(tree[shop]))
+                    i = 0
                     for item in tree[shop]:
-                        item["ItemNo"] = generateRandom()
+                        item["ItemNo"] = itemList[i]
+                        i += 1
             else:
                 print("Error use different path_id")        
             

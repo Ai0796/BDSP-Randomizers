@@ -33,9 +33,6 @@ def RandomizeEvolutions(text, romFSPath):
     
     env = loadUnityPath(romFSPath, outputPath, src, text)
 
-    ##One to one
-    r = random.sample(range(1,494), 493)
-
     i = 0
 
     for obj in env.objects:
@@ -47,8 +44,19 @@ def RandomizeEvolutions(text, romFSPath):
             tree = obj.read_typetree()
             
             if tree['m_Name'] == "EvolveTable":
+                
+                ##Randomizes every evolution to a new one, not one-to-one
                 for monID in tree['Evolve']:
-                    monID["ar"] = [4, 0, r[i], 0, 1]
+                    evolutions = int(len(monID)/5)
+                    evolveOutcomes = [i]
+                    for i in range(evolutions): 
+                        index = (i * 5) + 2
+                        evolve = random.randint(1, 493)
+                        while evolve in evolveOutcomes:
+                            evolve = random.randint(1, 493)
+                            
+                        evolveOutcomes.append(evolve)
+                        monID["ar"][index] = evolve
                     i += 1
                     # UGLY FIX ASAP - Copycat
                     if i == 493:

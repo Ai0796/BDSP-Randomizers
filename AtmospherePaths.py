@@ -31,11 +31,11 @@ def MovePath(text):
     romfsOutputPathP = os.path.join(cwd, modOutputPath, modRomfsPathP, romfsBasePath)
     exefsOutputPath = os.path.join(cwd, modOutputPath, modExefsPath)
     
-    print(romfsInputPath)
-    print(exefsInputPath)
-    print(romfsOutputPathD)
-    print(romfsOutputPathP)
-    print(exefsOutputPath)     
+    # print(romfsInputPath)
+    # print(exefsInputPath)
+    # print(romfsOutputPathD)
+    # print(romfsOutputPathP)
+    # print(exefsOutputPath)     
     
     if os.path.exists(romfsInputPath):
         
