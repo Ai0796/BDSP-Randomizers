@@ -41,6 +41,8 @@ def uselessItemRemover(itemNo):
         return True
     elif itemNo == 216: #EXP Share
         return True
+    elif itemNo in [0, 1, 5, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134]:
+        return True
     else:
         return False
 
