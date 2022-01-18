@@ -23,7 +23,7 @@ def ApplyUtilities(VSync, timeStep, text, romFSPath):
     cwd = os.getcwd()
     src = "globalgamemanagers"
     
-    outputPath = os.path.join(cwd, "mods", modPath)
+    outputPath = os.path.join(cwd, baseModPath, modPath)
 
     if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
         os.chdir(outputPath)
