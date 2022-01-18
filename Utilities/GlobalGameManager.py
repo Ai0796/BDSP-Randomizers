@@ -5,13 +5,15 @@ from PyQt5.QtWidgets import QTextEdit
 import struct
 import os
 from pathlib import Path
+from Resources.paths.paths import paths
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 timeManager = 8
 qualityManager = 12
 
-modPath = "romfs/Data"
+baseModPath = paths.emulatorPath.value
+modPath = paths.modPath.value
 yuzuModPath = ""
 
 pathList = [timeManager, qualityManager]
