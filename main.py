@@ -116,7 +116,7 @@ class AppWindow(QMainWindow):
                 truesize.truesize(self.ui.tbLog, romFSPath)
                 
             if self.ui.cbRemoveWeather.isChecked():
-                weatherRemove.weather(self.ui.tbLog, romFSPath)
+                weatherRemove.removeWeather(self.ui.tbLog, romFSPath)
                 
             if self.ui.cbFollowing.isChecked():
                 hgssWalkSpeed.HGSSfollowing(self.ui.tbLog, romFSPath)

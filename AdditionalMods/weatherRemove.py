@@ -24,7 +24,7 @@ pathList = [PokemonInfo]
 ##List of weathers to remove
 weather = [8, 14, 15, 16, 18, 19]
 
-def truesize(text, romFSPath):
+def removeWeather(text, romFSPath):
     # make sure masterdatas is in same folder
     cwd = os.getcwd()
 
