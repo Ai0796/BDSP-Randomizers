@@ -6,20 +6,23 @@ from pathlib import Path
 from Resources.paths.filenames import filenames
 from Resources.paths.loadUnityPath import loadUnityPath
 from Resources.paths.paths import paths
-from Resources.pathIDs.masterdatas_pathIDs import masterdatas
+from Resources.pathIDs.gamesettings_pathIDs import gamesettings
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
 modBasePath = paths.modPath.value
-yuzuModPath = paths.masterdatas.value
+yuzuModPath = paths.gamesettings.value
 modPath = os.path.join(modBasePath, yuzuModPath)
 outputModPath = paths.emulatorPath.value
 
-src = filenames.masterdatas.value
+src = filenames.gamesettings.value
 
-PokemonInfo = masterdatas.PokemonInfo.value
+PokemonInfo = gamesettings.MapInfo.value
 
 pathList = [PokemonInfo]
+
+##List of weathers to remove
+weather = [8, 14, 15, 16, 18, 19]
 
 def truesize(text, romFSPath):
     # make sure masterdatas is in same folder
@@ -36,26 +39,23 @@ def truesize(text, romFSPath):
             
             print("Found {}".format(src))
 
-            #TrainerPoke
-            if tree['m_Name'] == "PokemonInfo":
-                for dic in tree['Catalog']:
+            if tree['m_Name'] == "MapInfo":
+                for zone in tree["ZoneData"]:
+                    if int(zone["Weather"]) in weather:
+                        zone["Weather"] = 0
+                        
+                    elif int(zone["Weather"]) == 7:
+                        zone["Weather"] = 6
                     
-                    dic["BattleScale"] = 1.0
-                    dic["ContestScale"] = 1.0
-                    dic["ContestSize"] = 1
-                    dic["FieldScale"] = 1.0
-                    dic["FieldChikaScale"] = 1.0
-                    # dic["StatueScale"] = 1.0
-                    dic["FieldWalkingScale"] = 1.0
-                    dic["FieldFureaiScale"] = 1.0     
-                                              
+                    zone["Bicycle"] = 1
+                    
                 obj.save_typetree(tree)
                 
             else:
                 print("Error use different path_id")
                 
                 
-    text.append("True Size Added.")                
+    text.append("Remove Fog/Bike Everywhere Added.")                
     # saving an edited file
     # apply modifications to the objects
     # don't forget to use data.save()
@@ -72,6 +72,6 @@ def truesize(text, romFSPath):
     
     with open("masterdatas", "wb") as f:
         f.write(env.file.save(packer = (64,2)))
-    text.append("True Size Saved.")
+    text.append("Remove Fog/Bike Everywhere Saved.")
     
     os.chdir(cwd)

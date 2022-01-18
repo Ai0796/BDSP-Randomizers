@@ -1,11 +1,14 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QColor
+
+
 from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters, Levels, Shop, TM, Starters, TMCompat, Ability, FldItems, Moves
 from Randomizers.dialog import Ui_MainWindow
-from AdditionalMods import truesize
+from AdditionalMods import truesize, weatherRemove, hgssWalkSpeed
 from Utilities import GlobalGameManager
 import AtmospherePaths
+
 from os import error, path, remove, getcwd, chdir
 import shutil
 import sys
@@ -37,10 +40,12 @@ class AppWindow(QMainWindow):
         
         self.ui.tbLog.append("Output folder set to {}".format(path.join(getcwd(), "mods")))
         
+        cwd = getcwd()
+        
         #Deletes remnamts of old randomizer
-        for oldPath in AppWindow.pathList:
-            if path.exists(oldPath):
-                shutil.rmtree(oldPath)
+        if path.exists("mods"):
+            shutil.rmtree("mods")
+            
         chdir(getcwd())
         
         try:
@@ -104,9 +109,17 @@ class AppWindow(QMainWindow):
             
             if self.ui.cbFieldItems.isChecked():
                 FldItems.RandomizeFieldItems(self.ui.tbLog, romFSPath)
-                
+            
+            
+            ##------------------------------ Mods Section ------------------------------------    
             if self.ui.cbTrueSize.isChecked():
                 truesize.truesize(self.ui.tbLog, romFSPath)
+                
+            if self.ui.cbRemoveWeather.isChecked():
+                weatherRemove.weather(self.ui.tbLog, romFSPath)
+                
+            if self.ui.cbFollowing.isChecked():
+                hgssWalkSpeed.HGSSfollowing(self.ui.tbLog, romFSPath)
                 
             ##Deletes temp files at the end
             moves = "Resources//tempMoveIndex.txt"
@@ -125,6 +138,7 @@ class AppWindow(QMainWindow):
         except Exception: 
             self.ui.tbLog.append("An Error has occured: ")
             self.ui.tbLog.append(traceback.format_exc())
+            chdir(cwd)
             # self.ui.tbLog.append(str(type(inst.args)))
         #if self.ui.cbLevels.isChecked():
         #    self.ui.tbLog.append('Randomizing Levels!')

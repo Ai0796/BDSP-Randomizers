@@ -1,12 +1,14 @@
-import UnityPy
-import random
-from PyQt5.QtWidgets import QTextEdit
+from inspect import getblock
 import os
+import random
 from pathlib import Path
+
+import UnityPy
+from PyQt5.QtWidgets import QTextEdit
+from Resources.pathIDs.masterdatas_pathIDs import masterdatas
 from Resources.paths.filenames import filenames
 from Resources.paths.loadUnityPath import loadUnityPath
 from Resources.paths.paths import paths
-from Resources.pathIDs.masterdatas_pathIDs import masterdatas
 
 #PathIDs inside Unity
 #DO NOT CHANGE UNLESS GAME IS UPDATED
@@ -21,9 +23,31 @@ PokemonInfo = masterdatas.PokemonInfo.value
 
 pathList = [PokemonInfo]
 
-def truesize(text, romFSPath):
+def getBodySize():
+    bodySizeList = []
+    path = "Resources/pokeBodySize.txt"
+    with open(path, "r", encoding="utf8") as f:
+        for line in f.read().splitlines():
+            line = line.split(",")
+            bodySizeList.append(float(line[1]))
+            
+    return bodySizeList
+
+def getRunSpeed5():
+    runSpeedList = []
+    path = "Resources/runSpeed5.txt"
+    with open(path, "r", encoding="utf8") as f:
+        for line in f.read().splitlines():
+            runSpeedList.append(int(line))
+            
+    return runSpeedList
+
+def HGSSfollowing(text, romFSPath):
     # make sure masterdatas is in same folder
     cwd = os.getcwd()
+    
+    bodySizeList = getBodySize()
+    runSpeedList = getRunSpeed5()
 
     outputPath = os.path.join(cwd, outputModPath, modPath)
     romFSPath = os.path.join(romFSPath, yuzuModPath)
@@ -40,22 +64,28 @@ def truesize(text, romFSPath):
             if tree['m_Name'] == "PokemonInfo":
                 for dic in tree['Catalog']:
                     
-                    dic["BattleScale"] = 1.0
-                    dic["ContestScale"] = 1.0
-                    dic["ContestSize"] = 1
-                    dic["FieldScale"] = 1.0
-                    dic["FieldChikaScale"] = 1.0
-                    # dic["StatueScale"] = 1.0
-                    dic["FieldWalkingScale"] = 1.0
-                    dic["FieldFureaiScale"] = 1.0     
+                    dic["WalkSpeed"] = 1.7
+                    dic["RunSpeed"] = 3.1
+                    dic["WalkStart"] = 0.1
+                    dic["RunStart"] = 0.6
+                    if dic["Waitmoving"] == 1:
+                        dic["Waitmoving"] = 0
+                    monsno = int(dic["MonsNo"])
+                    dic["BodySize"] = bodySizeList[monsno]
+                    if monsno in runSpeedList:
+                        dic["RunSpeed"] = 5.0
+                        
+                    if monsno == 384: ##Really special case for Rayquaza
+                        dic["MoveType"] = 2
                                               
                 obj.save_typetree(tree)
                 
             else:
+                
                 print("Error use different path_id")
                 
                 
-    text.append("True Size Added.")                
+    text.append("HG/SS Following Added.")                
     # saving an edited file
     # apply modifications to the objects
     # don't forget to use data.save()
