@@ -453,63 +453,14 @@ Amount</string>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_5">
-            <item row="0" column="0">
-             <widget class="QCheckBox" name="cbRemoveWeather">
-              <property name="text">
-               <string>Remove Fog/Heavy Snow</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QCheckBox" name="cbCameras">
-              <property name="text">
-               <string>Fixed True Size Cameras</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QCheckBox" name="cbFollowing">
-              <property name="text">
-               <string>HG/SS Following Style + Fixed Static Animations</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QCheckBox" name="cbTrueSize">
-              <property name="text">
-               <string>True Size</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QCheckBox" name="checkBox_2">
-              <property name="text">
-               <string>Coming Soon</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
+            <item row="7" column="0">
              <widget class="QCheckBox" name="checkBox_5">
               <property name="text">
                <string>Coming Soon</string>
               </property>
              </widget>
             </item>
-            <item row="6" column="0">
-             <widget class="QCheckBox" name="checkBox_11">
-              <property name="text">
-               <string>Coming Soon</string>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="0">
-             <widget class="QCheckBox" name="checkBox_8">
-              <property name="text">
-               <string>Coming Soon</string>
-              </property>
-             </widget>
-            </item>
-            <item row="8" column="0">
+            <item row="10" column="0">
              <widget class="QCheckBox" name="checkBox_3">
               <property name="text">
                <string>Coming Soon</string>
@@ -517,27 +468,55 @@ Amount</string>
              </widget>
             </item>
             <item row="9" column="0">
-             <widget class="QCheckBox" name="checkBox_6">
+             <widget class="QCheckBox" name="checkBox_8">
               <property name="text">
                <string>Coming Soon</string>
               </property>
              </widget>
             </item>
-            <item row="10" column="0">
-             <widget class="QCheckBox" name="checkBox_12">
+            <item row="6" column="0">
+             <widget class="QCheckBox" name="checkBox_2">
               <property name="text">
                <string>Coming Soon</string>
               </property>
              </widget>
             </item>
-            <item row="11" column="0">
+            <item row="13" column="0">
              <widget class="QCheckBox" name="checkBox_9">
               <property name="text">
                <string>Coming Soon</string>
               </property>
              </widget>
             </item>
+            <item row="5" column="0">
+             <widget class="QCheckBox" name="cbCameras">
+              <property name="text">
+               <string>Coming Soon</string>
+              </property>
+             </widget>
+            </item>
+            <item row="11" column="0">
+             <widget class="QCheckBox" name="checkBox_6">
+              <property name="text">
+               <string>Coming Soon</string>
+              </property>
+             </widget>
+            </item>
             <item row="12" column="0">
+             <widget class="QCheckBox" name="checkBox_12">
+              <property name="text">
+               <string>Coming Soon</string>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="0">
+             <widget class="QCheckBox" name="checkBox_11">
+              <property name="text">
+               <string>Coming Soon</string>
+              </property>
+             </widget>
+            </item>
+            <item row="14" column="0">
              <widget class="QLabel" name="label_7">
               <property name="minimumSize">
                <size>
@@ -551,6 +530,27 @@ Amount</string>
 
 If you'd like to add your own mods to this tool, message me at Aldo796#6739.
  Texture mods won't be added out of complexity</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QCheckBox" name="cbRemoveWeather">
+              <property name="text">
+               <string>Remove Fog/Heavy Snow + Add Biking Everywhere</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QCheckBox" name="cbFollowing">
+              <property name="text">
+               <string>HG/SS Following Style + Fixed Static Animations (Does not include new animations, you'll need to download Yisuno's mod for that)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QCheckBox" name="cbTrueSize">
+              <property name="text">
+               <string>True Size</string>
               </property>
              </widget>
             </item>

@@ -5,6 +5,8 @@ import os
 from pathlib import Path
 from WarpNode import WarpNode
 from WarpEdge import WarpEdge
+import rapidjson
+from WarpGraph import WarpGraph
 
 
 #PathIDs inside Unity
@@ -13,6 +15,17 @@ from WarpEdge import WarpEdge
 modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr"
 yuzuModPath = "StreamingAssets/AssetAssistant/Dpr"
 
+def checkZoneIDs(warpNode):
+    zoneID = warpNode.getZoneID
+    if zoneID <= 0: #Invalid
+        return False
+    elif zoneID >= 264 and zoneID <= 284: ##Turnback Cave
+        return False
+    elif zoneID >= 620 and zoneID <= 623: ##Secret Bases 1
+        return False
+    elif zoneID >= 627 and zoneID <= 647: ##Secret Bases 2
+        return False
+    return True
 
 def getWarps(romFSPath):
     # make sure masterdatas is in same folder
@@ -40,9 +53,8 @@ def getWarps(romFSPath):
     text.append("Trainers Loaded.")
     
     print(os.getcwd())
-    
-    
-    nodeList = []
+
+    graph = WarpGraph()
     for obj in env.objects:
         if obj.type.name == "MonoBehaviour":
             tree = obj.read_typetree()
@@ -55,13 +67,16 @@ def getWarps(romFSPath):
                     warpEdge = WarpEdge(warp["WarpZone"], warp["WarpIndex"])
                     warpList.append(warpEdge)
                     
-                warpNode = WarpNode(warpList, name)
-                nodeList.append(warpNode)
-                print(warpNode.getZoneID())
+                warpNode = WarpNode(warpList, name, obj.path_id)
+                graph.addNode(warpNode)
+                if len(warpList) > 1 and name[0] == "A": 
+                    print(warpNode.getZoneID())
                 
+    os.chdir(cwd)
                 
-    return warpList
+    return graph
                 
-                
-romFSPath = "C:/Users/moald/AppData/Roaming/yuzu/dump/0100000011D90000/romfs"
-getWarps(romFSPath)
+               
+if __name__ == "__main__": 
+    romFSPath = "C:/Users/moald/AppData/Roaming/yuzu/dump/0100000011D90000/romfs"
+    dic = getWarps(romFSPath)
