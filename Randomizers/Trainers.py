@@ -219,7 +219,7 @@ def LevelIncrease(text, levelIncrease, romFSPath):
     
     with open("masterdatas", "wb") as f:
         f.write(env.file.save(packer = (64,2)))
-    text.append("Trainers Saved.")
+    text.append("Level Increase Saved.")
     
     os.chdir(cwd)
                 

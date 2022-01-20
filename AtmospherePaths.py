@@ -52,6 +52,8 @@ def MovePath(text):
         copytree(exefsInputPath, exefsOutputPath)
         text.append("Created Atmosphere ExeFS")
 
+    os.chdir(cwd)
+
 if __name__ == "__main__":
     text = []
     MovePath(text)

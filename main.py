@@ -135,6 +135,8 @@ class AppWindow(QMainWindow):
             if path.exists("mods"):
                 subprocess.Popen('explorer "mods"')
                 
+            chdir(cwd)
+                
         except Exception: 
             self.ui.tbLog.append("An Error has occured: ")
             self.ui.tbLog.append(traceback.format_exc())
