@@ -157,7 +157,7 @@ def RandomizeStarters(text, romFSPath):
             #Saves the object tree
             obj.save_typetree(tree)
     
-    with open("english", "wb") as f:
+    with open(src, "wb") as f:
         f.write(env.file.save(packer = (64,2)))
  
     #Change back to root dir before working on ips patches

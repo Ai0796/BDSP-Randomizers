@@ -75,11 +75,11 @@ class AppWindow(QMainWindow):
                 
             if self.ui.cbTrainers.isChecked():
                 self.ui.tbLog.append('Randomizing Trainers!')
-                if self.ui.cbLevels.isChecked:
-                    levelIncrease = 1 + (self.ui.sbLevel.value() / 100.0)
-                else:
-                    levelIncrease = 1 ##No increase
-                Trainers.RandomizeTrainers(self.ui.tbLog, 0, 0, levelIncrease, romFSPath, scaleWithLevel=False)
+                Trainers.RandomizeTrainers(self.ui.tbLog, 0, 0, romFSPath, scaleWithLevel=False)
+                
+            if self.ui.cbLevels.isChecked:
+                levelIncrease = self.ui.sbLevel.value() / 100.0
+                Trainers.LevelIncrease(self.ui.tbLog, levelIncrease, romFSPath)
                 
             if self.ui.cbTimeSkip.isChecked() or self.ui.cb60FPS.isChecked():
                 self.ui.tbLog.append('Applying Utilities!')

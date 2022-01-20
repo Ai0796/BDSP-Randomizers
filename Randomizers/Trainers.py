@@ -62,7 +62,7 @@ def getAverageLevel(trainer):
         return 0
 
 
-def RandomizeTrainers(text, minImportant, minBasic, levelIncrease, romFSPath, scaleWithLevel=True):
+def RandomizeTrainers(text, minImportant, minBasic, romFSPath, scaleWithLevel=True):
     # make sure masterdatas is in same folder
     cwd = os.getcwd()
     
@@ -106,10 +106,6 @@ def RandomizeTrainers(text, minImportant, minBasic, levelIncrease, romFSPath, sc
                         # print(dic["P"f"{pokeNum}Level"])
                         level = dic["P"f"{pokeNum}Level"]
                         if level > 0:
-                            #Increases level by 50% with a cap at 255 (the game will set to 100 normally anyways)
-                            dic["P"f"{pokeNum}Level"] = int(dic["P"f"{pokeNum}Level"] * levelIncrease)
-                            if dic["P"f"{pokeNum}Level"] > 255:
-                                dic["P"f"{pokeNum}Level"] = 255
                                 
                             newPokemon = random.randint(1,493)
                             dic["P"f"{pokeNum}MonsNo"] = newPokemon
@@ -149,6 +145,64 @@ def RandomizeTrainers(text, minImportant, minBasic, levelIncrease, romFSPath, sc
                 
                 
     text.append("Trainers Randomized.")                
+    # saving an edited file
+    # apply modifications to the objects
+    # don't forget to use data.save()
+        # ...
+        # 
+        # 
+    #This output is compressed, thanks to Copycat#8110        
+    # outputPath = os.path.join(cwd, "mods", modPath)
+    
+    if not os.path.exists(outputPath):
+        os.makedirs(outputPath, 0o666)
+        
+    os.chdir(outputPath)
+    
+    with open("masterdatas", "wb") as f:
+        f.write(env.file.save(packer = (64,2)))
+    text.append("Trainers Saved.")
+    
+    os.chdir(cwd)
+    
+    
+def LevelIncrease(text, levelIncrease, romFSPath):
+    # make sure masterdatas is in same folder
+    cwd = os.getcwd()
+    
+    outputPath = os.path.join(cwd, outputModPath, modPath)
+    romFSPath = os.path.join(romFSPath, yuzuModPath)
+    
+    env = loadUnityPath(romFSPath, outputPath, src, text)
+    
+    for obj in env.objects:
+        if obj.path_id in pathList:
+            tree = obj.read_typetree()
+            
+            print("Found {}".format(src))
+
+            #TrainerPoke
+            if tree['m_Name'] == "TrainerTable":
+                for dic in tree['TrainerPoke']:
+                    
+                    
+                    for pokeNum in range(1, 7):
+                        # print(dic["P"f"{pokeNum}Level"])
+                        level = dic["P"f"{pokeNum}Level"]
+                        if level > 0:
+                            
+                            #Increases level by x% with a cap at 255 (the game will set to 100 normally anyways)
+                            dic["P"f"{pokeNum}Level"] = int(dic["P"f"{pokeNum}Level"] * (1 + levelIncrease))
+                            if dic["P"f"{pokeNum}Level"] > 255:
+                                dic["P"f"{pokeNum}Level"] = 255
+                               
+                obj.save_typetree(tree)
+                
+            else:
+                print("Error use different path_id")
+                
+                
+    text.append("Levels Increased {}%.".format(levelIncrease * 100))                
     # saving an edited file
     # apply modifications to the objects
     # don't forget to use data.save()
@@ -226,7 +280,7 @@ def updateMovesets(text, romFSPath):
         
     os.chdir(outputPath)
     
-    with open("masterdatas", "wb") as f:
+    with open(src, "wb") as f:
         f.write(env.file.save(packer = (64,2)))
     
     os.chdir(cwd)

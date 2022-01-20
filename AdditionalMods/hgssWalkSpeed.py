@@ -100,7 +100,7 @@ def HGSSfollowing(text, romFSPath):
         
     os.chdir(outputPath)
     
-    with open("masterdatas", "wb") as f:
+    with open(src, "wb") as f:
         f.write(env.file.save(packer = (64,2)))
     text.append("True Size Saved.")
     

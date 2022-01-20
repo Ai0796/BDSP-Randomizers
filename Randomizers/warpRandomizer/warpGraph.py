@@ -19,6 +19,13 @@ class WarpGraph():
         
         return self.warpPool
     
+    def getNameDic(self):
+        nameDic = {}
+        for node in self.nodes:
+            nameDic[node.getName()] = node
+            
+        return nameDic
+    
     def getReturnWarpPool(self):
         
         return self.returnWarpPool
