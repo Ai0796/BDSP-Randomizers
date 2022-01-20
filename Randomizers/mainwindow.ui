@@ -265,10 +265,33 @@
            <string>Level Options</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="3" column="0">
-            <widget class="QDoubleSpinBox" name="sbLevel">
+           <item row="1" column="0">
+            <widget class="QCheckBox" name="cbEncounterLevel">
+             <property name="text">
+              <string>Encounter Level Multiplier</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="cbTrainerLevel">
+             <property name="text">
+              <string>Trainer Level Multiplier</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QDoubleSpinBox" name="sbTrainerLevel">
              <property name="suffix">
               <string>%</string>
+             </property>
+             <property name="decimals">
+              <number>0</number>
              </property>
              <property name="minimum">
               <double>-50.000000000000000</double>
@@ -277,31 +300,43 @@
               <double>500.000000000000000</double>
              </property>
              <property name="singleStep">
-              <double>1.000000000000000</double>
+              <double>10.000000000000000</double>
              </property>
              <property name="value">
               <double>0.000000000000000</double>
              </property>
             </widget>
            </item>
-           <item row="0" column="0">
-            <widget class="QCheckBox" name="rbFlat">
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_3">
              <property name="text">
-              <string>Level Multiplier</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
+              <string>Trainer Increase%</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_3">
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_6">
              <property name="text">
-              <string>
-
-
-
-Increase%</string>
+              <string>Encounter Increase%</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QDoubleSpinBox" name="sbEncounterLevel">
+             <property name="suffix">
+              <string>%</string>
+             </property>
+             <property name="decimals">
+              <number>0</number>
+             </property>
+             <property name="minimum">
+              <double>-50.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>500.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>10.000000000000000</double>
              </property>
             </widget>
            </item>

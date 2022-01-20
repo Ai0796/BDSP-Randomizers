@@ -50,8 +50,6 @@ def RandomizeEncounters(text, legends, pools, safari, romFSPath):
 
     # Checks if romfs path already exist
     cwd = os.getcwd()
-    
-    
 
     outputPath = os.path.join(cwd, outputModPath, modPath)
     romFSPath = os.path.join(romFSPath, yuzuModPath)
@@ -66,8 +64,6 @@ def RandomizeEncounters(text, legends, pools, safari, romFSPath):
         # ...
         # 
         # 
-
-    # If you arent in romfs path, make path and enter it
     
 
     #if cwd == os.getcwd():
@@ -116,4 +112,52 @@ def Encount(safari, legend, env, text):
                     area["MonsNo"] = random.choice(encPool)
             #Saves the object tree
             obj.save_typetree(tree)
+            
     text.append("Randomzing Done.")
+
+
+def LevelIncrease(text, levelIncrease, romFSPath):
+    
+    # Checks if romfs path already exist
+    cwd = os.getcwd()
+
+    outputPath = os.path.join(cwd, outputModPath, modPath)
+    romFSPath = os.path.join(romFSPath, yuzuModPath)
+    
+    env = loadUnityPath(romFSPath, outputPath, src, text)
+
+    #if cwd == os.getcwd():
+    #    Path(modPath).mkdir(parents=True, exist_ok=True)
+    #    os.chdir(modPath)
+    
+    for obj in env.objects:
+        
+        if obj.path_id in pathList:
+            
+            tree = obj.read_typetree()
+            
+            ##Two encounter tables are named FieldEncountTable_d (diamond) and FieldEncountTable_p (pearl)
+            for area in tree['table']:
+                for key in area.keys():
+                    if type(area[key]) != int:
+                        if type(area[key][0]) == dict:
+                            for mon in area[key]:
+                                if mon['monsNo'] != 0:
+                                    mon["maxlv"] = min(255, int(mon["maxlv"] * (1 + levelIncrease)))
+                                    mon["minlv"] = min(255, int(mon["minlv"] * (1 + levelIncrease)))
+                                    
+            obj.save_typetree(tree)
+        
+    if not os.path.exists(outputPath):
+        os.makedirs(outputPath, 0o666)
+        
+    os.chdir(outputPath)
+    
+    text.append("Encounter Levels Increased {}%.".format(levelIncrease * 100))  
+
+    with open(src, "wb") as f:
+        f.write(env.file.save(packer = (64,2)))
+    text.append("Encounter Level Increase Saved.")
+    # Returns to regular directory
+    
+    os.chdir(cwd)

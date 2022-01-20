@@ -67,6 +67,11 @@ class AppWindow(QMainWindow):
                 #Fixed added safari -- sangawku
                 Encounters.RandomizeEncounters(self.ui.tbLog,self.ui.cbLegends.isChecked(), generations, self.ui.cbSafari.isChecked(), romFSPath)
                 
+            if self.ui.cbEncounterLevel.isChecked():
+                self.ui.tbLog.append("Increasing Wild Encounter Levels!")
+                levelIncrease = self.ui.sbEncounterLevel.value() / 100.0
+                Encounters.LevelIncrease(self.ui.tbLog, levelIncrease, romFSPath)
+                
             if self.ui.cbMoves.isChecked():
                 self.ui.tbLog.append('Randomizing Movesets!')
                 Moves.RandomizerMoves(self.ui.tbLog, romFSPath)
@@ -77,9 +82,8 @@ class AppWindow(QMainWindow):
                 self.ui.tbLog.append('Randomizing Trainers!')
                 Trainers.RandomizeTrainers(self.ui.tbLog, 0, 0, romFSPath, scaleWithLevel=False)
                 
-            if self.ui.rbFlat.isChecked():
-                levelIncrease = self.ui.sbLevel.value() / 100.0
-                print(levelIncrease)
+            if self.ui.cbTrainerLevel.isChecked():
+                levelIncrease = self.ui.sbTrainerLevel.value() / 100.0
                 Trainers.LevelIncrease(self.ui.tbLog, levelIncrease, romFSPath)
                 
             if self.ui.cbTimeSkip.isChecked() or self.ui.cb60FPS.isChecked():

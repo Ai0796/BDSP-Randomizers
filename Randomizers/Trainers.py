@@ -201,7 +201,7 @@ def LevelIncrease(text, levelIncrease, romFSPath):
                 print("Error use different path_id")
                 
                 
-    text.append("Levels Increased {}%.".format(levelIncrease * 100))                
+    text.append("Trainer Levels Increased {}%.".format(levelIncrease * 100))                
     # saving an edited file
     # apply modifications to the objects
     # don't forget to use data.save()
@@ -218,7 +218,7 @@ def LevelIncrease(text, levelIncrease, romFSPath):
     
     with open("masterdatas", "wb") as f:
         f.write(env.file.save(packer = (64,2)))
-    text.append("Level Increase Saved.")
+    text.append("Trainer Level Increase Saved.")
     
     os.chdir(cwd)
                 
