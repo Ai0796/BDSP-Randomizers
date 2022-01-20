@@ -185,7 +185,6 @@ def LevelIncrease(text, levelIncrease, romFSPath):
             if tree['m_Name'] == "TrainerTable":
                 for dic in tree['TrainerPoke']:
                     
-                    
                     for pokeNum in range(1, 7):
                         # print(dic["P"f"{pokeNum}Level"])
                         level = dic["P"f"{pokeNum}Level"]

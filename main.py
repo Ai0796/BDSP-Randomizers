@@ -46,7 +46,7 @@ class AppWindow(QMainWindow):
         if path.exists("mods"):
             shutil.rmtree("mods")
             
-        chdir(getcwd())
+        chdir(cwd)
         
         try:
             
@@ -77,8 +77,9 @@ class AppWindow(QMainWindow):
                 self.ui.tbLog.append('Randomizing Trainers!')
                 Trainers.RandomizeTrainers(self.ui.tbLog, 0, 0, romFSPath, scaleWithLevel=False)
                 
-            if self.ui.cbLevels.isChecked:
+            if self.ui.rbFlat.isChecked():
                 levelIncrease = self.ui.sbLevel.value() / 100.0
+                print(levelIncrease)
                 Trainers.LevelIncrease(self.ui.tbLog, levelIncrease, romFSPath)
                 
             if self.ui.cbTimeSkip.isChecked() or self.ui.cb60FPS.isChecked():
