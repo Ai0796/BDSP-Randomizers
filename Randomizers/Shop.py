@@ -53,7 +53,7 @@ def generateRandom(amount):
     lowRange = 1
     highRange = 327
     
-    for i in range(amount - 1):
+    for i in range(amount):
         itemNo = random.randrange(lowRange, highRange)
         ##while item is useless generate a different item
         while uselessItemRemover(itemNo) or itemNo in randomList:
@@ -90,6 +90,8 @@ def RandomizeShops(text, romFSPath):
                     itemList = generateRandom(len(tree[shop]))
                     i = 0
                     for item in tree[shop]:
+                        print("I = {}".format(i))
+                        print("itemList = {}".format(itemList))
                         item["ItemNo"] = itemList[i]
                         i += 1
             else:
