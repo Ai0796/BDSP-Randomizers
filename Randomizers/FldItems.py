@@ -26,7 +26,7 @@ src = filenames.ev_script.value
 def uselessItemRemover(itemNo):
     if itemNo > 428: # Explorer Kit onwards
         return True
-    elif itemNo in [0, 70, 71]: # None, Master Ball, Safari Ball, Life Orb, Power Orb
+    elif itemNo in [0, 70, 71]: # None, Life Orb, Power Orb
         return True
     elif itemNo >= 65 and itemNo <= 69: # Blue Flute to White Flute
         return True
