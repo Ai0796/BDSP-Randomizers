@@ -23,37 +23,37 @@ outputModPath = paths.emulatorPath.value
 src = filenames.masterdatas.value
 
 def uselessItemRemover(itemNo):
-    
-    if itemNo > 428: ##Explorer kit
+    if itemNo > 428: # Explorer Kit onwards
         return True
-    elif itemNo >= 159 and itemNo <= 212: #Figy Berry to Rowap Berry
+    elif itemNo in [0, 1, 5, 70, 71]: # None, Master Ball, Safari Ball, Life Orb, Power Orb
         return True
-    elif itemNo >= 137 and itemNo <= 148: #Grass mail to Brick mail
+    elif itemNo >= 65 and itemNo <= 69: # Blue Flute to White Flute
         return True
-    elif itemNo >= 113 and itemNo <= 134: #Braces and unusable items
+    elif itemNo >= 95 and itemNo <= 98: # Growth Mulch to Gooey Mulch
         return True
-    elif itemNo in [236, 155, 70, 71]: #Light ball, Oran berry, Shoal Salt, and Shoal Shell
+    elif itemNo >= 112 and itemNo <= 134: # Griseous Orb to Sweet Heart
         return True
-    elif itemNo >= 95 and itemNo <= 98: #Mulches for Berry Planting
+    elif itemNo >= 137 and itemNo <= 148: # Greet Mail to Bridge Mail M
         return True
-    elif itemNo >= 256 and itemNo <= 264: #Lucky punch to Yellow scarf
+    elif itemNo == 155: # Oran Berry
         return True
-    elif itemNo == 216: #EXP Share
+    elif itemNo >= 159 and itemNo <= 212: # Figy Berry to Rowap Berry
         return True
-    elif itemNo in [0, 1, 5, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134]:
+    elif itemNo == 216: # Exp. Share
+        return True
+    elif itemNo == 236: # Light Ball
+        return True
+    elif itemNo >= 256 and itemNo <= 264: # Lucky Punch to Yellow Scarf
         return True
     else:
         return False
-    
+
 def generateRandom(amount):
     randomList = []
     lowRange = 1
     highRange = 327
     
-    pokeballNo = random.randint(1, 15) ##Puts a pokeball in the first slot
-    randomList.append(pokeballNo)
-    
-    for i in range(amount - 1):
+    for i in range(amount):
         itemNo = random.randrange(lowRange, highRange)
         ##while item is useless generate a different item
         while uselessItemRemover(itemNo) or itemNo in randomList:
