@@ -6,3 +6,4 @@ class GameRevision(Enum):
     REV_111 = 2
     REV_112 = 3
     REV_113 = 4
+    REV_120 = 5

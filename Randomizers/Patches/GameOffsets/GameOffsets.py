@@ -18,6 +18,8 @@ class GameOffsets:
                         offsets = BDGameOffsets112.BDGameOffsets112()
                     case GameRevision.REV_113:
                         offsets = BDGameOffsets113.BDGameOffsets113()
+                    case GameRevision.REV_120:
+                        offsets = BDGameOffsets120.BDGameOffsets120()
             case GameType.SP:
                 match gameRevision:
                     case GameRevision.REV_100:
@@ -30,6 +32,8 @@ class GameOffsets:
                         offsets = SPGameOffsets112.SPGameOffsets112()
                     case GameRevision.REV_113:
                         offsets = SPGameOffsets113.SPGameOffsets113()
+                    case GameRevision.REV_120:
+                        offsets = SPGameOffsets120.SPGameOffsets120()
         
         self.buildID = offsets.buildID
 
