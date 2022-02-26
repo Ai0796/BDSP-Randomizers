@@ -16,11 +16,11 @@ modPath = "romfs/Data/StreamingAssets/AssetAssistant/Dpr"
 yuzuModPath = "StreamingAssets/AssetAssistant/Dpr"
 
 def checkZoneIDs(warpNode):
-    zoneID = warpNode.getZoneID
+    zoneID = warpNode.getZoneID()
     if zoneID <= 0: #Invalid
         return False
-    elif zoneID >= 264 and zoneID <= 284: ##Turnback Cave
-        return False
+    # elif zoneID >= 264 and zoneID <= 284: ##Turnback Cave
+    #     return False
     elif zoneID >= 620 and zoneID <= 623: ##Secret Bases 1
         return False
     elif zoneID >= 627 and zoneID <= 647: ##Secret Bases 2
@@ -65,12 +65,15 @@ def getWarps(romFSPath):
                 warpList = []
                 for warp in tree['Data']:
                     warpEdge = WarpEdge(warp["WarpZone"], warp["WarpIndex"])
+                    if warp["ExitLabel"] != 999:
+                        print(name, WarpNode(warpList, name, obj.path_id).getZoneID(), warp["WarpZone"], warp["ScriptLabel"], warp["ExitLabel"])
                     warpList.append(warpEdge)
                     
                 warpNode = WarpNode(warpList, name, obj.path_id)
-                graph.addNode(warpNode)
-                if len(warpList) > 1 and name[0] == "A": 
-                    print(warpNode.getZoneID())
+                if checkZoneIDs(warpNode):
+                    graph.addNode(warpNode)
+                # if len(warpList) > 1 and name[0] == "A": 
+                #     print(warpNode.getZoneID())
                 
     os.chdir(cwd)
                 

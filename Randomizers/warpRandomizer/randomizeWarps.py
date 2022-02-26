@@ -5,6 +5,7 @@ import random
 from PyQt5.QtWidgets import QTextEdit
 import os
 from pathlib import Path
+from WarpGraph import WarpGraph
 from WarpNode import WarpNode
 from getWarps import getWarps
 from repackWarps import repackWarps
@@ -18,8 +19,20 @@ yuzuModPath = "StreamingAssets/AssetAssistant/Dpr"
 ##Make sure the game can be completeable in order (gyms 1-8, e4 1-4, champion)
 
     
-def getUniqueNodes(nodeList, num):
-    return random.sample(nodeList, num)
+def getUniqueIndexes(List, num):
+    return random.sample(range(len(List)), num)
+
+def checkZoneIDs(warpNode):
+    zoneID = warpNode.getZoneID()
+    if zoneID <= 0: #Invalid
+        return False
+    elif zoneID >= 264 and zoneID <= 284: ##Turnback Cave
+        return False
+    elif zoneID >= 620 and zoneID <= 623: ##Secret Bases 1
+        return False
+    elif zoneID >= 627 and zoneID <= 647: ##Secret Bases 2
+        return False
+    return True
 
 def randomizeWarps(romFSPath):
     # make sure masterdatas is in same folder
@@ -31,9 +44,9 @@ def randomizeWarps(romFSPath):
     
     warps = getWarps(romFSPath)
     
-    warps.randomize()
+    # warps.randomize()
     
-    repackWarps(romFSPath, warps)
+    # repackWarps(romFSPath, warps)
     # warpsRandom = random.sample(warps, len(warps))
     
     # outputPath = os.path.join(cwd, "mods", modPath)
@@ -43,18 +56,57 @@ def randomizeWarps(romFSPath):
     # print(os.getcwd())
     # i = 0
     
-    # warpPool = warps.getWarpPool()
-    # returnWarpPool = warps.getReturnWarpPool()
+    warpPool = warps.getWarpPool()
+    returnWarpPool = warps.getReturnWarpPool()
+    zoneDic = warps.getZoneDic()
+    indexDic = warps.getNodeIndexes()
     
-    # for i in range(2000):
-    #     singleNodes = 4
-    #     while singleNodes > 2: ##Two needs need to be at least multiple node based
-    #         startNodes = getUniqueNodes(warpPool, 2)
-    #         endNodes = []
-    #         for node in startNodes:
-    #             endNodes.append(node.getRandomWarp())
-            
+    # print(len(warpPool))
+    # print(len(returnWarpPool))
+    print(zoneDic.keys())
+    
+    
+    ##Get two random edges, swap them around
+    while len(warpPool) > 4:
+        warpEdgeIndexes = getUniqueIndexes(warpPool, 2)
+        edgeList = []
+        returnEdgeList = []
         
+        warpEdgeIndexes.sort(reverse=True) ##Done so indexes get pulled from the end to not affect anything
+        for index in warpEdgeIndexes:
+            edgeIndex = random.randrange(0, len(warpPool[index]))
+            edgeList.append(warpPool[index].pop(edgeIndex))
+            
+            if len(warpPool[index]) == 0:
+                warpPool.pop(index)
+                
+        for edge in edgeList:
+            returnEdge = zoneDic[str(edge[0])].getEdge(edge[1])
+            returnEdgeList.append([returnEdge.getWarpZone(), returnEdge.getWarpIndex()])
+        
+        print(edgeList)
+        print(returnEdgeList)
+        returnEdgeList.reverse()
+        
+        
+        for i in range(len(edgeList)):
+            startWarp = edgeList[i]
+            endWarp = returnEdgeList[i]
+            
+            startIndex = indexDic[str(endWarp[0])]
+            startNodeIndex = endWarp[1]
+            
+            endIndex = indexDic[str(startWarp[0])]
+            endNodeIndex = startWarp[1]
+            
+            print(returnWarpPool[startIndex])
+            print(returnWarpPool[endIndex])
+            
+            returnWarpPool[startIndex][startNodeIndex] = startWarp
+            returnWarpPool[endIndex][endNodeIndex] = endWarp
+            
+    warps.repack(returnWarpPool)
+    repackWarps(romFSPath, WarpGraph)
     
     # for obj in env.objects:
     #     if obj.type.name == "MonoBehaviour":

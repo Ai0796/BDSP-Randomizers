@@ -12,6 +12,7 @@ class WarpNode():
         self.warpEdges = warpEdges
         self.name = name
         self.zoneID = WarpNode.zoneConverter.getZoneID(name)
+        self.warpNum = len(self.warpEdges)
         self.path_id = int
         
     def getWarpEdges(self):
@@ -22,6 +23,9 @@ class WarpNode():
     
     def setEdges(self, warpEdges: list):
         self.warpEdges = warpEdges
+        
+    def getEdge(self, index):
+        return self.warpEdges[index]
         
     def getName(self):
         return self.name
@@ -50,3 +54,9 @@ class WarpNode():
         returnWarpList = self.getReturnWarps()
         
         return (warpList[warpNum], returnWarpList[warpNum])
+    
+    def getWarpNum(self):
+        
+        return self.warpNum
+    
+    
