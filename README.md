@@ -12,7 +12,7 @@
 
 # Building
 
-- Due to use of switch statements you need python 3.10+
+- Due to use of switch statements Python 3.10+ is required
 - Run pip install -r requirements.txt
 - If using cx_freeze, manually drag the 'Randomizers' folder into 'lib' in the generated output
 
