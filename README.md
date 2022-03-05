@@ -1,7 +1,7 @@
 # Pokemon Brilliant Diamond Shining Pearl Randomizer 
 ## by Aldo796, Copycat, SanGawku, XLuma, and Red.#9015
 
-## Due to match statements, Python 3.10+ is required to run all starter randomization
+## Python 3.10+ is required to run all starter randomization
 
 # Usage
 
