@@ -2,7 +2,6 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QColor
 
-
 from Randomizers import Encounters, Evolutions, Trainers, UndergroundEncounters, Levels, Shop, TM, Starters, TMCompat, Ability, FldItems, Moves
 from Randomizers.dialog import Ui_MainWindow
 from AdditionalMods import truesize, weatherRemove, hgssWalkSpeed
@@ -10,6 +9,7 @@ from Utilities import GlobalGameManager
 import AtmospherePaths
 
 from os import error, path, remove, getcwd, chdir
+from math import isclose
 import shutil
 import sys
 import traceback
@@ -67,7 +67,7 @@ class AppWindow(QMainWindow):
                 #Fixed added safari -- sangawku
                 Encounters.RandomizeEncounters(self.ui.tbLog,self.ui.cbLegends.isChecked(), generations, self.ui.cbSafari.isChecked(), romFSPath)
                 
-            if self.ui.cbEncounterLevel.isChecked():
+            if self.ui.cbEncounterLevel.isChecked() and not isclose(self.ui.sbEncounterLevel.value(), 0.0):
                 self.ui.tbLog.append("Increasing Wild Encounter Levels!")
                 levelIncrease = self.ui.sbEncounterLevel.value() / 100.0
                 Encounters.LevelIncrease(self.ui.tbLog, levelIncrease, romFSPath)
@@ -82,7 +82,7 @@ class AppWindow(QMainWindow):
                 self.ui.tbLog.append('Randomizing Trainers!')
                 Trainers.RandomizeTrainers(self.ui.tbLog, 0, 0, romFSPath, scaleWithLevel=False)
                 
-            if self.ui.cbTrainerLevel.isChecked():
+            if self.ui.cbTrainerLevel.isChecked() and not isclose(self.ui.sbTrainerLevel.value(), 0.0):
                 levelIncrease = self.ui.sbTrainerLevel.value() / 100.0
                 Trainers.LevelIncrease(self.ui.tbLog, levelIncrease, romFSPath)
                 

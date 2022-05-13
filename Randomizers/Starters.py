@@ -38,7 +38,7 @@ SP = GameType.SP
 
 gameVersionIDs = [x for x in GameRevision]
 
-gameVersionNames = ["100", "110", "111", "112", "113"]
+gameVersionNames = ["100", "110", "111", "112", "113", "120", "130"]
 #8-EV_POKESELECT_02 Worddata 6(0 idx) Turtwig
 #8-EV_POKESELECT_03 Worddata 6(0 idx) Chimchar
 #8-EV_POKESELECT_04 Worddata 6(0 idx) Piplup

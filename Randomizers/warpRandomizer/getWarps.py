@@ -1,3 +1,4 @@
+from tokenize import String
 import UnityPy
 import random
 from PyQt5.QtWidgets import QTextEdit
@@ -27,7 +28,7 @@ def checkZoneIDs(warpNode):
         return False
     return True
 
-def getWarps(romFSPath):
+def getWarps(romFSPath: String):
     # make sure masterdatas is in same folder
     cwd = os.getcwd()
     
@@ -35,7 +36,8 @@ def getWarps(romFSPath):
     
     src = "masterdatas"
     
-    outputPath = os.path.join(cwd, "mods", modPath)
+    # outputPath = os.path.join(cwd, "mods", modPath)
+    outputPath = cwd
 
     if os.path.exists(outputPath) and os.path.isfile(os.path.join(outputPath, src)):
         os.chdir(outputPath)
@@ -49,7 +51,6 @@ def getWarps(romFSPath):
         text.append("ERROR: masterdatas not found ")
         return
 
-    extract_dir = "Walker"
     text.append("Trainers Loaded.")
     
     print(os.getcwd())
@@ -64,22 +65,29 @@ def getWarps(romFSPath):
                 name = tree['m_Name'].split("_")[1]
                 warpList = []
                 for warp in tree['Data']:
-                    warpEdge = WarpEdge(warp["WarpZone"], warp["WarpIndex"])
-                    if warp["ExitLabel"] != 999:
-                        print(name, WarpNode(warpList, name, obj.path_id).getZoneID(), warp["WarpZone"], warp["ScriptLabel"], warp["ExitLabel"])
-                    warpList.append(warpEdge)
+                    # warpEdge = WarpEdge(warp["WarpZone"], warp["WarpIndex"])
+                    warp["WarpZone"] = 502
+                    warp["WarpIndex"] = 0
+                #     if warp["ExitLabel"] != 999:
+                #         print(name, WarpNode(warpList, name, obj.path_id).getZoneID(), warp["WarpZone"], warp["ScriptLabel"], warp["ExitLabel"])
+                #     warpList.append(warpEdge)
                     
-                warpNode = WarpNode(warpList, name, obj.path_id)
-                if checkZoneIDs(warpNode):
-                    graph.addNode(warpNode)
+                # warpNode = WarpNode(warpList, name, obj.path_id)
+                # if checkZoneIDs(warpNode):
+                #     graph.addNode(warpNode)
+                obj.save_typetree(tree)
                 # if len(warpList) > 1 and name[0] == "A": 
                 #     print(warpNode.getZoneID())
                 
     os.chdir(cwd)
+    print(cwd)
+    
+    with open("masterdatas_new", "wb") as f:
+        f.write(env.file.save(packer=(64, 2)))
                 
     return graph
                 
                
 if __name__ == "__main__": 
-    romFSPath = "C:/Users/moald/AppData/Roaming/yuzu/dump/0100000011D90000/romfs"
+    romFSPath = "D:\\Users\\moald\\OneDrive\\Projects\\BDSP-Randomizers"
     dic = getWarps(romFSPath)
